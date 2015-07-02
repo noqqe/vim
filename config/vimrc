@@ -1,0 +1,287 @@
+" ---------------------------------------------------------------------------
+" General
+" ---------------------------------------------------------------------------
+
+set nocompatible          " essential
+set history=1000          " lots of command line history
+set encoding=utf8
+set cf                    " error files / jumping
+set ffs=unix,dos,mac      " support these files
+set isk+=_,$,@,%,#,-      " none word dividers
+set modeline              " make sure modeline support is enabled
+set autoread              " reload files (no local changes only)
+set tabpagemax=50         " open 50 tabs max
+set viminfo='1000,f1,:100,@100,/20
+filetype plugin indent on " load filetype plugin
+
+" ---------------------------------------------------------------------------
+" Colors / Theme
+" ---------------------------------------------------------------------------
+
+" Theme from .vim/colors
+color busybee
+syntax on
+
+if &t_Co > 2 || has("gui_running")
+  if has("terminfo")
+    set t_Co=16
+    set t_Co=16
+  endif
+  set hlsearch
+endif
+
+
+" ---------------------------------------------------------------------------
+" Highlight
+" ---------------------------------------------------------------------------
+
+highlight Comment ctermfg=DarkGrey guifg=#444444
+highlight StatusLineNC ctermfg=Black ctermbg=Black cterm=bold
+highlight StatusLine ctermbg=Black ctermfg=LightGrey
+highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+
+
+" ----------------------------------------------------------------------------
+" Backups
+" ----------------------------------------------------------------------------
+
+set backup                              " do not keep backups after close
+set writebackup                         " do not keep a backup while working
+set swapfile                            " don't keep swp files either
+set backupdir=$HOME/.vim/backup         " store backups under ~/.vim/backup
+set backupcopy=yes                      " keep attributes of original file
+set directory=~/.vim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+
+
+if !isdirectory($HOME . "/.vim/backup")
+  call mkdir($HOME . "/.vim/backup", "p")
+endif
+
+if !isdirectory($HOME . "/.vim/swap")
+  call mkdir($HOME . "/.vim/swap", "p")
+endif
+
+" ----------------------------------------------------------------------------
+" UI
+" ----------------------------------------------------------------------------
+
+set ruler                               " show the cursor position all the time
+set noshowcmd                           " don't display incomplete commands
+set nolazyredraw                        " turn off lazy redraw
+set wildmenu                            " turn on wild menu
+set ch=1                                " command line height
+set backspace=2                         " allow backspacing over everything in insert mode
+set whichwrap+=<,>,h,l,[,]              " backspace and cursor keys wrap to
+set shortmess=filtIoOA                  " shorten messages
+set report=0                            " tell us about changes
+set nostartofline                       " don't jump to the start of line when scrolling
+set wildmode=list:longest,full
+
+" ----------------------------------------------------------------------------
+" Text Formatting
+" ----------------------------------------------------------------------------
+
+set autoindent                      " automatic indent new lines
+set smartindent                     " be smart about it
+set nowrap                          " do not wrap lines
+set softtabstop=2                   " yep, two
+set shiftwidth=2                    " ..
+set tabstop=4
+set expandtab                       " expand tabs to spaces
+set nosmarttab                      " fuck tabs
+set formatoptions+=n                " support for numbered/bullet lists
+set textwidth=75                    " wrap at 75 chars by default
+set virtualedit=block               " allow virtual edit in visual block ..
+set scrolloff=4                     " scroll down and let 4 lines be at the end
+
+" ---------------------------------------------------------------------------
+" File Types
+" ---------------------------------------------------------------------------
+
+au BufRead,BufNewFile *.rtxt set ft=html tw=160 ts=2 sw=2 spell expandtab
+au BufRead,BufNewFile *.sql set ft=pgsql tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.R set tw=80 ts=2 sw=2 ft=r expandtab
+au BufRead,BufNewFile *.markdown set ft=markdown tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.md set ft=markdown tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.ronn set ft=mkd tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.pp set filetype=puppet tw=80 ts=2 sw=2 expandtab
+au Filetype ruby set tw=80 ts=2 sw=2 expandtab
+au Filetype gitcommit set tw=68 spell
+au Filetype sh,bash set ts=2 sts=2 sw=2 tw=80 expandtab
+let g:is_bash = 1
+
+" --------------------------------------------------------------------------
+" Correct Types
+" --------------------------------------------------------------------------
+"
+let mapleader = "-"
+noremap q: :q
+command! W w
+command! Wq wq
+command! Wqa wqa
+command! Qa qa
+command! Q q
+nnoremap <F2> :set number!<CR>
+nnoremap <F3> :set paste!<CR>
+nnoremap <F4> :StripWhitespace<CR>
+nnoremap <F5> :so $MYVIMRC<CR>
+nnoremap <F6> :AirlineRefresh<CR>
+
+" correct end and home keys
+map <esc>OH <home>
+cmap <esc>OH <home>
+imap <esc>OH <home>
+map <esc>OF <end>
+cmap <esc>OF <end>
+imap <esc>OF <end>
+
+
+" --------------------------------------------------------------------------
+" Vundle Configuration
+" --------------------------------------------------------------------------
+
+filetype off
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'gmarik/Vundle.vim'
+Plugin 'bling/vim-airline'
+Plugin 'tomasr/molokai'
+Plugin 'scrooloose/syntastic'
+Plugin 'xolox/vim-misc'
+Plugin 'xolox/vim-easytags'
+Plugin 'majutsushi/tagbar'
+Plugin 'kien/ctrlp.vim'
+Plugin 'bling/vim-bufferline'
+Plugin 'chrisbra/csv.vim'
+Plugin 'tpope/vim-fugitive'
+Plugin 'Raimondi/delimitMate'
+Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'godlygeek/tabular'
+Plugin 'ekalinin/Dockerfile.vim'
+Plugin 'HTML-AutoCloseTag'
+Plugin 'mileszs/ack.vim'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'SyntaxAttr.vim'
+Plugin 'gabrielelana/vim-markdown'
+Plugin 'puppetlabs/puppet-syntax-vim'
+Plugin 'amix/open_file_under_cursor.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'r.vim'
+
+
+call vundle#end()
+filetype plugin indent on
+
+" --------------------------------------------------------------------------
+" Syntastic Configuration
+" --------------------------------------------------------------------------
+
+let g:syntastic_always_populate_loc_list = 1 " populate, needed
+let g:syntastic_check_on_open = 0
+let g:syntastic_check_on_wq = 1
+let g:syntastic_enable_signs = 0 " dont show crazy signs at left border
+let g:syntastic_auto_loc_list = 2 " dont open list automatically
+let g:syntastic_loc_list_height = 5 "windows size
+let g:syntastic_aggregate_errors = 1
+
+" ignore puppet messages
+"let g:syntastic_puppet_puppet_quiet_messages = { "level":  "warnings" }
+"let g:syntastic_puppet_puppetlint_quiet_messages = { "level":  "warnings" }
+
+" only use puppetlint
+"let g:syntastic_puppet_checkers = ["puppet"]
+let g:syntastic_mode_map = {
+      \ "mode": "active",
+      \ "active_filetypes": ["python", "ruby", "php" ],
+      \ "passive_filetypes": ["puppet"] }
+
+
+" --------------------------------------------------------------------------
+" Airline Configuration
+" --------------------------------------------------------------------------
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+endif
+" " unicode symbols
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_symbols.paste = 'PASTE'
+let g:airline_symbols.linenr = 'L'
+let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.whitespace = 'Ξ'
+
+set laststatus=2
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:airline_theme='luna'
+let g:airline#extensions#bufferline#enabled = 1
+let g:airline#extensions#syntastic#enabled = 1
+
+
+" --------------------------------------------------------------------------
+" Open VIM on last opened line of file
+" --------------------------------------------------------------------------
+"
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+    \| exe "normal! g'\"" | endif
+endif
+
+" --------------------------------------------------------------------------
+" Easytags, Tagbar Configuration
+" --------------------------------------------------------------------------
+
+set tags=~/.vim/tags
+let g:easytags_events = ['BufReadPost', 'BufWritePost']
+let g:easytags_async = 1
+let g:easytags_dynamic_files = 2
+let g:easytags_resolve_links = 1
+let g:easytags_suppress_ctags_warning = 1
+
+nmap <silent> <leader>b :TagbarToggle<CR>
+" open tagbar automatically whenever possible
+" autocmd BufEnter * nested :call tagbar#autoopen(0)
+
+" --------------------------------------------------------------------------
+" DelimitMate Configuration
+" --------------------------------------------------------------------------
+
+let delimitMate_expand_cr = 1
+augroup mydelimitMate
+  au!
+  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
+  au FileType tex let b:delimitMate_quotes = ""
+  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
+  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
+augroup END
+
+" --------------------------------------------------------------------------
+" Better-Whitespace Configuration
+" --------------------------------------------------------------------------
+"
+autocmd BufWritePre <buffer> StripWhitespace
+"let s:hilightws = 0
+"hi ExtraWhitespace cterm=NONE ctermbg=green ctermfg=green guibg=green guifg=green
+hi clear ExtraWhitespace
+
+" --------------------------------------------------------------------------
+" UltiSnips Configuration
+" --------------------------------------------------------------------------
+
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" --------------------------------------------------------------------------
+" Spell Configuration
+" --------------------------------------------------------------------------
+autocmd BufRead,BufNewFile *.md setlocal spell spelllang=de,en
+autocmd BufRead,BufNewFile *.markdown setlocal spell spelllang=de,en
+autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=de,en
+

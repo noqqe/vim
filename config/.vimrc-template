@@ -1,0 +1,4 @@
+" source a local configuration file if available.
+if filereadable(expand("~/.vim/config/vimrc"))
+  source ~/.vim/config/vimrc
+endif

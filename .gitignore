@@ -1,0 +1,10 @@
+backup/*
+!backup/.placeholder
+swap/*
+!swap/.placeholder
+bundle/vundle/.netrwhist
+tags
+!bundle/.placeholder
+bundle/*
+.netrwhist
+tags
