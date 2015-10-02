@@ -78,6 +78,7 @@ set shortmess=filtIoOA                  " shorten messages
 set report=0                            " tell us about changes
 set nostartofline                       " don't jump to the start of line when scrolling
 set wildmode=list:longest,full
+set number
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -172,7 +173,10 @@ Plugin 'amix/open_file_under_cursor.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'r.vim'
-
+Plugin 'LnL7/vim-nix'
+Plugin 'airblade/vim-gitgutter'
+Plugin 'junegunn/goyo.vim'
+Plugin 'reedes/vim-pencil'
 
 call vundle#end()
 filetype plugin indent on
@@ -247,7 +251,7 @@ let g:easytags_suppress_ctags_warning = 1
 
 nmap <silent> <leader>b :TagbarToggle<CR>
 " open tagbar automatically whenever possible
-" autocmd BufEnter * nested :call tagbar#autoopen(0)
+autocmd BufEnter * nested :call tagbar#autoopen(0)
 
 " --------------------------------------------------------------------------
 " DelimitMate Configuration
