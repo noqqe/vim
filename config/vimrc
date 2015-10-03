@@ -101,15 +101,13 @@ set scrolloff=4                     " scroll down and let 4 lines be at the end
 " File Types
 " ---------------------------------------------------------------------------
 
-au BufRead,BufNewFile *.rtxt set ft=html tw=160 ts=2 sw=2 spell expandtab
 au BufRead,BufNewFile *.sql set ft=pgsql tw=80 ts=2 sw=2 expandtab
 au BufRead,BufNewFile *.R set tw=80 ts=2 sw=2 ft=r expandtab
 au BufRead,BufNewFile *.markdown set ft=markdown tw=80 ts=2 sw=2 expandtab
 au BufRead,BufNewFile *.md set ft=markdown tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.ronn set ft=mkd tw=80 ts=2 sw=2 expandtab
 au BufRead,BufNewFile *.pp set filetype=puppet tw=80 ts=2 sw=2 expandtab
 au Filetype ruby set tw=80 ts=2 sw=2 expandtab
-au Filetype gitcommit set tw=68 spell
+au Filetype gitcommit set tw=68 spell spelllang=de,en
 au Filetype sh,bash set ts=2 sts=2 sw=2 tw=80 expandtab
 let g:is_bash = 1
 
@@ -147,36 +145,35 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim'
-Plugin 'bling/vim-airline'
-Plugin 'tomasr/molokai'
-Plugin 'scrooloose/syntastic'
-Plugin 'xolox/vim-misc'
-Plugin 'xolox/vim-easytags'
-Plugin 'majutsushi/tagbar'
-Plugin 'kien/ctrlp.vim'
-Plugin 'bling/vim-bufferline'
-Plugin 'chrisbra/csv.vim'
-Plugin 'tpope/vim-fugitive'
-Plugin 'Raimondi/delimitMate'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'godlygeek/tabular'
-Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'HTML-AutoCloseTag'
-Plugin 'mileszs/ack.vim'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'SyntaxAttr.vim'
-Plugin 'gabrielelana/vim-markdown'
-Plugin 'puppetlabs/puppet-syntax-vim'
-Plugin 'amix/open_file_under_cursor.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'r.vim'
-Plugin 'LnL7/vim-nix'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'junegunn/goyo.vim'
-Plugin 'reedes/vim-pencil'
+Plugin 'gmarik/Vundle.vim' " Plugin manager
+Plugin 'bling/vim-airline' " Nice Bar
+Plugin 'scrooloose/syntastic' " Syntax checking for files
+Plugin 'xolox/vim-misc' " dep for syntastic
+Plugin 'xolox/vim-easytags' " dep for tagbar
+Plugin 'majutsushi/tagbar' " bar for functions and variables
+Plugin 'kien/ctrlp.vim' " searching through files
+Plugin 'bling/vim-bufferline' " buffer
+Plugin 'tpope/vim-fugitive' " Git Wrapper
+Plugin 'mileszs/ack.vim' " grepping through repos
+Plugin 'SirVer/ultisnips'  " snippet embedding
+Plugin 'honza/vim-snippets' " snippets with tab completion
+Plugin 'amix/open_file_under_cursor.vim' " ...
+Plugin 'tpope/vim-commentary' " auto commenting with keybinding gc
+Plugin 'airblade/vim-gitgutter' " git diff line next to line numbers
+Plugin 'junegunn/goyo.vim'  " writer fullscreen mode
+Plugin 'reedes/vim-pencil'  " Soft-, Hard-Wrapping
+Plugin 'tpope/vim-surround' " Braces, Brackets autoclosing
+
+" Syntax Highlightning Plugins
+Plugin 'r.vim' " R syntax highlightning
+Plugin 'LnL7/vim-nix' " nixos syntax highlightning
+Plugin 'chrisbra/csv.vim' " csv highlightning
+Plugin 'vim-ruby/vim-ruby' " ruby syntax highlightning
+Plugin 'godlygeek/tabular' " csv highlightning
+Plugin 'gabrielelana/vim-markdown' " markdown syntax
+Plugin 'puppetlabs/puppet-syntax-vim' " puppet syntax
+Plugin 'ntpeters/vim-better-whitespace' " highlightning for whitespace
+Plugin 'ekalinin/Dockerfile.vim' " docker syntax highlightning
 
 call vundle#end()
 filetype plugin indent on
@@ -251,20 +248,9 @@ let g:easytags_suppress_ctags_warning = 1
 
 nmap <silent> <leader>b :TagbarToggle<CR>
 " open tagbar automatically whenever possible
-autocmd BufEnter * nested :call tagbar#autoopen(0)
-
-" --------------------------------------------------------------------------
-" DelimitMate Configuration
-" --------------------------------------------------------------------------
-
-let delimitMate_expand_cr = 1
-augroup mydelimitMate
-  au!
-  au FileType markdown let b:delimitMate_nesting_quotes = ["`"]
-  au FileType tex let b:delimitMate_quotes = ""
-  au FileType tex let b:delimitMate_matchpairs = "(:),[:],{:},`:'"
-  au FileType python let b:delimitMate_nesting_quotes = ['"', "'"]
-augroup END
+autocmd FileType vim nested :call tagbar#autoopen(0)
+autocmd FileType python nested :call tagbar#autoopen(0)
+autocmd FileType ruby nested :call tagbar#autoopen(0)
 
 " --------------------------------------------------------------------------
 " Better-Whitespace Configuration
@@ -284,9 +270,21 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " --------------------------------------------------------------------------
-" Spell Configuration
+" Soft- / Hard Wrapping Configuration
 " --------------------------------------------------------------------------
-autocmd BufRead,BufNewFile *.md setlocal spell spelllang=de,en
-autocmd BufRead,BufNewFile *.markdown setlocal spell spelllang=de,en
-autocmd BufRead,BufNewFile *.txt setlocal spell spelllang=de,en
+augroup pencil
+  autocmd!
+  autocmd Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl textwidth=0 wrapmargin=0 wrap
+  autocmd Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl spell spelllang=de,en sw=2 ts=2 noai nonu nornu
+  autocmd FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 100})
+                            \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
+                            \ | setl tw=100
+                            \ | setl fdo+=search
+  autocmd FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
+                            \ | setl tw=75
+                            \ | setl fdo+=search
+augroup END
 

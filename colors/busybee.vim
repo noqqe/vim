@@ -46,3 +46,6 @@ hi Special         guifg=#ff9800 gui=none ctermfg=99
 hi PreProc         guifg=#faf4c6 gui=italic ctermfg=blue
 hi Todo            guifg=#ff9f00 guibg=#202020 gui=none
 
+" Colors for line numbers and git gutter
+highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+highlight SignColumn term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
