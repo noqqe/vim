@@ -277,7 +277,9 @@ augroup pencil
   autocmd Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
                             \ | setl textwidth=0 wrapmargin=0 wrap
   autocmd Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl spell spelllang=de,en sw=2 ts=2 noai nonu nornu
+                            \ | setl sw=2 ts=2 noai nonu nornu
+                            \ | setl tw=100
+                            \ | setl fdo+=search
   autocmd FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 100})
                             \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
                             \ | setl tw=100
