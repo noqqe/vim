@@ -163,6 +163,7 @@ Plugin 'airblade/vim-gitgutter' " git diff line next to line numbers
 Plugin 'junegunn/goyo.vim'  " writer fullscreen mode
 Plugin 'reedes/vim-pencil'  " Soft-, Hard-Wrapping
 Plugin 'tpope/vim-surround' " Braces, Brackets autoclosing
+Plugin 'scrooloose/nerdtree' " File browser
 
 " Syntax Highlightning Plugins
 Plugin 'r.vim' " R syntax highlightning
