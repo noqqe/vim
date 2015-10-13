@@ -164,6 +164,9 @@ Plugin 'junegunn/goyo.vim'  " writer fullscreen mode
 Plugin 'reedes/vim-pencil'  " Soft-, Hard-Wrapping
 Plugin 'tpope/vim-surround' " Braces, Brackets autoclosing
 Plugin 'scrooloose/nerdtree' " File browser
+Plugin 'tpope/vim-speeddating' " auto increase dates with c-a
+Plugin 'tpope/vim-repeat' " repeat for plugins with .
+
 
 " Syntax Highlightning Plugins
 Plugin 'r.vim' " R syntax highlightning
