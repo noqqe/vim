@@ -228,31 +228,43 @@ let g:easytags_suppress_ctags_warning = 1
 au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl textwidth=0 wm=0 wrap
                      \ | setl sw=2 ts=2 sts=2
+
 au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl sw=2 ts=2 noai nonu nornu
-                     \ | setl tw=100
-au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 100})
-                     \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
-                     \ | setl tw=100
+                     \ | setl sw=2 ts=2 tw=75
+
+au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
+                     \ | setl spell spelllang=de,en
+                     \ | setl sw=4 ts=4 sts=4 tw=75
+
 au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
-                     \ | setl tw=75
+                     \ | setl spell spelllang=de,en
+                     \ | setl sw=2 ts=2 sts=2 tw=75
+
 au Filetype vim          call tagbar#autoopen(0)
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl textwidth=0 wm=0 wrap
+                     \ | setl wm=0 wrap
                      \ | setl sw=2 ts=2 sts=2
+
 au Filetype R            call tagbar#autoopen(0)
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl textwidth=0 wm=0 wrap
+                     \ | setl sw=2 ts=2 sts=2
+
 au Filetype python       call tagbar#autoopen(0)
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl tw=0 wm=0 wrap
+                     \ | setl sw=2 ts=2 sts=2
+
 au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+
 au Filetype ruby         call tagbar#autoopen(0)
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl tw=0 wm=0 wrap
+                     \ | setl sw=2 ts=2 sts=2
+
 au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+
 au BufWritePre           <buffer> StripWhitespace
 
-let g:is_bash = 1                 " convince shell syntax highlight to use bash, not ksh or sh
+let g:is_bash = 1       " convince shell syntax highlight to use bash, not ksh or sh
