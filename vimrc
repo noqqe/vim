@@ -84,16 +84,22 @@ let mapleader = "-"               " define leader key
 
 command! W w                      " alias common typing errors
 command! Wq wq                    " alias common typing errors
-command! Wqa wqa                  " alias common typing errors
+command! Wqa wqa             " alias common typing errors
 command! Qa qa                    " alias common typing errors
 command! Q q                      " alias common typing errors
 
-nmap <silent> <leader>n :set number!<CR>                      " toggle line numbers with -n
-nmap <silent> <leader>p :set paste!<CR>                       " toggle paste mode with -p
-nmap <silent> <leader>s :set spell!<CR>                       " toggle spellchecking with -s
-nmap <silent> <leader>w :StripWhitespace<CR>                  " strip all trail. whitespace with -w
-nmap <silent> <leader>b :TagbarToggle<CR>                     " tagbar on/off swtich with -b
-nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>   " reload vimrc with -r
+" toggle line numbers with -n
+nmap <silent> <leader>n :set number!<CR>
+" toggle paste mode with -p
+nmap <silent> <leader>p :set paste!<CR>
+" toggle spellchecking with -s
+nmap <silent> <leader>s :set spell!<CR>
+" strip all trail. whitespace with -w
+nmap <silent> <leader>w :StripWhitespace<CR>
+" tagbar on/off swtich with -b
+nmap <silent> <leader>b :TagbarToggle<CR>
+" reload vimrc with -r
+nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " correct end and home keys
 map <esc>OH <home>
@@ -107,6 +113,12 @@ imap <esc>OF <end>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
 
 " ---------------------------------------------------------------------------
 " Colors / Theme
@@ -151,6 +163,7 @@ Plug 'tpope/vim-surround'                " Braces, Brackets autoclosing
 Plug 'scrooloose/nerdtree'               " File browser
 Plug 'tpope/vim-speeddating'             " auto increase dates with c-a
 Plug 'tpope/vim-repeat'                  " repeat for plugins with .
+Plug 'junegunn/vim-easy-align'           " align text with gaip=
 
 " Syntax Highlightning Plugins
 Plug 'r.vim'                            " R syntax highlightning
