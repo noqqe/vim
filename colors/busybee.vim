@@ -47,11 +47,14 @@ hi PreProc         guifg=#faf4c6 gui=italic ctermfg=blue
 hi Todo            guifg=#ff9f00 guibg=#202020 gui=none
 
 " Colors for line numbers and git gutter
-highlight LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
-highlight SignColumn term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+hi LineNr term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
+hi SignColumn term=bold cterm=NONE ctermfg=DarkGrey ctermbg=NONE gui=NONE guifg=DarkGrey guibg=NONE
 
 " Highlight Statusline
-highlight Comment ctermfg=DarkGrey guifg=#444444
-highlight StatusLineNC ctermfg=Black ctermbg=Black cterm=bold
-highlight StatusLine ctermbg=Black ctermfg=LightGrey
-highlight SpecialKey ctermfg=DarkGray ctermbg=Black
+hi Comment ctermfg=DarkGrey guifg=#444444
+hi StatusLineNC ctermfg=Black ctermbg=Black cterm=bold
+hi StatusLine ctermbg=Black ctermfg=LightGrey
+hi SpecialKey ctermfg=DarkGray ctermbg=Black
+
+" Remove crazy whitespace highlight
+hi clear ExtraWhitespace

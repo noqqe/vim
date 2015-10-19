@@ -39,13 +39,9 @@ set number
 set autoindent                          " automatic indent new lines
 set smartindent                         " be smart about it
 set nowrap                              " do not wrap lines
-set softtabstop=2                       " yep, two
-set shiftwidth=2                        " ..
-set tabstop=2                           " t.w.o. !
 set expandtab                           " expand tabs to spaces
 set nosmarttab                          " fuck tabs
 set formatoptions+=n                    " support for numbered/bullet lists
-set textwidth=75                        " wrap at 75 chars by default
 set virtualedit=block                   " allow virtual edit in visual block ..
 set scrolloff=4                         " scroll down and let 4 lines be at the end
 
@@ -71,19 +67,6 @@ if !isdirectory($HOME . "/.vim/swap")
   call mkdir($HOME . "/.vim/swap", "p")
 endif
 
-" ---------------------------------------------------------------------------
-" File Types
-" ---------------------------------------------------------------------------
-
-au BufRead,BufNewFile *.sql       set ft=pgsql tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.R         set tw=80 ts=2 sw=2 ft=r expandtab
-au BufRead,BufNewFile *.markdown  set ft=markdown tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.md        set ft=markdown tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.pp        set filetype=puppet tw=80 ts=2 sw=2 expandtab
-au Filetype ruby                  set tw=80 ts=2 sw=2 expandtab
-au Filetype gitcommit             set tw=68 spell spelllang=de,en
-au Filetype sh,bash               set ts=2 sts=2 sw=2 tw=80 expandtab
-let g:is_bash = 1                 " convince shell syntax highlight to use bash, not ksh or sh
 
 " --------------------------------------------------------------------------
 " Custom Keyboard Shortcuts
@@ -195,7 +178,6 @@ let g:syntastic_mode_map = {
       \ "active_filetypes": ["python", "ruby", "php" ],
       \ "passive_filetypes": ["puppet"] }
 
-
 " --------------------------------------------------------------------------
 " Airline Configuration
 " --------------------------------------------------------------------------
@@ -203,21 +185,21 @@ let g:syntastic_mode_map = {
 if !exists('g:airline_symbols')
     let g:airline_symbols = {}
 endif
-" " unicode symbols
+
+" unicode symbols
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.paste = 'PASTE'
 let g:airline_symbols.linenr = 'L'
 let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.whitespace = 'Ξ'
+let g:airline_theme='luna'
+let g:airline#extensions#syntastic#enabled = 1
 
 set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:airline_theme='luna'
-let g:airline#extensions#syntastic#enabled = 1
-
 
 " --------------------------------------------------------------------------
 " Open VIM on last opened line of file
@@ -239,42 +221,38 @@ let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_suppress_ctags_warning = 1
 
+" ---------------------------------------------------------------------------
+" File Types
+" ---------------------------------------------------------------------------
 
-" --------------------------------------------------------------------------
-" Better-Whitespace Configuration
-" --------------------------------------------------------------------------
+au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl textwidth=0 wm=0 wrap
+                     \ | setl sw=2 ts=2 sts=2
+au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl sw=2 ts=2 noai nonu nornu
+                     \ | setl tw=100
+au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 100})
+                     \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
+                     \ | setl tw=100
+au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
+                     \ | setl tw=75
+au Filetype vim          call tagbar#autoopen(0)
+                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl textwidth=0 wm=0 wrap
+                     \ | setl sw=2 ts=2 sts=2
+au Filetype R            call tagbar#autoopen(0)
+                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl textwidth=0 wm=0 wrap
+au Filetype python       call tagbar#autoopen(0)
+                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl tw=0 wm=0 wrap
+au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+au Filetype ruby         call tagbar#autoopen(0)
+                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                     \ | setl tw=0 wm=0 wrap
+au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
+                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+au BufWritePre           <buffer> StripWhitespace
 
-autocmd BufWritePre <buffer> StripWhitespace
-hi clear ExtraWhitespace
-
-
-" --------------------------------------------------------------------------
-" Soft- / Hard Wrapping Configuration
-" --------------------------------------------------------------------------
-augroup pencil
-  autocmd!
-  autocmd Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl textwidth=0 wrapmargin=0 wrap
-  autocmd Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl sw=2 ts=2 noai nonu nornu
-                            \ | setl tw=100
-                            \ | setl fdo+=search
-  autocmd FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 100})
-                            \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
-                            \ | setl tw=100
-                            \ | setl fdo+=search
-  autocmd FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
-                            \ | setl tw=75
-                            \ | setl fdo+=search
-  autocmd Filetype vim          nested call tagbar#autoopen(0)
-                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl textwidth=0 wrapmargin=0 wrap
-  autocmd Filetype python       nested call tagbar#autoopen(0)
-                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl textwidth=0 wrapmargin=0 wrap
-  autocmd Filetype ruby         nested call tagbar#autoopen(0)
-                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                            \ | setl textwidth=0 wrapmargin=0 wrap
-augroup END
-
+let g:is_bash = 1                 " convince shell syntax highlight to use bash, not ksh or sh
