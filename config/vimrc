@@ -2,66 +2,18 @@
 " General
 " ---------------------------------------------------------------------------
 
-set nocompatible          " essential
-set history=1000          " lots of command line history
-set encoding=utf8
-set cf                    " error files / jumping
-set ffs=unix,dos,mac      " support these files
-set isk+=_,$,@,%,#,-      " none word dividers
-set modeline              " make sure modeline support is enabled
-set autoread              " reload files (no local changes only)
-set tabpagemax=50         " open 50 tabs max
+set nocompatible                        " essential
+set history=1000                        " lots of command line history
+set encoding=utf8                       " be nice, by default
+set cf                                  " error files / jumping
+set ffs=unix,dos,mac                    " support these files
+set isk+=_,$,@,%,#,-                    " none word dividers
+set modeline                            " make sure modeline support is enabled
+set autoread                            " reload files (no local changes only)
+set tabpagemax=50                       " open 50 tabs max
 set viminfo='1000,f1,:100,@100,/20
-filetype plugin indent on " load filetype plugin
+filetype plugin indent on               " load filetype plugin
 set cm=blowfish2
-
-" ---------------------------------------------------------------------------
-" Colors / Theme
-" ---------------------------------------------------------------------------
-
-" Theme from .vim/colors
-color busybee
-syntax on
-
-if &t_Co > 2 || has("gui_running")
-  if has("terminfo")
-    set t_Co=16
-    set t_Co=16
-  endif
-  set hlsearch
-endif
-
-
-" ---------------------------------------------------------------------------
-" Highlight
-" ---------------------------------------------------------------------------
-
-highlight Comment ctermfg=DarkGrey guifg=#444444
-highlight StatusLineNC ctermfg=Black ctermbg=Black cterm=bold
-highlight StatusLine ctermbg=Black ctermfg=LightGrey
-highlight SpecialKey ctermfg=DarkGray ctermbg=Black
-
-
-" ----------------------------------------------------------------------------
-" Backups
-" ----------------------------------------------------------------------------
-
-set backup                              " do not keep backups after close
-set writebackup                         " do not keep a backup while working
-set swapfile                            " don't keep swp files either
-set backupdir=$HOME/.vim/backup         " store backups under ~/.vim/backup
-set backupcopy=yes                      " keep attributes of original file
-set directory=~/.vim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
-set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
-
-
-if !isdirectory($HOME . "/.vim/backup")
-  call mkdir($HOME . "/.vim/backup", "p")
-endif
-
-if !isdirectory($HOME . "/.vim/swap")
-  call mkdir($HOME . "/.vim/swap", "p")
-endif
 
 " ----------------------------------------------------------------------------
 " UI
@@ -84,49 +36,71 @@ set number
 " Text Formatting
 " ----------------------------------------------------------------------------
 
-set autoindent                      " automatic indent new lines
-set smartindent                     " be smart about it
-set nowrap                          " do not wrap lines
-set softtabstop=2                   " yep, two
-set shiftwidth=2                    " ..
+set autoindent                          " automatic indent new lines
+set smartindent                         " be smart about it
+set nowrap                              " do not wrap lines
+set softtabstop=2                       " yep, two
+set shiftwidth=2                        " ..
 set tabstop=4
-set expandtab                       " expand tabs to spaces
-set nosmarttab                      " fuck tabs
-set formatoptions+=n                " support for numbered/bullet lists
-set textwidth=75                    " wrap at 75 chars by default
-set virtualedit=block               " allow virtual edit in visual block ..
-set scrolloff=4                     " scroll down and let 4 lines be at the end
+set expandtab                           " expand tabs to spaces
+set nosmarttab                          " fuck tabs
+set formatoptions+=n                    " support for numbered/bullet lists
+set textwidth=75                        " wrap at 75 chars by default
+set virtualedit=block                   " allow virtual edit in visual block ..
+set scrolloff=4                         " scroll down and let 4 lines be at the end
+
+
+" ----------------------------------------------------------------------------
+" Backups
+" ----------------------------------------------------------------------------
+
+set backup                              " do not keep backups after close
+set writebackup                         " do not keep a backup while working
+set swapfile                            " don't keep swp files either
+set backupdir=$HOME/.vim/backup         " store backups under ~/.vim/backup
+set backupcopy=yes                      " keep attributes of original file
+set directory=~/.vim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+
+" Create backup and swap dir, if the do not exist
+if !isdirectory($HOME . "/.vim/backup")
+  call mkdir($HOME . "/.vim/backup", "p")
+endif
+
+if !isdirectory($HOME . "/.vim/swap")
+  call mkdir($HOME . "/.vim/swap", "p")
+endif
 
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 
-au BufRead,BufNewFile *.sql set ft=pgsql tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.R set tw=80 ts=2 sw=2 ft=r expandtab
-au BufRead,BufNewFile *.markdown set ft=markdown tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.md set ft=markdown tw=80 ts=2 sw=2 expandtab
-au BufRead,BufNewFile *.pp set filetype=puppet tw=80 ts=2 sw=2 expandtab
-au Filetype ruby set tw=80 ts=2 sw=2 expandtab
-au Filetype gitcommit set tw=68 spell spelllang=de,en
-au Filetype sh,bash set ts=2 sts=2 sw=2 tw=80 expandtab
-let g:is_bash = 1
+au BufRead,BufNewFile *.sql       set ft=pgsql tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.R         set tw=80 ts=2 sw=2 ft=r expandtab
+au BufRead,BufNewFile *.markdown  set ft=markdown tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.md        set ft=markdown tw=80 ts=2 sw=2 expandtab
+au BufRead,BufNewFile *.pp        set filetype=puppet tw=80 ts=2 sw=2 expandtab
+au Filetype ruby                  set tw=80 ts=2 sw=2 expandtab
+au Filetype gitcommit             set tw=68 spell spelllang=de,en
+au Filetype sh,bash               set ts=2 sts=2 sw=2 tw=80 expandtab
+let g:is_bash = 1                 " convince shell syntax highlight to use bash, not ksh or sh
 
 " --------------------------------------------------------------------------
-" Correct Types
+" Custom Keyboard Shortcuts
 " --------------------------------------------------------------------------
-"
-let mapleader = "-"
-noremap q: :q
-command! W w
-command! Wq wq
-command! Wqa wqa
-command! Qa qa
-command! Q q
+
+let mapleader = "-"               " define leader key
+
+command! W w                      " alias common typing errors
+command! Wq wq                    " alias common typing errors
+command! Wqa wqa                  " alias common typing errors
+command! Qa qa                    " alias common typing errors
+command! Q q                      " alias common typing errors
+
 nnoremap <F2> :set number!<CR>
 nnoremap <F3> :set paste!<CR>
 nnoremap <F4> :StripWhitespace<CR>
-nnoremap <F5> :so $MYVIMRC<CR>
-nnoremap <F6> :AirlineRefresh<CR>
+nnoremap <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " correct end and home keys
 map <esc>OH <home>
@@ -136,9 +110,32 @@ map <esc>OF <end>
 cmap <esc>OF <end>
 imap <esc>OF <end>
 
+" snippet completions
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" tagbar on/off swtich with -b
+nmap <silent> <leader>b :TagbarToggle<CR>
+
+" ---------------------------------------------------------------------------
+" Colors / Theme
+" ---------------------------------------------------------------------------
+
+" Theme from .vim/colors
+color busybee
+syntax on
+
+if &t_Co > 2 || has("gui_running")
+  if has("terminfo")
+    set t_Co=16
+    set t_Co=16
+  endif
+  set hlsearch
+endif
 
 " --------------------------------------------------------------------------
-" Vundle Configuration
+" Plugins (with Vundle)
 " --------------------------------------------------------------------------
 
 filetype off
@@ -167,7 +164,6 @@ Plugin 'scrooloose/nerdtree' " File browser
 Plugin 'tpope/vim-speeddating' " auto increase dates with c-a
 Plugin 'tpope/vim-repeat' " repeat for plugins with .
 
-
 " Syntax Highlightning Plugins
 Plugin 'r.vim' " R syntax highlightning
 Plugin 'LnL7/vim-nix' " nixos syntax highlightning
@@ -194,12 +190,7 @@ let g:syntastic_auto_loc_list = 2 " dont open list automatically
 let g:syntastic_loc_list_height = 5 "windows size
 let g:syntastic_aggregate_errors = 1
 
-" ignore puppet messages
-"let g:syntastic_puppet_puppet_quiet_messages = { "level":  "warnings" }
-"let g:syntastic_puppet_puppetlint_quiet_messages = { "level":  "warnings" }
-
 " only use puppetlint
-"let g:syntastic_puppet_checkers = ["puppet"]
 let g:syntastic_mode_map = {
       \ "mode": "active",
       \ "active_filetypes": ["python", "ruby", "php" ],
@@ -250,28 +241,14 @@ let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_suppress_ctags_warning = 1
 
-nmap <silent> <leader>b :TagbarToggle<CR>
-" open tagbar automatically whenever possible
-autocmd FileType vim nested :call tagbar#autoopen(0)
-autocmd FileType python nested :call tagbar#autoopen(0)
-autocmd FileType ruby nested :call tagbar#autoopen(0)
 
 " --------------------------------------------------------------------------
 " Better-Whitespace Configuration
 " --------------------------------------------------------------------------
-"
+
 autocmd BufWritePre <buffer> StripWhitespace
-"let s:hilightws = 0
-"hi ExtraWhitespace cterm=NONE ctermbg=green ctermfg=green guibg=green guifg=green
 hi clear ExtraWhitespace
 
-" --------------------------------------------------------------------------
-" UltiSnips Configuration
-" --------------------------------------------------------------------------
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " --------------------------------------------------------------------------
 " Soft- / Hard Wrapping Configuration
@@ -292,5 +269,14 @@ augroup pencil
                             \ | setl spell spelllang=de,en fdl=4 noru nonu nornu
                             \ | setl tw=75
                             \ | setl fdo+=search
+  autocmd Filetype vim          nested call tagbar#autoopen(0)
+                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl textwidth=0 wrapmargin=0 wrap
+  autocmd Filetype python       nested call tagbar#autoopen(0)
+                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl textwidth=0 wrapmargin=0 wrap
+  autocmd Filetype ruby         nested call tagbar#autoopen(0)
+                            \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                            \ | setl textwidth=0 wrapmargin=0 wrap
 augroup END
 
