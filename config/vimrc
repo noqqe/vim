@@ -41,7 +41,7 @@ set smartindent                         " be smart about it
 set nowrap                              " do not wrap lines
 set softtabstop=2                       " yep, two
 set shiftwidth=2                        " ..
-set tabstop=4
+set tabstop=2                           " t.w.o. !
 set expandtab                           " expand tabs to spaces
 set nosmarttab                          " fuck tabs
 set formatoptions+=n                    " support for numbered/bullet lists
@@ -97,10 +97,12 @@ command! Wqa wqa                  " alias common typing errors
 command! Qa qa                    " alias common typing errors
 command! Q q                      " alias common typing errors
 
-nnoremap <F2> :set number!<CR>
-nnoremap <F3> :set paste!<CR>
-nnoremap <F4> :StripWhitespace<CR>
-nnoremap <F5> :so $MYVIMRC<CR>:AirlineRefresh<CR>
+nmap <silent> <leader>n :set number!<CR>                      " toggle line numbers with -n
+nmap <silent> <leader>p :set paste!<CR>                       " toggle paste mode with -p
+nmap <silent> <leader>s :set spell!<CR>                       " toggle spellchecking with -s
+nmap <silent> <leader>w :StripWhitespace<CR>                  " strip all trail. whitespace with -w
+nmap <silent> <leader>b :TagbarToggle<CR>                     " tagbar on/off swtich with -b
+nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>   " reload vimrc with -r
 
 " correct end and home keys
 map <esc>OH <home>
@@ -114,9 +116,6 @@ imap <esc>OF <end>
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" tagbar on/off swtich with -b
-nmap <silent> <leader>b :TagbarToggle<CR>
 
 " ---------------------------------------------------------------------------
 " Colors / Theme
