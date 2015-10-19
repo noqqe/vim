@@ -45,6 +45,15 @@ set formatoptions+=n                    " support for numbered/bullet lists
 set virtualedit=block                   " allow virtual edit in visual block ..
 set scrolloff=4                         " scroll down and let 4 lines be at the end
 
+" convince shell syntax highlight to use bash, not ksh or sh
+let g:is_bash = 1
+
+" automatically remove trail. whitespace at write
+au BufWritePre <buffer> StripWhitespace
+
+" open file at last position
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+  \| exe "normal! g'\"" | endif
 
 " ----------------------------------------------------------------------------
 " Backups
@@ -66,7 +75,6 @@ endif
 if !isdirectory($HOME . "/.vim/swap")
   call mkdir($HOME . "/.vim/swap", "p")
 endif
-
 
 " --------------------------------------------------------------------------
 " Custom Keyboard Shortcuts
@@ -202,15 +210,6 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " --------------------------------------------------------------------------
-" Open VIM on last opened line of file
-" --------------------------------------------------------------------------
-"
-if has("autocmd")
-  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-    \| exe "normal! g'\"" | endif
-endif
-
-" --------------------------------------------------------------------------
 " Easytags, Tagbar Configuration
 " --------------------------------------------------------------------------
 
@@ -265,6 +264,3 @@ au Filetype ruby         call tagbar#autoopen(0)
 au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
 
-au BufWritePre           <buffer> StripWhitespace
-
-let g:is_bash = 1       " convince shell syntax highlight to use bash, not ksh or sh
