@@ -9,7 +9,7 @@ this.
 
 ``` bash
 git clone https://github.com/noqqe/vim ~/.vim
-git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-ln -s ~/.vim/config/vimrc ~/.vimrc
-vim +BundleInstall
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+ln -s ~/.vim/vimrc ~/.vimrc
+vim +PlugInstall
 ```

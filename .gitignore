@@ -1,11 +1,13 @@
+# temporary user content
 backup/*
-!backup/.placeholder
 swap/*
-!swap/.placeholder
-bundle/vundle/.netrwhist
+spell/*
+
+# files being created by vim
 tags
-!bundle/.placeholder
-bundle/*
 .netrwhist
 tags
-spell/*
+
+# do not manage pluginmanager
+plugged/*
+autoload/*
