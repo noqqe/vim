@@ -55,5 +55,3 @@ highlight Comment ctermfg=DarkGrey guifg=#444444
 highlight StatusLineNC ctermfg=Black ctermbg=Black cterm=bold
 highlight StatusLine ctermbg=Black ctermfg=LightGrey
 highlight SpecialKey ctermfg=DarkGray ctermbg=Black
-
-

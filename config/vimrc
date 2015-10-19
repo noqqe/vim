@@ -141,38 +141,38 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Plugin 'gmarik/Vundle.vim' " Plugin manager
-Plugin 'bling/vim-airline' " Nice Bar
-Plugin 'scrooloose/syntastic' " Syntax checking for files
-Plugin 'xolox/vim-misc' " dep for syntastic
-Plugin 'xolox/vim-easytags' " dep for tagbar
-Plugin 'majutsushi/tagbar' " bar for functions and variables
-Plugin 'kien/ctrlp.vim' " searching through files
-Plugin 'bling/vim-bufferline' " buffer
-Plugin 'tpope/vim-fugitive' " Git Wrapper
-Plugin 'mileszs/ack.vim' " grepping through repos
-Plugin 'SirVer/ultisnips'  " snippet embedding
-Plugin 'honza/vim-snippets' " snippets with tab completion
-Plugin 'amix/open_file_under_cursor.vim' " ...
-Plugin 'tpope/vim-commentary' " auto commenting with keybinding gc
-Plugin 'airblade/vim-gitgutter' " git diff line next to line numbers
-Plugin 'junegunn/goyo.vim'  " writer fullscreen mode
-Plugin 'reedes/vim-pencil'  " Soft-, Hard-Wrapping
-Plugin 'tpope/vim-surround' " Braces, Brackets autoclosing
-Plugin 'scrooloose/nerdtree' " File browser
-Plugin 'tpope/vim-speeddating' " auto increase dates with c-a
-Plugin 'tpope/vim-repeat' " repeat for plugins with .
+Plugin 'gmarik/Vundle.vim'                 " Plugin manager
+Plugin 'bling/vim-airline'                 " Nice Bar
+Plugin 'scrooloose/syntastic'              " Syntax checking for files
+Plugin 'xolox/vim-misc'                    " dep for syntastic
+Plugin 'xolox/vim-easytags'                " dep for tagbar
+Plugin 'majutsushi/tagbar'                 " bar for functions and variables
+Plugin 'kien/ctrlp.vim'                    " searching through files
+Plugin 'bling/vim-bufferline'              " buffer
+Plugin 'tpope/vim-fugitive'                " Git Wrapper
+Plugin 'mileszs/ack.vim'                   " grepping through repos
+Plugin 'SirVer/ultisnips'                  " snippet embedding
+Plugin 'honza/vim-snippets'                " snippets with tab completion
+Plugin 'amix/open_file_under_cursor.vim'   " ...
+Plugin 'tpope/vim-commentary'              " auto commenting with keybinding gc
+Plugin 'airblade/vim-gitgutter'            " git diff line next to line numbers
+Plugin 'junegunn/goyo.vim'                 " writer fullscreen mode
+Plugin 'reedes/vim-pencil'                 " Soft-, Hard-Wrapping
+Plugin 'tpope/vim-surround'                " Braces, Brackets autoclosing
+Plugin 'scrooloose/nerdtree'               " File browser
+Plugin 'tpope/vim-speeddating'             " auto increase dates with c-a
+Plugin 'tpope/vim-repeat'                  " repeat for plugins with .
 
 " Syntax Highlightning Plugins
-Plugin 'r.vim' " R syntax highlightning
-Plugin 'LnL7/vim-nix' " nixos syntax highlightning
-Plugin 'chrisbra/csv.vim' " csv highlightning
-Plugin 'vim-ruby/vim-ruby' " ruby syntax highlightning
-Plugin 'godlygeek/tabular' " csv highlightning
-Plugin 'gabrielelana/vim-markdown' " markdown syntax
-Plugin 'puppetlabs/puppet-syntax-vim' " puppet syntax
-Plugin 'ntpeters/vim-better-whitespace' " highlightning for whitespace
-Plugin 'ekalinin/Dockerfile.vim' " docker syntax highlightning
+Plugin 'r.vim'                            " R syntax highlightning
+Plugin 'LnL7/vim-nix'                     " nixos syntax highlightning
+Plugin 'chrisbra/csv.vim'                 " csv highlightning
+Plugin 'vim-ruby/vim-ruby'                " ruby syntax highlightning
+Plugin 'godlygeek/tabular'                " csv highlightning
+Plugin 'gabrielelana/vim-markdown'        " markdown syntax
+Plugin 'puppetlabs/puppet-syntax-vim'     " puppet syntax
+Plugin 'ntpeters/vim-better-whitespace'   " highlightning for whitespace
+Plugin 'ekalinin/Dockerfile.vim'          " docker syntax highlightning
 
 call vundle#end()
 filetype plugin indent on
@@ -216,7 +216,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 let g:airline_theme='luna'
-let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#syntastic#enabled = 1
 
 
