@@ -165,16 +165,16 @@ Plug 'tpope/vim-speeddating'             " auto increase dates with c-a
 Plug 'tpope/vim-repeat'                  " repeat for plugins with .
 Plug 'junegunn/vim-easy-align'           " align text with gaip=
 
-" Syntax Highlightning Plugins
-Plug 'r.vim'                            " R syntax highlightning
-Plug 'LnL7/vim-nix'                     " nixos syntax highlightning
-Plug 'chrisbra/csv.vim'                 " csv highlightning
-Plug 'vim-ruby/vim-ruby'                " ruby syntax highlightning
-Plug 'godlygeek/tabular'                " csv highlightning
+" Syntax Highlighting Plugins
+Plug 'r.vim'                            " R syntax highlighting
+Plug 'LnL7/vim-nix'                     " nixos syntax highlighting
+Plug 'chrisbra/csv.vim'                 " csv highlighting
+Plug 'vim-ruby/vim-ruby'                " ruby syntax highlighting
+Plug 'godlygeek/tabular'                " csv highlighting
 Plug 'gabrielelana/vim-markdown'        " markdown syntax
 Plug 'puppetlabs/puppet-syntax-vim'     " puppet syntax
-Plug 'ntpeters/vim-better-whitespace'   " highlightning for whitespace
-Plug 'ekalinin/Dockerfile.vim'          " docker syntax highlightning
+Plug 'ntpeters/vim-better-whitespace'   " highlighting for whitespace
+Plug 'ekalinin/Dockerfile.vim'          " docker syntax highlighting
 
 call plug#end()
 
