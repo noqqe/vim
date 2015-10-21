@@ -80,13 +80,13 @@ endif
 " Custom Keyboard Shortcuts
 " --------------------------------------------------------------------------
 
-let mapleader = "-"               " define leader key
+let mapleader = "-"       " define leader key
 
-command! W w                      " alias common typing errors
-command! Wq wq                    " alias common typing errors
-command! Wqa wqa             " alias common typing errors
-command! Qa qa                    " alias common typing errors
-command! Q q                      " alias common typing errors
+command! W w              " alias common typing errors
+command! Wq wq            " alias common typing errors
+command! Wqa wqa          " alias common typing errors
+command! Qa qa            " alias common typing errors
+command! Q q              " alias common typing errors
 
 " toggle line numbers with -n
 nmap <silent> <leader>n :set number!<CR>
