@@ -243,7 +243,7 @@ au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
 
 au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
                      \ | setl spell spelllang=de,en
-                     \ | setl sw=4 ts=4 sts=4 tw=75
+                     \ | setl sw=2 ts=2 sts=2 tw=75
 
 au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl spell spelllang=de,en
