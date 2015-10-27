@@ -102,10 +102,10 @@ nmap <silent> <leader>b :TagbarToggle<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
 
 " correct end and home keys
-map <esc>OH <home>
+map  <esc>OH <home>
 cmap <esc>OH <home>
 imap <esc>OH <home>
-map <esc>OF <end>
+map  <esc>OF <end>
 cmap <esc>OF <end>
 imap <esc>OF <end>
 
@@ -119,22 +119,6 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
-" ---------------------------------------------------------------------------
-" Colors / Theme
-" ---------------------------------------------------------------------------
-
-" Theme from .vim/colors
-color busybee
-syntax on
-
-if &t_Co > 2 || has("gui_running")
-  if has("terminfo")
-    set t_Co=16
-    set t_Co=16
-  endif
-  set hlsearch
-endif
 
 " --------------------------------------------------------------------------
 " Plugins (with Vundle)
@@ -164,6 +148,7 @@ Plug 'scrooloose/nerdtree'               " File browser
 Plug 'tpope/vim-speeddating'             " auto increase dates with c-a
 Plug 'tpope/vim-repeat'                  " repeat for plugins with .
 Plug 'junegunn/vim-easy-align'           " align text with gaip=
+Plug 'noqqe/n0q-vim'                     " my very own color scheme
 
 " Syntax Highlighting Plugins
 Plug 'r.vim'                            " R syntax highlighting
@@ -177,6 +162,13 @@ Plug 'ntpeters/vim-better-whitespace'   " highlighting for whitespace
 Plug 'ekalinin/Dockerfile.vim'          " docker syntax highlighting
 
 call plug#end()
+
+" ---------------------------------------------------------------------------
+" Colors / Theme
+" ---------------------------------------------------------------------------
+
+colors n0q
+syntax on
 
 " --------------------------------------------------------------------------
 " Syntastic Configuration
