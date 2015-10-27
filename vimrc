@@ -126,7 +126,6 @@ nmap ga <Plug>(EasyAlign)
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'gmarik/Vundle.vim'                 " Plugin manager
 Plug 'bling/vim-airline'                 " Nice Bar
 Plug 'scrooloose/syntastic'              " Syntax checking for files
 Plug 'xolox/vim-misc'                    " dep for syntastic
