@@ -12,8 +12,8 @@ set modeline                            " make sure modeline support is enabled
 set autoread                            " reload files (no local changes only)
 set tabpagemax=50                       " open 50 tabs max
 set viminfo='1000,f1,:100,@100,/20
-filetype plugin indent on               " load filetype plugin
 set cm=blowfish2
+filetype plugin indent on               " load filetype plugin
 
 " ----------------------------------------------------------------------------
 " UI
@@ -159,6 +159,7 @@ Plug 'gabrielelana/vim-markdown'        " markdown syntax
 Plug 'puppetlabs/puppet-syntax-vim'     " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'   " highlighting for whitespace
 Plug 'ekalinin/Dockerfile.vim'          " docker syntax highlighting
+Plug 'hynek/vim-python-pep8-indent'     " Python PEP8 idents and rules
 
 call plug#end()
 
@@ -224,7 +225,7 @@ let g:easytags_suppress_ctags_warning = 1
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
-
+augroup manual
 au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl textwidth=0 wm=0 wrap
                      \ | setl sw=2 ts=2 sts=2
@@ -253,7 +254,7 @@ au Filetype R            call tagbar#autoopen(0)
 au Filetype python       call tagbar#autoopen(0)
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl tw=0 wm=0 wrap
-                     \ | setl sw=2 ts=2 sts=2
+                     \ | setl sw=4 ts=4 sts=4
 
 au Filetype gitcommit    setl tw=50 spell spelllang=de,en
 
@@ -264,4 +265,4 @@ au Filetype ruby         call tagbar#autoopen(0)
 
 au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
-
+augroup end
