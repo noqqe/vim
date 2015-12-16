@@ -31,6 +31,7 @@ set report=0                            " tell us about changes
 set nostartofline                       " don't jump to the start of line when scrolling
 set wildmode=list:longest,full
 set number
+set hlsearch
 
 " ----------------------------------------------------------------------------
 " Text Formatting
