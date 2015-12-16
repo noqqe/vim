@@ -77,6 +77,11 @@ if !isdirectory($HOME . "/.vim/swap")
   call mkdir($HOME . "/.vim/swap", "p")
 endif
 
+if !isdirectory($HOME . "/.vim/spell")
+  call mkdir($HOME . "/.vim/spell", "p")
+endif
+
+
 " --------------------------------------------------------------------------
 " Custom Keyboard Shortcuts
 " --------------------------------------------------------------------------
