@@ -106,7 +106,11 @@ nmap <silent> <leader>w :StripWhitespace<CR>
 nmap <silent> <leader>b :TagbarToggle<CR>
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
-nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>
+" update plugins
+nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
+" check for errors with syntastic
+nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
+
 
 " correct end and home keys
 map  <esc>OH <home>
@@ -133,46 +137,46 @@ nmap ga <Plug>(EasyAlign)
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'                 " Nice Bar
-Plug 'scrooloose/syntastic'              " Syntax checking for files
-Plug 'xolox/vim-misc'                    " dep for syntastic
-Plug 'xolox/vim-easytags'                " dep for tagbar
-Plug 'majutsushi/tagbar'                 " bar for functions and variables
-Plug 'kien/ctrlp.vim'                    " searching through files
-Plug 'bling/vim-bufferline'              " buffer
-Plug 'tpope/vim-fugitive'                " Git Wrapper
-Plug 'rking/ag.vim'                      " grepping through repos
-Plug 'SirVer/ultisnips'                  " snippet embedding
-Plug 'honza/vim-snippets'                " snippets with tab completion
-Plug 'amix/open_file_under_cursor.vim'   " ...
-Plug 'tpope/vim-commentary'              " auto commenting with keybinding gc
-Plug 'airblade/vim-gitgutter'            " git diff line next to line numbers
-Plug 'junegunn/goyo.vim'                 " writer fullscreen mode
-Plug 'reedes/vim-pencil'                 " Soft-, Hard-Wrapping
-Plug 'tpope/vim-surround'                " Braces, Brackets autoclosing
-Plug 'scrooloose/nerdtree'               " File browser
-Plug 'tpope/vim-speeddating'             " auto increase dates with c-a
-Plug 'tpope/vim-repeat'                  " repeat for plugins with .
-Plug 'junegunn/vim-easy-align'           " align text with gaip=
-Plug 'easymotion/vim-easymotion'         " align text with gaip=
-Plug 'noqqe/n0q-vim'                     " my very own color scheme
-Plug 'xolox/vim-notes'                   " notes plugin
-Plug 'ConradIrwin/vim-bracketed-paste'   " auto set-paste plugin
-Plug 'jamessan/vim-gnupg'                " gnupg *.gpg native file editing
-Plug 'mhinz/vim-startify'                " startscreen of vim
-
+Plug 'bling/vim-airline'                        " Nice Bar
+Plug 'scrooloose/syntastic'                     " Syntax checking for files
+Plug 'xolox/vim-misc'                           " dep for syntastic
+Plug 'xolox/vim-easytags', { 'for': 'python' }  " dep for tagbar
+Plug 'majutsushi/tagbar', { 'for': 'python' }   " bar for functions and variables
+Plug 'kien/ctrlp.vim'                           " searching through files
+Plug 'bling/vim-bufferline'                     " buffer
+Plug 'tpope/vim-fugitive'                       " Git Wrapper
+Plug 'rking/ag.vim'                             " grepping through repos
+Plug 'SirVer/ultisnips'                         " snippet embedding
+Plug 'honza/vim-snippets'                       " snippets with tab completion
+Plug 'amix/open_file_under_cursor.vim'          " ...
+Plug 'tpope/vim-commentary'                     " auto commenting with keybinding gc
+Plug 'airblade/vim-gitgutter'                   " git diff line next to line numbers
+Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
+Plug 'reedes/vim-pencil'                        " Soft-, Hard-Wrapping
+Plug 'tpope/vim-surround'                       " Braces, Brackets autoclosing
+Plug 'junegunn/vim-easy-align'                  " align text with gaip=
+Plug 'noqqe/n0q-vim'                            " my very own color scheme
+Plug 'xolox/vim-notes'                          " notes plugin
+Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
+Plug 'jamessan/vim-gnupg'                       " gnupg *.gpg native file editing
+Plug 'mhinz/vim-startify'                       " startscreen of vim
 
 " Syntax Highlighting Plugins
-Plug 'r.vim'                            " R syntax highlighting
-Plug 'LnL7/vim-nix'                     " nixos syntax highlighting
-Plug 'chrisbra/csv.vim'                 " csv highlighting
-Plug 'vim-ruby/vim-ruby'                " ruby syntax highlighting
-Plug 'godlygeek/tabular'                " csv highlighting
-Plug 'gabrielelana/vim-markdown'        " markdown syntax
-Plug 'puppetlabs/puppet-syntax-vim'     " puppet syntax
+Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
+Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlighting
+Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
+Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }  " markdown syntax
+Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'   " highlighting for whitespace
-Plug 'ekalinin/Dockerfile.vim'          " docker syntax highlighting
-Plug 'hynek/vim-python-pep8-indent'     " Python PEP8 idents and rules
+
+" Disabled Plugins
+" Plug 'scrooloose/nerdtree'                      " File browser
+" Plug 'tpope/vim-speeddating'                    " auto increase dates with c-a
+" Plug 'tpope/vim-repeat'                         " repeat for plugins with .
+" Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }  " docker syntax highlighting
+" Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " Python PEP8 idents and rules
 
 call plug#end()
 
@@ -186,20 +190,21 @@ syntax on
 " --------------------------------------------------------------------------
 " Syntastic Configuration
 " --------------------------------------------------------------------------
-
+let b:syntastic_mode = "passive"
 let g:syntastic_always_populate_loc_list = 1 " populate, needed
 let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_check_on_w = 0
 let g:syntastic_enable_signs = 0 " dont show crazy signs at left border
 let g:syntastic_auto_loc_list = 2 " dont open list automatically
 let g:syntastic_loc_list_height = 5 "windows size
 let g:syntastic_aggregate_errors = 1
 
 " only use puppetlint
-let g:syntastic_mode_map = {
-      \ "mode": "active",
-      \ "active_filetypes": ["python", "ruby", "php" ],
-      \ "passive_filetypes": ["puppet"] }
+" let g:syntastic_mode_map = {
+"       \ "mode": "active",
+"       \ "active_filetypes": ["python", "ruby", "php" ],
+"       \ "passive_filetypes": ["puppet"] }
 
 " --------------------------------------------------------------------------
 " Airline Configuration
@@ -244,45 +249,79 @@ let g:startify_custom_header = ['', '   All your base are belong to us', '']
 " File Types
 " ---------------------------------------------------------------------------
 augroup manual
-au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+  autocmd!
+  au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl textwidth=0 wm=0 wrap
                      \ | setl sw=2 ts=2 sts=2
+augroup end
 
-au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+augroup mail
+  autocmd!
+  au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
                      \ | setl sw=2 ts=2 tw=75
+augroup end
 
-au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
-                     \ | setl spell spelllang=de,en
-                     \ | setl sw=2 ts=2 sts=2 tw=75
+augroup markdown
+  autocmd!
+  au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
+                       \ | setl spell spelllang=de,en
+                       \ | setl sw=2 ts=2 sts=2 tw=75
+augroup end
 
-au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl spell spelllang=de,en
-                     \ | setl sw=2 ts=2 sts=2 tw=75
+augroup text
+  autocmd!
+  au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                       \ | setl spell spelllang=de,en
+                       \ | setl sw=2 ts=2 sts=2 tw=75
+augroup end
 
-au Filetype vim          call tagbar#autoopen(0)
-                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl wm=0 wrap
-                     \ | setl sw=2 ts=2 sts=2
 
-au Filetype R            call tagbar#autoopen(0)
-                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl textwidth=0 wm=0 wrap
-                     \ | setl sw=2 ts=2 sts=2
+augroup vim
+  autocmd!
+  au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                       \ | setl wm=0 wrap
+                       \ | setl sw=2 ts=2 sts=2
+augroup end
 
-au Filetype python       call tagbar#autoopen(0)
-                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl tw=0 wm=0 wrap
-                     \ | setl sw=4 ts=4 sts=4
 
-au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+augroup R
+  autocmd!
+  au Filetype R            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                       \ | setl textwidth=0 wm=0 wrap
+                       \ | setl sw=2 ts=2 sts=2
+augroup end
 
-au Filetype ruby         call tagbar#autoopen(0)
-                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl tw=0 wm=0 wrap
-                     \ | setl sw=2 ts=2 sts=2
 
-au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
-                     \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+augroup python
+  autocmd!
+  au Filetype python       call tagbar#autoopen(0)
+                       \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                       \ | setl tw=0 wm=0 wrap
+                       \ | setl sw=4 ts=4 sts=4
+augroup end
 
-au FileType help        setlocal nospell
+
+augroup gitcommit
+  autocmd!
+  au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+augroup end
+
+
+augroup ruby
+  autocmd!
+  au Filetype ruby        call pencil#init({'wrap': 'soft', 'textwidth': 75})
+                       \ | setl tw=0 wm=0 wrap
+                       \ | setl sw=2 ts=2 sts=2
+augroup end
+
+
+augroup shell
+  autocmd!
+  au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
+                       \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+augroup end
+
+augroup help
+  autocmd!
+  au FileType help        setlocal nospell
 augroup end
