@@ -106,6 +106,7 @@ nmap <silent> <leader>w :StripWhitespace<CR>
 nmap <silent> <leader>b :TagbarToggle<CR>
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
+nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>
 
 " correct end and home keys
 map  <esc>OH <home>
@@ -153,7 +154,13 @@ Plug 'scrooloose/nerdtree'               " File browser
 Plug 'tpope/vim-speeddating'             " auto increase dates with c-a
 Plug 'tpope/vim-repeat'                  " repeat for plugins with .
 Plug 'junegunn/vim-easy-align'           " align text with gaip=
+Plug 'easymotion/vim-easymotion'         " align text with gaip=
 Plug 'noqqe/n0q-vim'                     " my very own color scheme
+Plug 'xolox/vim-notes'                   " notes plugin
+Plug 'ConradIrwin/vim-bracketed-paste'   " auto set-paste plugin
+Plug 'jamessan/vim-gnupg'                " gnupg *.gpg native file editing
+Plug 'mhinz/vim-startify'                " startscreen of vim
+
 
 " Syntax Highlighting Plugins
 Plug 'r.vim'                            " R syntax highlighting
@@ -228,6 +235,11 @@ let g:easytags_dynamic_files = 2
 let g:easytags_resolve_links = 1
 let g:easytags_suppress_ctags_warning = 1
 
+" --------------------------------------------------------------------------
+" Startify Start Screen
+" --------------------------------------------------------------------------
+let g:startify_custom_header = ['', '   All your base are belong to us', '']
+
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
@@ -271,4 +283,6 @@ au Filetype ruby         call tagbar#autoopen(0)
 
 au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
                      \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+
+au FileType help        setlocal nospell
 augroup end
