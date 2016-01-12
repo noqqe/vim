@@ -140,7 +140,7 @@ Plug 'majutsushi/tagbar'                 " bar for functions and variables
 Plug 'kien/ctrlp.vim'                    " searching through files
 Plug 'bling/vim-bufferline'              " buffer
 Plug 'tpope/vim-fugitive'                " Git Wrapper
-Plug 'mileszs/ack.vim'                   " grepping through repos
+Plug 'rking/ag.vim'                      " grepping through repos
 Plug 'SirVer/ultisnips'                  " snippet embedding
 Plug 'honza/vim-snippets'                " snippets with tab completion
 Plug 'amix/open_file_under_cursor.vim'   " ...
