@@ -169,7 +169,9 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlight
 Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }  " markdown syntax
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
-Plug 'ntpeters/vim-better-whitespace'   " highlighting for whitespace
+Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
+Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }   " nginx
+Plug 'vim-scripts/pf.vim'
 
 " Disabled Plugins
 " Plug 'scrooloose/nerdtree'                      " File browser
