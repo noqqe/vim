@@ -102,8 +102,8 @@ nmap <silent> <leader>p :set paste!<CR>
 nmap <silent> <leader>s :set spell!<CR>
 " strip all trail. whitespace with -w
 nmap <silent> <leader>w :StripWhitespace<CR>
-" tagbar on/off swtich with -b
-nmap <silent> <leader>b :TagbarToggle<CR>
+" Git Gutter toggle
+nmap <silent> <leader>g :GitGutterToggle<CR>
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
 " update plugins
@@ -137,48 +137,49 @@ nmap ga <Plug>(EasyAlign)
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'bling/vim-airline'                        " Nice Bar
+Plug 'vim-airline/vim-airline'                        " Nice Bar
+Plug 'vim-airline/vim-airline-themes'           " Themes
 Plug 'scrooloose/syntastic'                     " Syntax checking for files
 Plug 'xolox/vim-misc'                           " dep for syntastic
-Plug 'xolox/vim-easytags', { 'for': 'python' }  " dep for tagbar
-Plug 'majutsushi/tagbar', { 'for': 'python' }   " bar for functions and variables
-Plug 'kien/ctrlp.vim'                           " searching through files
-Plug 'bling/vim-bufferline'                     " buffer
 Plug 'tpope/vim-fugitive'                       " Git Wrapper
 Plug 'rking/ag.vim'                             " grepping through repos
 Plug 'SirVer/ultisnips'                         " snippet embedding
 Plug 'honza/vim-snippets'                       " snippets with tab completion
-Plug 'amix/open_file_under_cursor.vim'          " ...
 Plug 'tpope/vim-commentary'                     " auto commenting with keybinding gc
 Plug 'airblade/vim-gitgutter'                   " git diff line next to line numbers
 Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
 Plug 'reedes/vim-pencil'                        " Soft-, Hard-Wrapping
-Plug 'tpope/vim-surround'                       " Braces, Brackets autoclosing
-Plug 'junegunn/vim-easy-align'                  " align text with gaip=
 Plug 'noqqe/n0q-vim'                            " my very own color scheme
-Plug 'xolox/vim-notes'                          " notes plugin
 Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
-Plug 'jamessan/vim-gnupg'                       " gnupg *.gpg native file editing
-Plug 'mhinz/vim-startify'                       " startscreen of vim
 
 " Syntax Highlighting Plugins
 Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
 Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlighting
-Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }  " markdown syntax
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
-Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }   " nginx
-Plug 'vim-scripts/pf.vim'
 
 " Disabled Plugins
 " Plug 'scrooloose/nerdtree'                      " File browser
 " Plug 'tpope/vim-speeddating'                    " auto increase dates with c-a
 " Plug 'tpope/vim-repeat'                         " repeat for plugins with .
+" Plug 'kien/ctrlp.vim'                           " searching through files
+" Plug 'mhinz/vim-startify'                       " startscreen of vim
+" Plug 'amix/open_file_under_cursor.vim'          " ...
+" Plug 'jamessan/vim-gnupg'                       " gnupg *.gpg native file editing
+" Plug 'bling/vim-bufferline'                     " buffer
+" Plug 'xolox/vim-notes'                          " notes plugin
+" Plug 'junegunn/vim-easy-align'                  " align text with gaip=
 " Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }  " docker syntax highlighting
+" Plug 'xolox/vim-easytags', { 'for': 'python' }  " dep for tagbar
+" Plug 'tpope/vim-surround'                       " Braces, Brackets autoclosing
+" Plug 'majutsushi/tagbar', { 'for': 'python' }   " bar for functions and variables
 " Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " Python PEP8 idents and rules
+" Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }   " nginx
+" Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
+" Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlighting
+" Plug 'vim-scripts/pf.vim'
 
 call plug#end()
 
@@ -231,22 +232,6 @@ set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
-" --------------------------------------------------------------------------
-" Easytags, Tagbar Configuration
-" --------------------------------------------------------------------------
-
-set tags=~/.vim/tags
-let g:easytags_events = ['BufReadPost', 'BufWritePost']
-let g:easytags_async = 1
-let g:easytags_dynamic_files = 2
-let g:easytags_resolve_links = 1
-let g:easytags_suppress_ctags_warning = 1
-
-" --------------------------------------------------------------------------
-" Startify Start Screen
-" --------------------------------------------------------------------------
-let g:startify_custom_header = ['', '   All your base are belong to us', '']
-
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
@@ -296,8 +281,7 @@ augroup end
 
 augroup python
   autocmd!
-  au Filetype python       call tagbar#autoopen(0)
-                       \ | call pencil#init({'wrap': 'soft', 'textwidth': 75})
+  au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
                        \ | setl tw=0 wm=0 wrap
                        \ | setl sw=4 ts=4 sts=4
 augroup end
