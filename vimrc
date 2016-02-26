@@ -126,14 +126,8 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsNoPythonWarning = 1
 
-" start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
 " --------------------------------------------------------------------------
-" Plugins (with Vundle)
+" Plugins (with Plug)
 " --------------------------------------------------------------------------
 
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -186,7 +180,6 @@ Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whit
 " Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }   " nginx
 " Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
 " Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlighting
-" Plug 'vim-scripts/pf.vim'
 
 call plug#end()
 
@@ -209,12 +202,6 @@ let g:syntastic_enable_signs = 0 " dont show crazy signs at left border
 let g:syntastic_auto_loc_list = 2 " dont open list automatically
 let g:syntastic_loc_list_height = 5 "windows size
 let g:syntastic_aggregate_errors = 1
-
-" only use puppetlint
-" let g:syntastic_mode_map = {
-"       \ "mode": "active",
-"       \ "active_filetypes": ["python", "ruby", "php" ],
-"       \ "passive_filetypes": ["puppet"] }
 
 " --------------------------------------------------------------------------
 " Airline Configuration
@@ -269,22 +256,12 @@ augroup text
                        \ | setl sw=2 ts=2 sts=2 tw=75
 augroup end
 
-
 augroup vim
   autocmd!
   au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
                        \ | setl wm=0 wrap
                        \ | setl sw=2 ts=2 sts=2
 augroup end
-
-
-augroup R
-  autocmd!
-  au Filetype R            call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                       \ | setl textwidth=0 wm=0 wrap
-                       \ | setl sw=2 ts=2 sts=2
-augroup end
-
 
 augroup python
   autocmd!
@@ -293,20 +270,10 @@ augroup python
                        \ | setl sw=4 ts=4 sts=4
 augroup end
 
-
 augroup gitcommit
   autocmd!
   au Filetype gitcommit    setl tw=50 spell spelllang=de,en
 augroup end
-
-
-augroup ruby
-  autocmd!
-  au Filetype ruby        call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                       \ | setl tw=0 wm=0 wrap
-                       \ | setl sw=2 ts=2 sts=2
-augroup end
-
 
 augroup shell
   autocmd!
