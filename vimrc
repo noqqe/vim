@@ -170,6 +170,7 @@ Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
 Plug 'reedes/vim-pencil'                        " Soft-, Hard-Wrapping
 Plug 'noqqe/n0q-vim'                            " my very own color scheme
 Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
+Plug 'editorconfig/editorconfig-vim'            " fetch codingstyle from repos
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
