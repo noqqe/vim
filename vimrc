@@ -14,6 +14,7 @@ set tabpagemax=50                       " open 50 tabs max
 set viminfo='1000,f1,:100,@100,/20
 filetype plugin indent on               " load filetype plugin
 
+
 " ----------------------------------------------------------------------------
 " UI
 " ----------------------------------------------------------------------------
@@ -78,6 +79,24 @@ endif
 
 if !isdirectory($HOME . "/.vim/spell")
   call mkdir($HOME . "/.vim/spell", "p")
+endif
+
+" ----------------------------------------------------------------------------
+" Compatibilities
+" ----------------------------------------------------------------------------
+
+" use crypto better filecrypto if available
+if has('cryptv')
+  set cryptmethod=blowfish
+end
+
+" use persistent undo dir if available
+if has('persistent_undo')
+	if !isdirectory($HOME . "/.vim/undo")
+    call mkdir($HOME . "/.vim/undo", "p")
+	endif
+  set undofile
+  set undodir=$HOME/.vim/undo
 endif
 
 

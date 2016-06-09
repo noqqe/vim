@@ -2,6 +2,7 @@
 backup/*
 swap/*
 spell/*
+undo/*
 
 # files being created by vim
 tags
