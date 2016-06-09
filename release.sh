@@ -21,6 +21,11 @@ for x in $(grep ^Plug $TEMP/vimrc | awk -F\' '{print $2}'); do
   echo "Downloading $x"
   git clone -q https://github.com/$x $TEMP/plugged/$PLUGIN
   rm -rf $TEMP/plugged/$PLUGIN/.git
+  if [[ -d "$TEMP/plugged/$PLUGIN/test" ]]; then
+    rm -rf $TEMP/plugged/$PLUGIN/test
+  fi
 done
 
+chmod 755 $TEMP
 echo "# Built release at $TEMP"
+
