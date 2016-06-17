@@ -178,9 +178,9 @@ Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
 Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
-Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
 " Disabled Plugins
+" Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
 " Plug 'scrooloose/nerdtree'                      " File browser
 " Plug 'tpope/vim-speeddating'                    " auto increase dates with c-a
