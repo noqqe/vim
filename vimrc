@@ -175,9 +175,10 @@ Plug 'editorconfig/editorconfig-vim'            " fetch codingstyle from repos
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
 Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
-Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }  " markdown syntax
 Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
+Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
+Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 
 " Disabled Plugins
 " Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
@@ -246,6 +247,20 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ---------------------------------------------------------------------------
+" Goyo and Limelight
+" ---------------------------------------------------------------------------
+function! s:auto_goyo()
+  if &ft == 'markdown'
+    Goyo 100
+		Limelight
+  elseif exists('#goyo')
+    let bufnr = bufnr('%')
+    Goyo!
+    execute 'b '.bufnr
+  endif
+endfunction
+
+" ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 augroup manual
@@ -267,6 +282,11 @@ augroup markdown
                        \ | setl spell spelllang=de,en
                        \ | setl sw=2 ts=2 sts=2 tw=75
 augroup end
+
+augroup goyo_markdown
+  autocmd!
+  autocmd BufNewFile,BufRead * call s:auto_goyo()
+augroup END
 
 augroup text
   autocmd!
