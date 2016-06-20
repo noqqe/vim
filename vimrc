@@ -253,7 +253,6 @@ set statusline+=%*
 function! s:auto_goyo()
   if &ft == 'markdown'
     Goyo 100
-		Limelight
   elseif exists('#goyo')
     let bufnr = bufnr('%')
     Goyo!
