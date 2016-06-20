@@ -182,6 +182,7 @@ Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
 " Disabled Plugins
 " Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
+" Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Plug 'scrooloose/nerdtree'                      " File browser
 " Plug 'tpope/vim-speeddating'                    " auto increase dates with c-a
 " Plug 'tpope/vim-repeat'                         " repeat for plugins with .
