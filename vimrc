@@ -129,7 +129,6 @@ nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
 " check for errors with syntastic
 nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
 
-
 " correct end and home keys
 map  <esc>OH <home>
 cmap <esc>OH <home>
@@ -143,6 +142,36 @@ let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsNoPythonWarning = 1
+
+" Get rid of some annoyances.
+" https://sanctum.geek.nz/arabesque/vim-annoyances/
+
+" Cursor jumps around while joining lines
+nnoremap J mzJ`z
+
+" Jumping lands on top or bottom of screen
+nnoremap n nzz
+nnoremap } }zz
+
+" Dont start EX Mode
+nnoremap Q <nop>
+
+" Startup message is irritating
+set shortmess+=I
+
+" Disable visual bell..
+set visualbell t_vb=
+
+" Since there is airline which shows mode already
+" We dont need the normal mode anymore.
+set noshowmode
+
+" Yanking lines is inconsistent
+" yanking a single line to the end with Y. Acts like D
+nnoremap Y y$
+
+" This is an experiment
+nnoremap ; :
 
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
@@ -166,7 +195,6 @@ Plug 'SirVer/ultisnips'                         " snippet embedding
 Plug 'honza/vim-snippets'                       " snippets with tab completion
 Plug 'tpope/vim-commentary'                     " auto commenting with keybinding gc
 Plug 'airblade/vim-gitgutter'                   " git diff line next to line numbers
-Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
 Plug 'reedes/vim-pencil'                        " Soft-, Hard-Wrapping
 Plug 'noqqe/n0q-vim'                            " my very own color scheme
 Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
@@ -181,6 +209,7 @@ Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
 
 " Disabled Plugins
 " Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
+" Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
 " Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
 " Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
 " Plug 'scrooloose/nerdtree'                      " File browser
@@ -248,19 +277,6 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ---------------------------------------------------------------------------
-" Goyo and Limelight
-" ---------------------------------------------------------------------------
-function! s:auto_goyo()
-  if &ft == 'markdown'
-    Goyo 100
-  elseif exists('#goyo')
-    let bufnr = bufnr('%')
-    Goyo!
-    execute 'b '.bufnr
-  endif
-endfunction
-
-" ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 augroup manual
@@ -282,11 +298,6 @@ augroup markdown
                        \ | setl spell spelllang=de,en
                        \ | setl sw=2 ts=2 sts=2 tw=75
 augroup end
-
-augroup goyo_markdown
-  autocmd!
-  autocmd BufNewFile,BufRead * call s:auto_goyo()
-augroup END
 
 augroup text
   autocmd!
