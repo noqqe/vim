@@ -201,12 +201,12 @@ Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'            " fetch codingstyle from repos
 
 " Syntax Highlighting Plugins
-Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }            " puppet syntax
-Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
-Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
-Plug 'cespare/vim-toml', { 'for': 'toml' }
+Plug 'LnL7/vim-nix', { 'for': 'nix' }             " nixos syntax highlighting
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }       " csv highlighting
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }  " puppet syntax
+Plug 'ntpeters/vim-better-whitespace'             " highlighting for whitespace
+Plug 'noqqe/vim-markdown', { 'for': 'markdown' }  " my own markdown
+Plug 'cespare/vim-toml', { 'for': 'toml' }        " toml language
 
 " Disabled Plugins
 " Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
