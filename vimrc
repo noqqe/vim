@@ -185,7 +185,7 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'                        " Nice Bar
+Plug 'vim-airline/vim-airline'                  " Nice Bar
 Plug 'vim-airline/vim-airline-themes'           " Themes
 Plug 'scrooloose/syntastic'                     " Syntax checking for files
 Plug 'xolox/vim-misc'                           " dep for syntastic
@@ -203,9 +203,10 @@ Plug 'editorconfig/editorconfig-vim'            " fetch codingstyle from repos
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                    " nixos syntax highlighting
 Plug 'chrisbra/csv.vim',   { 'for': 'csv' }              " csv highlighting
-Plug 'puppetlabs/puppet-syntax-vim', { 'for': 'puppet' } " puppet syntax
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }            " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'                    " highlighting for whitespace
 Plug 'noqqe/vim-markdown', { 'for': 'markdown' }
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 
 " Disabled Plugins
 " Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
