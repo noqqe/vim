@@ -12,3 +12,6 @@ tags
 # do not manage pluginmanager
 plugged/*
 autoload/*
+
+# symlink from neovim
+init.vim
