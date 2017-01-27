@@ -187,7 +187,7 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'vim-airline/vim-airline'                  " Nice Bar
 Plug 'vim-airline/vim-airline-themes'           " Themes
-Plug 'scrooloose/syntastic'                     " Syntax checking for files
+Plug 'vim-syntastic/syntastic'                  " Syntax checking for files
 Plug 'xolox/vim-misc'                           " dep for syntastic
 Plug 'tpope/vim-fugitive'                       " Git Wrapper
 Plug 'rking/ag.vim'                             " grepping through repos
