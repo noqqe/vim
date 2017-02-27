@@ -54,7 +54,7 @@ au BufWritePre <buffer> StripWhitespace
 
 " open file at last position
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-  \| exe "normal! g'\"" | endif
+\| exe "normal! g'\"" | endif
 
 " ----------------------------------------------------------------------------
 " Backups
@@ -92,9 +92,9 @@ end
 
 " use persistent undo dir if available
 if has('persistent_undo')
-	if !isdirectory($HOME . "/.vim/undo")
+  if !isdirectory($HOME . "/.vim/undo")
     call mkdir($HOME . "/.vim/undo", "p")
-	endif
+  endif
   set undofile
   set undodir=$HOME/.vim/undo
 endif
@@ -179,7 +179,7 @@ nnoremap ; :
 
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
@@ -260,7 +260,7 @@ let g:syntastic_aggregate_errors = 1
 " --------------------------------------------------------------------------
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
+  let g:airline_symbols = {}
 endif
 
 " unicode symbols
@@ -275,65 +275,64 @@ let g:airline#extensions#syntastic#enabled = 1
 
 set laststatus=2
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
 augroup manual
-  autocmd!
-  au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl textwidth=0 wm=0 wrap
-                     \ | setl sw=2 ts=2 sts=2
+autocmd!
+au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl textwidth=0 wm=0 wrap
+\ | setl sw=2 ts=2 sts=2
 augroup end
 
 augroup mail
-  autocmd!
-  au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                     \ | setl sw=2 ts=2 tw=75
+autocmd!
+au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl sw=2 ts=2 tw=75
 augroup end
 
 augroup markdown
-  autocmd!
-  au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
-                       \ | setl spell spelllang=de,en
-                       \ | setl sw=2 ts=2 sts=2 tw=75
+autocmd!
+au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
+\ | setl spell spelllang=de,en
+\ | setl sw=2 ts=2 sts=2 tw=75
 augroup end
 
 augroup text
-  autocmd!
-  au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                       \ | setl spell spelllang=de,en
-                       \ | setl sw=2 ts=2 sts=2 tw=75
+autocmd!
+au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl spell spelllang=de,en
+\ | setl sw=2 ts=2 sts=2 tw=75
 augroup end
 
 augroup vim
-  autocmd!
-  au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                       \ | setl wm=0 wrap
-                       \ | setl sw=2 ts=2 sts=2
+autocmd!
+au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl wm=0 wrap
+\ | setl sw=2 ts=2 sts=2
 augroup end
 
 augroup python
-  autocmd!
-  au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
-                       \ | setl tw=0 wm=0 wrap
-                       \ | setl sw=4 ts=4 sts=4
+autocmd!
+au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl tw=0 wm=0 wrap
+\ | setl sw=4 ts=4 sts=4
 augroup end
 
 augroup gitcommit
-  autocmd!
-  au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+autocmd!
+au Filetype gitcommit    setl tw=50 spell spelllang=de,en
 augroup end
 
 augroup shell
-  autocmd!
-  au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
-                       \ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+autocmd!
+au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
+\ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
 augroup end
 
 augroup help
-  autocmd!
-  au FileType help        setlocal nospell
+autocmd!
+au FileType help        setlocal nospell
 augroup end
