@@ -1,3 +1,6 @@
+" Set nice formatting for this file
+" vim ft=vim ts=2
+
 " ---------------------------------------------------------------------------
 " General
 " ---------------------------------------------------------------------------
@@ -32,6 +35,12 @@ set nostartofline                       " don't jump to the start of line when s
 set wildmode=list:longest,full
 set number
 set hlsearch
+
+if has('nvim')
+  set mouse=r                           " turn off mouse
+  set noincsearch                       " don't jump during searching for a string
+endif
+
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -336,3 +345,4 @@ augroup help
 autocmd!
 au FileType help        setlocal nospell
 augroup end
+
