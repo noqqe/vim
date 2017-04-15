@@ -69,13 +69,13 @@ au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
 " Backups
 " ----------------------------------------------------------------------------
 
-set backup                              " do not keep backups after close
-set writebackup                         " do not keep a backup while working
-set swapfile                            " don't keep swp files either
-set backupdir=$HOME/.vim/backup         " store backups under ~/.vim/backup
-set backupcopy=yes                      " keep attributes of original file
-set directory=~/.vim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
-set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*
+set backup                                      " do not keep backups after close
+set writebackup                                 " do not keep a backup while working
+set swapfile                                    " don't keep swp files either
+set backupdir=$HOME/.vim/backup                 " store backups under ~/.vim/backup
+set backupcopy=yes                              " keep attributes of original file
+set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*  " dont backup files in these dirs
 
 " Create backup and swap dir, if the do not exist
 if !isdirectory($HOME . "/.vim/backup")
@@ -113,28 +113,37 @@ endif
 " Custom Keyboard Shortcuts
 " --------------------------------------------------------------------------
 
-let mapleader = "-"       " define leader key
+" define leader key
+let mapleader = "-"
 
-command! W w              " alias common typing errors
-command! Wq wq            " alias common typing errors
-command! Wqa wqa          " alias common typing errors
-command! Qa qa            " alias common typing errors
-command! Q q              " alias common typing errors
+" correct my common mistypings
+command! W w
+command! Wq wq
+command! Wqa wqa
+command! Qa qa
+command! Q q
 
 " toggle line numbers with -n
 nmap <silent> <leader>n :set number!<CR>
+
 " toggle paste mode with -p
 nmap <silent> <leader>p :set paste!<CR>
+
 " toggle spellchecking with -s
 nmap <silent> <leader>s :set spell!<CR>
+
 " strip all trail. whitespace with -w
 nmap <silent> <leader>w :StripWhitespace<CR>
+
 " Git Gutter toggle
 nmap <silent> <leader>g :GitGutterToggle<CR>
+
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
+
 " update plugins
 nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
+
 " check for errors with syntastic
 nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
 
@@ -179,7 +188,8 @@ set noshowmode
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
 
-" This is an experiment
+" This is an experiment if i can get rid of pressing extra shift
+" only works on US layouts...
 nnoremap ; :
 
 " --------------------------------------------------------------------------
@@ -194,53 +204,29 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'vim-airline/vim-airline'                  " Nice Bar
-Plug 'vim-airline/vim-airline-themes'           " Themes
-Plug 'vim-syntastic/syntastic'                  " Syntax checking for files
-Plug 'xolox/vim-misc'                           " dep for syntastic
-Plug 'tpope/vim-fugitive'                       " Git Wrapper
-Plug 'rking/ag.vim'                             " grepping through repos
-Plug 'SirVer/ultisnips'                         " snippet embedding
-Plug 'honza/vim-snippets'                       " snippets with tab completion
-Plug 'tpope/vim-commentary'                     " auto commenting with keybinding gc
-Plug 'airblade/vim-gitgutter'                   " git diff line next to line numbers
-Plug 'reedes/vim-pencil'                        " Soft-, Hard-Wrapping
-Plug 'noqqe/n0q-vim'                            " my very own color scheme
-Plug 'ConradIrwin/vim-bracketed-paste'          " auto set-paste plugin
-Plug 'editorconfig/editorconfig-vim'            " fetch codingstyle from repos
-Plug 'machakann/vim-sandwich'                   " surroundings for words
+Plug 'vim-airline/vim-airline'                          " Nice Bar
+Plug 'vim-airline/vim-airline-themes'                   " Themes
+Plug 'vim-syntastic/syntastic'                          " Syntax checking for files
+Plug 'xolox/vim-misc'                                   " dep for syntastic
+Plug 'tpope/vim-fugitive'                               " Git Wrapper
+Plug 'rking/ag.vim'                                     " grepping through repos
+Plug 'SirVer/ultisnips'                                 " snippet embedding
+Plug 'honza/vim-snippets'                               " snippets with tab completion
+Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
+Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
+Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'noqqe/n0q-vim'                                    " my very own color scheme
+Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
+Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
+Plug 'machakann/vim-sandwich'                           " surroundings for words
 
 " Syntax Highlighting Plugins
-Plug 'LnL7/vim-nix', { 'for': 'nix' }             " nixos syntax highlighting
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }       " csv highlighting
-Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }  " puppet syntax
-Plug 'ntpeters/vim-better-whitespace'             " highlighting for whitespace
-Plug 'noqqe/vim-markdown', { 'for': 'markdown' }  " my own markdown
-Plug 'cespare/vim-toml', { 'for': 'toml' }        " toml language
-
-" Disabled Plugins
-" Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
-" Plug 'junegunn/goyo.vim'                        " writer fullscreen mode
-" Plug 'r.vim', { 'for': 'R' }                             " R syntax highlighting
-" Plug 'junegunn/limelight.vim', { 'for': 'markdown' }
-" Plug 'scrooloose/nerdtree'                      " File browser
-" Plug 'tpope/vim-speeddating'                    " auto increase dates with c-a
-" Plug 'tpope/vim-repeat'                         " repeat for plugins with .
-" Plug 'kien/ctrlp.vim'                           " searching through files
-" Plug 'mhinz/vim-startify'                       " startscreen of vim
-" Plug 'amix/open_file_under_cursor.vim'          " ...
-" Plug 'jamessan/vim-gnupg'                       " gnupg *.gpg native file editing
-" Plug 'bling/vim-bufferline'                     " buffer
-" Plug 'xolox/vim-notes'                          " notes plugin
-" Plug 'junegunn/vim-easy-align'                  " align text with gaip=
-" Plug 'ekalinin/Dockerfile.vim', { 'for': 'Dockerfile' }  " docker syntax highlighting
-" Plug 'xolox/vim-easytags', { 'for': 'python' }  " dep for tagbar
-" Plug 'tpope/vim-surround'                       " Braces, Brackets autoclosing
-" Plug 'majutsushi/tagbar', { 'for': 'python' }   " bar for functions and variables
-" Plug 'hynek/vim-python-pep8-indent', { 'for': 'python' } " Python PEP8 idents and rules
-" Plug 'evanmiller/nginx-vim-syntax', { 'for': 'nginx' }   " nginx
-" Plug 'godlygeek/tabular', { 'for': 'csv' }               " csv highlighting
-" Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }              " ruby syntax highlighting
+Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
+Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
+Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 
 call plug#end()
 
@@ -254,6 +240,7 @@ syntax on
 " --------------------------------------------------------------------------
 " Syntastic Configuration
 " --------------------------------------------------------------------------
+
 let b:syntastic_mode = "passive"
 let g:syntastic_always_populate_loc_list = 1 " populate, needed
 let g:syntastic_check_on_open = 0
