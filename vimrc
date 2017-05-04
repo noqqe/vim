@@ -32,9 +32,10 @@ set whichwrap+=<,>,h,l,[,]              " backspace and cursor keys wrap to
 set shortmess=filtIoOA                  " shorten messages
 set report=0                            " tell us about changes
 set nostartofline                       " don't jump to the start of line when scrolling
-set wildmode=list:longest,full
-set number
-set hlsearch
+set wildmode=list:longest,full          " nice completion for wildcards
+set number                              " enable line numbers by default
+set hlsearch                            " highlight searches
+set clipboard+=unnamedplus              " persistent cut buffer across files (dd + p works everywhere)
 
 if has('nvim')
   set mouse=r                           " turn off mouse
@@ -191,6 +192,7 @@ nnoremap Y y$
 " This is an experiment if i can get rid of pressing extra shift
 " only works on US layouts...
 nnoremap ; :
+
 
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
