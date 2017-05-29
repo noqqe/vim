@@ -229,6 +229,7 @@ Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
 Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
+Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 
 call plug#end()
 
