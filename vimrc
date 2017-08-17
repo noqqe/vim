@@ -162,6 +162,9 @@ let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsNoPythonWarning = 1
 
+" include my custom snippets dir for ultisnips
+set runtimepath+=~/.vim/snippets/
+
 " Get rid of some annoyances.
 " https://sanctum.geek.nz/arabesque/vim-annoyances/
 
