@@ -148,6 +148,9 @@ nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
 " check for errors with syntastic
 nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
 
+" shortcut for jrnl date timestamp
+nmap <silent> <leader>d :pu=strftime('%F %H:%M')<CR>A
+
 " correct end and home keys
 map  <esc>OH <home>
 cmap <esc>OH <home>
