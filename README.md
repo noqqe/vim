@@ -13,6 +13,7 @@ On github for automation reasons.
 * `-w` - Strip trailing whitespace
 * `-g` - Toggle git gutter line markers
 * `-e` - Check for syntaxerrors with syntastic
+* `-d` - past current date as like 2017-08-29 15:27
 
 ### Installation
 
