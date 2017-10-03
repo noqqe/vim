@@ -36,9 +36,9 @@ set wildmode=list:longest,full          " nice completion for wildcards
 set number                              " enable line numbers by default
 set hlsearch                            " highlight searches
 set clipboard+=unnamedplus              " persistent cut buffer across files (dd + p works everywhere)
+set mouse=r                             " turn off mouse
 
 if has('nvim')
-  set mouse=r                           " turn off mouse
   set noincsearch                       " don't jump during searching for a string
 endif
 
