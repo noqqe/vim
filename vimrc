@@ -226,7 +226,6 @@ Plug 'SirVer/ultisnips'                                 " snippet embedding
 Plug 'honza/vim-snippets'                               " snippets with tab completion
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
-Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'noqqe/n0q-vim'                                    " my very own color scheme
 Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
@@ -289,60 +288,7 @@ set statusline+=%*
 " ---------------------------------------------------------------------------
 " File Types
 " ---------------------------------------------------------------------------
-augroup manual
-autocmd!
-au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl textwidth=0 wm=0 wrap
-\ | setl sw=2 ts=2 sts=2
-augroup end
 
-augroup mail
-autocmd!
-au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl sw=2 ts=2 tw=75
-augroup end
-
-augroup markdown
-autocmd!
-au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
-\ | setl spell spelllang=de,en
-\ | setl sw=2 ts=2 sts=2 tw=75
-augroup end
-
-augroup text
-autocmd!
-au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl spell spelllang=de,en
-\ | setl sw=2 ts=2 sts=2 tw=75
-augroup end
-
-augroup vim
-autocmd!
-au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl wm=0 wrap
-\ | setl sw=2 ts=2 sts=2
-augroup end
-
-augroup python
-autocmd!
-au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl tw=0 wm=0 wrap
-\ | setl sw=4 ts=4 sts=4
-augroup end
-
-augroup gitcommit
-autocmd!
-au Filetype gitcommit    setl tw=50 spell spelllang=de,en
-augroup end
-
-augroup shell
-autocmd!
-au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
-\ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
-augroup end
-
-augroup help
-autocmd!
-au FileType help        setlocal nospell
-augroup end
+au FileType text,markdown setl spell spelllang=de,en
+au FileType help setl nospell
 
