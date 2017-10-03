@@ -42,6 +42,9 @@ if has('nvim')
   set noincsearch                       " don't jump during searching for a string
 endif
 
+" open file at last position
+au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
+\| exe "normal! g'\"" | endif
 
 " ----------------------------------------------------------------------------
 " Text Formatting
@@ -62,20 +65,14 @@ let g:is_bash = 1
 " automatically remove trail. whitespace at write
 au BufWritePre <buffer> StripWhitespace
 
-" open file at last position
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-\| exe "normal! g'\"" | endif
-
 " ----------------------------------------------------------------------------
 " Backups
 " ----------------------------------------------------------------------------
 
 set backup                                      " do not keep backups after close
 set writebackup                                 " do not keep a backup while working
-set swapfile                                    " don't keep swp files either
 set backupdir=$HOME/.vim/backup                 " store backups under ~/.vim/backup
 set backupcopy=yes                              " keep attributes of original file
-set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*  " dont backup files in these dirs
 
 " Create backup and swap dir, if the do not exist
@@ -83,13 +80,27 @@ if !isdirectory($HOME . "/.vim/backup")
   call mkdir($HOME . "/.vim/backup", "p")
 endif
 
+" ----------------------------------------------------------------------------
+" Swap
+" ----------------------------------------------------------------------------
+
+set swapfile                                    " don't keep swp files either
+set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+
 if !isdirectory($HOME . "/.vim/swap")
   call mkdir($HOME . "/.vim/swap", "p")
 endif
 
+" ----------------------------------------------------------------------------
+" Spell Checking
+" ----------------------------------------------------------------------------
+
 if !isdirectory($HOME . "/.vim/spell")
   call mkdir($HOME . "/.vim/spell", "p")
 endif
+
+au FileType text,markdown setl spell spelllang=de,en
+au FileType help setl nospell
 
 " ----------------------------------------------------------------------------
 " Compatibilities
@@ -108,7 +119,6 @@ if has('persistent_undo')
   set undofile
   set undodir=$HOME/.vim/undo
 endif
-
 
 " --------------------------------------------------------------------------
 " Custom Keyboard Shortcuts
@@ -154,7 +164,6 @@ nmap <silent> <leader>d :print=strftime('%F %H:%M')<CR>A
 " fix underlying spell error automatically
 nmap <silent> <leader>f z=1<CR><CR>
 
-
 " correct end and home keys
 map  <esc>OH <home>
 cmap <esc>OH <home>
@@ -163,17 +172,23 @@ map  <esc>OF <end>
 cmap <esc>OF <end>
 imap <esc>OF <end>
 
-" snippet completions
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsNoPythonWarning = 1
+" Brave me, disabling arrow keys
+" Disable Arrow keys in Escape mode
+map <up> <nop>
+map <down> <nop>
+map <left> <nop>
+map <right> <nop>
 
-" include my custom snippets dir for ultisnips
-set runtimepath+=~/.vim/snippets/
+" Disable Arrow keys in Insert mode
+imap <up> <nop>
+imap <down> <nop>
+imap <left> <nop>
+imap <right> <nop>
 
-" Get rid of some annoyances.
+" --------------------------------------------------------------------------
+" Vim Annoyances - Stolen from Blogarticle
 " https://sanctum.geek.nz/arabesque/vim-annoyances/
+" --------------------------------------------------------------------------
 
 " Cursor jumps around while joining lines
 nnoremap J mzJ`z
@@ -202,7 +217,6 @@ nnoremap Y y$
 " This is an experiment if i can get rid of pressing extra shift
 " only works on US layouts...
 nnoremap ; :
-
 
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
@@ -285,10 +299,21 @@ set laststatus=2
 set statusline+=%#warningmsg#
 set statusline+=%*
 
-" ---------------------------------------------------------------------------
-" File Types
-" ---------------------------------------------------------------------------
+" --------------------------------------------------------------------------
+" Ultisnips Configuration
+" --------------------------------------------------------------------------
 
-au FileType text,markdown setl spell spelllang=de,en
-au FileType help setl nospell
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsNoPythonWarning = 1
+
+" include my custom snippets dir for ultisnips
+set runtimepath+=~/.vim/snippets/
+
+" --------------------------------------------------------------------------
+" EditorConfig Configuration
+" --------------------------------------------------------------------------
+
+let g:EditorConfig_max_line_indicator = "none"
 
