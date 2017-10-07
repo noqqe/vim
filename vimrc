@@ -17,7 +17,6 @@ set tabpagemax=50                       " open 50 tabs max
 set viminfo='1000,f1,:100,@100,/20
 filetype plugin indent on               " load filetype plugin
 
-
 " ----------------------------------------------------------------------------
 " UI
 " ----------------------------------------------------------------------------
@@ -260,8 +259,10 @@ call plug#end()
 " Colors / Theme
 " ---------------------------------------------------------------------------
 
-colors n0q
-syntax on
+if !empty(glob('~/.vim/plugged/n0q-vim/colors/n0q.vim'))
+  colors n0q
+  syntax on
+endif
 
 " --------------------------------------------------------------------------
 " Syntastic Configuration
