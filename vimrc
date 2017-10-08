@@ -112,62 +112,14 @@ endif
 " sw = shiftwidth
 " et = expandtab, replace tab char with X spaces
 " ----------------------------------------------------------------------------
-augroup manual
-autocmd!
-au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl textwidth=0 wm=0 wrap
-\ | setl sw=2 ts=2 sts=2
-augroup end
 
-augroup mail
-autocmd!
-au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl sw=2 ts=2 tw=75
-augroup end
+au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
 
-augroup markdown
-autocmd!
-au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
-\ | setl spell spelllang=de,en
-\ | setl sw=2 ts=2 sts=2 tw=75
-augroup end
+au FileType markdown,text,mail setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=79
+au Filetype gitcommit setl tw=50 spell spelllang=de,en
 
-augroup text
-autocmd!
-au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl spell spelllang=de,en
-\ | setl sw=2 ts=2 sts=2 tw=75
-augroup end
-
-augroup vim
-autocmd!
-au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl wm=0 wrap
-\ | setl sw=2 ts=2 sts=2
-augroup end
-
-augroup python
-autocmd!
-au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
-\ | setl tw=0 wm=0 wrap
-\ | setl sw=4 ts=4 sts=4
-augroup end
-
-augroup gitcommit
-autocmd!
-au Filetype gitcommit    setl tw=50 spell spelllang=de,en
-augroup end
-
-augroup shell
-autocmd!
-au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
-\ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
-augroup end
-
-augroup help
-autocmd!
-au FileType help        setlocal nospell
-augroup end
+au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
+au Filetype python setl wrap sw=4 ts=4 sts=4
 
 " ----------------------------------------------------------------------------
 " Compatibilities
@@ -386,4 +338,15 @@ set runtimepath+=~/.vim/snippets/
 " --------------------------------------------------------------------------
 
 let g:EditorConfig_max_line_indicator = "none"
+
+" --------------------------------------------------------------------------
+" Pencil Configuration
+" --------------------------------------------------------------------------
+
+augroup pencil
+autocmd!
+au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
+au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
+au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
+augroup end
 
