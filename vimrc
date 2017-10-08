@@ -98,8 +98,76 @@ if !isdirectory($HOME . "/.vim/spell")
   call mkdir($HOME . "/.vim/spell", "p")
 endif
 
-au FileType text,markdown setl spell spelllang=de,en
-au FileType help setl nospell
+" ----------------------------------------------------------------------------
+" Language Indent Settings
+" These are my own perferations, however needs to be set _before_ editorconfig
+" because I want to respect repo owner settings
+"
+" Shortcuts explained
+" tw = textwidth
+" wrap = when lines are longer then display, break lines visually
+"
+" ts = tabstop, should always be 8
+" sts = softtabstop, modify to your needs
+" sw = shiftwidth
+" et = expandtab, replace tab char with X spaces
+" ----------------------------------------------------------------------------
+augroup manual
+autocmd!
+au Filetype *            call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl textwidth=0 wm=0 wrap
+\ | setl sw=2 ts=2 sts=2
+augroup end
+
+augroup mail
+autocmd!
+au Filetype mail         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl sw=2 ts=2 tw=75
+augroup end
+
+augroup markdown
+autocmd!
+au FileType markdown     call pencil#init({'wrap': 'soft', 'textwidth': 80})
+\ | setl spell spelllang=de,en
+\ | setl sw=2 ts=2 sts=2 tw=75
+augroup end
+
+augroup text
+autocmd!
+au FileType text         call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl spell spelllang=de,en
+\ | setl sw=2 ts=2 sts=2 tw=75
+augroup end
+
+augroup vim
+autocmd!
+au Filetype vim          call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl wm=0 wrap
+\ | setl sw=2 ts=2 sts=2
+augroup end
+
+augroup python
+autocmd!
+au Filetype python       call pencil#init({'wrap': 'soft', 'textwidth': 75})
+\ | setl tw=0 wm=0 wrap
+\ | setl sw=4 ts=4 sts=4
+augroup end
+
+augroup gitcommit
+autocmd!
+au Filetype gitcommit    setl tw=50 spell spelllang=de,en
+augroup end
+
+augroup shell
+autocmd!
+au Filetype sh,bash      setl ts=2 sts=2 sw=2 tw=0
+\ | call pencil#init({'wrap': 'soft', 'textwidth': 80})
+augroup end
+
+augroup help
+autocmd!
+au FileType help        setlocal nospell
+augroup end
 
 " ----------------------------------------------------------------------------
 " Compatibilities
@@ -243,6 +311,7 @@ Plug 'noqqe/n0q-vim'                                    " my very own color sche
 Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
+Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting

@@ -26,7 +26,6 @@ for `vim 8`
 git clone https://github.com/noqqe/vim ~/.vim
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 ln -s ~/.vim/vimrc ~/.vimrc
-ln -s ~/.vim/editorconfig ~/.editorconfig
 vim +PlugInstall
 ```
 
@@ -38,7 +37,6 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 ln -s ~/.vim/vimrc ~/.vimrc
 ln -s ~/.vim ~/.config/nvim
 ln -s ~/.vimrc ~/.config/nvim/init.vim
-ln -s ~/.vim/editorconfig ~/.editorconfig
 vim +PlugInstall
 ```
 
