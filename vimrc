@@ -264,6 +264,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'reedes/vim-litecorrect'                           " Fix common english mistypings
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -348,5 +349,14 @@ autocmd!
 au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
 au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
 au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
+augroup end
+
+" --------------------------------------------------------------------------
+" Lite-correction Configuration
+" --------------------------------------------------------------------------
+
+augroup lite-correct
+autocmd!
+au FileType text,mail,markdown call litecorrect#init()
 augroup end
 
