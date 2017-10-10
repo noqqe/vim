@@ -265,6 +265,8 @@ Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'reedes/vim-litecorrect'                           " Fix common english mistypings
+Plug 'dbmrq/vim-ditto'                                  " highlight overused words
+
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -349,6 +351,7 @@ autocmd!
 au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
 au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
 au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
+au FileType tex call pencil#init({'wrap': 'hard', 'textwidth': 75})
 augroup end
 
 " --------------------------------------------------------------------------
@@ -357,6 +360,17 @@ augroup end
 
 augroup lite-correct
 autocmd!
-au FileType text,mail,markdown call litecorrect#init()
+au FileType text,mail,markdown,tex call litecorrect#init()
+augroup end
+
+" --------------------------------------------------------------------------
+" Lite-correction Configuration
+" --------------------------------------------------------------------------
+
+nmap <leader>di <Plug>ToggleDitto
+
+augroup ditto
+autocmd!
+au FileType text,mail,markdown,tex DittoOn
 augroup end
 
