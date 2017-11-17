@@ -276,6 +276,7 @@ Plug 'ntpeters/vim-better-whitespace'                   " highlighting for white
 Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
+Plug 'dag/vim-fish'                                     " fish shell language
 
 call plug#end()
 
