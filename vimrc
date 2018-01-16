@@ -264,8 +264,6 @@ Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'reedes/vim-litecorrect'                           " Fix common english mistypings
-Plug 'dbmrq/vim-ditto'                                  " highlight overused words
 
 
 " Syntax Highlighting Plugins
@@ -277,6 +275,7 @@ Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'dag/vim-fish'                                     " fish shell language
+Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
 
 call plug#end()
 
@@ -352,7 +351,6 @@ autocmd!
 au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
 au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
 au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
-au FileType tex call pencil#init({'wrap': 'hard', 'textwidth': 75})
 augroup end
 
 " --------------------------------------------------------------------------
@@ -365,7 +363,7 @@ au FileType text,mail,markdown,tex call litecorrect#init()
 augroup end
 
 " --------------------------------------------------------------------------
-" Lite-correction Configuration
+" Ditto Configuration
 " --------------------------------------------------------------------------
 
 nmap <leader>di <Plug>ToggleDitto
