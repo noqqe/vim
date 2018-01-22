@@ -348,7 +348,7 @@ let g:EditorConfig_max_line_indicator = "none"
 
 augroup pencil
   autocmd!
-  au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
+  au FileType markdown call pencil#init({'wrap': 'hard', 'textwidth': 80})
   au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
   au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
 augroup end
