@@ -115,7 +115,6 @@ endif
 
 au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
 
-au FileType markdown,text,mail setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=79
 au Filetype gitcommit setl tw=50 spell spelllang=de,en
 
 au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
@@ -348,7 +347,5 @@ let g:EditorConfig_max_line_indicator = "none"
 
 augroup pencil
   autocmd!
-  au FileType markdown call pencil#init({'wrap': 'hard', 'textwidth': 80})
-  au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
-  au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
+  au FileType text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
 augroup end
