@@ -115,7 +115,6 @@ endif
 
 au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
 
-au FileType markdown,text,mail setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=79
 au Filetype gitcommit setl tw=50 spell spelllang=de,en
 
 au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
@@ -264,8 +263,6 @@ Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'reedes/vim-litecorrect'                           " Fix common english mistypings
-Plug 'dbmrq/vim-ditto'                                  " highlight overused words
 
 
 " Syntax Highlighting Plugins
@@ -277,6 +274,8 @@ Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
+Plug 'dag/vim-fish'                                     " fish shell language
+Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
 
 call plug#end()
 
@@ -348,30 +347,6 @@ let g:EditorConfig_max_line_indicator = "none"
 " --------------------------------------------------------------------------
 
 augroup pencil
-autocmd!
-au FileType markdown call pencil#init({'wrap': 'soft', 'textwidth': 80})
-au FileType text call pencil#init({'wrap': 'hard', 'textwidth': 75})
-au FileType mail call pencil#init({'wrap': 'hard', 'textwidth': 75})
-au FileType tex call pencil#init({'wrap': 'hard', 'textwidth': 75})
+  autocmd!
+  au FileType text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
 augroup end
-
-" --------------------------------------------------------------------------
-" Lite-correction Configuration
-" --------------------------------------------------------------------------
-
-augroup lite-correct
-autocmd!
-au FileType text,mail,markdown,tex call litecorrect#init()
-augroup end
-
-" --------------------------------------------------------------------------
-" Lite-correction Configuration
-" --------------------------------------------------------------------------
-
-nmap <leader>di <Plug>ToggleDitto
-
-augroup ditto
-autocmd!
-au FileType text,mail,markdown,tex DittoOn
-augroup end
-
