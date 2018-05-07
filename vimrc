@@ -317,7 +317,8 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.paste = 'PASTE'
-let g:airline_symbols.linenr = 'L' let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.linenr = 'L'
+let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='luna'
 let g:airline#extensions#syntastic#enabled = 1
