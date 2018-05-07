@@ -263,6 +263,7 @@ Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'matze/vim-move'                                   " Move lines!
 
 
 " Syntax Highlighting Plugins
@@ -287,6 +288,8 @@ if !empty(glob('~/.vim/plugged/n0q-vim/colors/n0q.vim'))
   colors n0q
   syntax on
 endif
+
+let g:move_key_modifier = 'C'
 
 " --------------------------------------------------------------------------
 " Syntastic Configuration
@@ -314,8 +317,7 @@ endif
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 let g:airline_symbols.paste = 'PASTE'
-let g:airline_symbols.linenr = 'L'
-let g:airline_symbols.branch = '⎇'
+let g:airline_symbols.linenr = 'L' let g:airline_symbols.branch = '⎇'
 let g:airline_symbols.whitespace = 'Ξ'
 let g:airline_theme='luna'
 let g:airline#extensions#syntastic#enabled = 1
