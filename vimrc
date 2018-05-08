@@ -264,7 +264,7 @@ Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'matze/vim-move'                                   " Move lines!
-
+Plug 'dracula/vim', { 'as': 'dracula' }                  " Dracula Theme
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -284,12 +284,17 @@ call plug#end()
 " Colors / Theme
 " ---------------------------------------------------------------------------
 
-if !empty(glob('~/.vim/plugged/n0q-vim/colors/n0q.vim'))
-  colors n0q
+" if !empty(glob('~/.vim/plugged/n0q-vim/colors/n0q.vim'))
+"   colors n0q
+"   syntax on
+" endif
+
+" For now, try Dracula theme.
+if !empty(glob('~/.vim/plugged/dracula/colors/dracula.vim'))
+  colors dracula
   syntax on
 endif
 
-let g:move_key_modifier = 'C'
 
 " --------------------------------------------------------------------------
 " Syntastic Configuration
@@ -353,3 +358,9 @@ augroup pencil
   autocmd!
   au FileType text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
 augroup end
+
+" --------------------------------------------------------------------------
+" Move Configuration
+" --------------------------------------------------------------------------
+
+let g:move_key_modifier = 'C'
