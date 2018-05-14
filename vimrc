@@ -68,11 +68,11 @@ au BufWritePre <buffer> StripWhitespace
 " Backups
 " ----------------------------------------------------------------------------
 
-set backup                                      " do not keep backups after close
-set writebackup                                 " do not keep a backup while working
-set backupdir=$HOME/.vim/backup                 " store backups under ~/.vim/backup
-set backupcopy=yes                              " keep attributes of original file
-set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*  " dont backup files in these dirs
+set backup                                                    " do not keep backups after close
+set writebackup                                               " do not keep a backup while working
+set backupdir=$HOME/.vim/backup                               " store backups under ~/.vim/backup
+set backupcopy=yes                                            " keep attributes of original file
+set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,/var/folders   " dont backup files in these dirs
 
 " Create backup and swap dir, if the do not exist
 if !isdirectory($HOME . "/.vim/backup")
@@ -248,36 +248,36 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
+Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
+Plug 'SirVer/ultisnips'                                 " snippet embedding
+Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
+Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
+Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
+Plug 'honza/vim-snippets'                               " snippets with tab completion
+Plug 'machakann/vim-sandwich'                           " surroundings for words
+Plug 'matze/vim-move'                                   " Move lines!
+Plug 'noqqe/n0q-vim'                                    " my very own color scheme
+Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'rking/ag.vim'                                     " grepping through repos
+Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
+Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'vim-airline/vim-airline'                          " Nice Bar
 Plug 'vim-airline/vim-airline-themes'                   " Themes
 Plug 'vim-syntastic/syntastic'                          " Syntax checking for files
 Plug 'xolox/vim-misc'                                   " dep for syntastic
-Plug 'tpope/vim-fugitive'                               " Git Wrapper
-Plug 'rking/ag.vim'                                     " grepping through repos
-Plug 'SirVer/ultisnips'                                 " snippet embedding
-Plug 'honza/vim-snippets'                               " snippets with tab completion
-Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
-Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
-Plug 'noqqe/n0q-vim'                                    " my very own color scheme
-Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
-Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
-Plug 'machakann/vim-sandwich'                           " surroundings for words
-Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'matze/vim-move'                                   " Move lines!
-Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
-Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
-Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
-Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
-Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
-Plug 'dag/vim-fish'                                     " fish shell language
-Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
 Plug 'cmhamill/vim-jrnl'                                " jrnl
+Plug 'dag/vim-fish'                                     " fish shell language
+Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
+Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
+Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
+Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
+Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
 
 call plug#end()
 
