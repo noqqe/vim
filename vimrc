@@ -264,7 +264,7 @@ Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'matze/vim-move'                                   " Move lines!
-Plug 'dracula/vim', { 'as': 'dracula' }                  " Dracula Theme
+Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -277,6 +277,7 @@ Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim
 Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
 Plug 'dag/vim-fish'                                     " fish shell language
 Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
+Plug 'cmhamill/vim-jrnl'                                " jrnl
 
 call plug#end()
 
