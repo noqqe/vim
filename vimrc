@@ -34,8 +34,8 @@ set nostartofline                       " don't jump to the start of line when s
 set wildmode=list:longest,full          " nice completion for wildcards
 set number                              " enable line numbers by default
 set hlsearch                            " highlight searches
-set clipboard+=unnamedplus              " persistent cut buffer across files (dd + p works everywhere)
 set mouse=r                             " turn off mouse
+set clipboard+=unnamed                  " persistent cut buffer across files (dd + p works everywhere)
 
 if has('nvim')
   set noincsearch                       " don't jump during searching for a string
@@ -357,7 +357,7 @@ let g:EditorConfig_max_line_indicator = "none"
 
 augroup pencil
   autocmd!
-  au FileType text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
+  au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
 augroup end
 
 " --------------------------------------------------------------------------
