@@ -182,6 +182,12 @@ nmap <silent> <leader>d :print=strftime('%F %H:%M')<CR>A
 " fix underlying spell error automatically
 nmap <silent> <leader>f z=1<CR><CR>
 
+" identify highlight used for word under cursor
+" http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
+map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
+\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
+\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
 " correct end and home keys
 map  <esc>OH <home>
 cmap <esc>OH <home>
@@ -365,3 +371,18 @@ augroup end
 " --------------------------------------------------------------------------
 
 let g:move_key_modifier = 'C'
+
+
+" --------------------------------------------------------------------------
+" Dracula Theme Changes
+" --------------------------------------------------------------------------
+
+" Jekyll Headers are not readable with the dark gray
+hi def link markdownJekyllFrontMatter         DraculaGreen
+hi def link markdownJekyllLiquidTag           DraculaGreen
+hi def link markdownJekyllLiquidOutputTag     DraculaGreen
+hi def link markdownJekyllLiquidBlockTag      DraculaGreen
+
+" Shell is a bit too pinky for me...
+hi def link shStatement		  DraculaGreen
+hi def link shConditional		DraculaGreen
