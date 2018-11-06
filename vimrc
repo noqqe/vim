@@ -363,7 +363,7 @@ let g:EditorConfig_max_line_indicator = "none"
 
 augroup pencil
   autocmd!
-  au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=78 wrap
+  au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=77 wrap
 augroup end
 
 " --------------------------------------------------------------------------
