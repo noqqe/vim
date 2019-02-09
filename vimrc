@@ -238,10 +238,6 @@ set noshowmode
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
 
-" This is an experiment if i can get rid of pressing extra shift
-" only works on US layouts...
-nnoremap ; :
-
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
 " --------------------------------------------------------------------------
