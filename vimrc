@@ -270,6 +270,7 @@ Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'vim-airline/vim-airline'                          " Nice Bar
 Plug 'vim-airline/vim-airline-themes'                   " Themes
 Plug 'vim-syntastic/syntastic'                          " Syntax checking for files
+Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 
 " Syntax Highlighting Plugins
