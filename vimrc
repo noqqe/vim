@@ -168,7 +168,7 @@ nmap <silent> <leader>w :StripWhitespace<CR>
 nmap <silent> <leader>g :GitGutterToggle<CR>
 
 " reload vimrc with -r
-nmap <silent> <leader>r :so $MYVIMRC<CR>:AirlineRefresh<CR>
+nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " update plugins
 nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
@@ -263,11 +263,11 @@ Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'rking/ag.vim'                                     " grepping through repos
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
-Plug 'vim-airline/vim-airline'                          " Nice Bar
-Plug 'vim-airline/vim-airline-themes'                   " Themes
 Plug 'vim-syntastic/syntastic'                          " Syntax checking for files
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
+Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
+
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -299,42 +299,36 @@ if !empty(glob('~/.vim/plugged/dracula/colors/dracula.vim'))
   syntax on
 endif
 
+" --------------------------------------------------------------------------
+" Crystalline
+" --------------------------------------------------------------------------
+function! StatusLine(current)
+  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
+        \ . ' %f%h%w%m%r '
+        \ . '%#CrystallineReplace#' . (a:current ? ' %{FugitiveStatusline()}%  ' : '') . '%#Crystalline#'
+        \ . ' %#CrystallineTab#' . (a:current ? '%{SyntasticStatuslineFlag()}' : '')
+        \ . '%=' . (a:current ? '%#CrystallineReplace# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
+        \ . ' %{&ft} [%{&enc}][%{&ffs}] %l/%L %c%V %P '
+endfunction
+
+let g:crystalline_statusline_fn = 'StatusLine'
+let g:crystalline_theme = 'dracula'
+
+set laststatus=2
 
 " --------------------------------------------------------------------------
 " Syntastic Configuration
 " --------------------------------------------------------------------------
 
-let b:syntastic_mode = "passive"
 let g:syntastic_always_populate_loc_list = 1 " populate, needed
-let g:syntastic_check_on_open = 0
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_check_on_w = 0
 let g:syntastic_enable_signs = 0 " dont show crazy signs at left border
 let g:syntastic_auto_loc_list = 2 " dont open list automatically
 let g:syntastic_loc_list_height = 5 "windows size
 let g:syntastic_aggregate_errors = 1
-
-" --------------------------------------------------------------------------
-" Airline Configuration
-" --------------------------------------------------------------------------
-
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-
-" unicode symbols
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_symbols.paste = 'PASTE'
-let g:airline_symbols.linenr = 'L'
-let g:airline_symbols.branch = '⎇'
-let g:airline_symbols.whitespace = 'Ξ'
-let g:airline_theme='luna'
-let g:airline#extensions#syntastic#enabled = 1
-
-set laststatus=2
-set statusline+=%#warningmsg#
-set statusline+=%*
 
 " --------------------------------------------------------------------------
 " Ultisnips Configuration
