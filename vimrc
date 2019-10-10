@@ -267,6 +267,7 @@ Plug 'vim-syntastic/syntastic'                          " Syntax checking for fi
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
+Plug 'ctrlpvim/ctrlp.vim'
 
 
 " Syntax Highlighting Plugins
@@ -363,6 +364,16 @@ augroup end
 
 let g:move_key_modifier = 'C'
 
+" --------------------------------------------------------------------------
+" ctrlp
+" --------------------------------------------------------------------------
+
+let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " --------------------------------------------------------------------------
 " Dracula Theme Changes
