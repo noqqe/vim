@@ -177,7 +177,7 @@ nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
 nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
 
 " shortcut for jrnl date timestamps
-nmap <silent> <leader>d :print=strftime('%F %H:%M')<CR>A
+nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
 
 " fix underlying spell error automatically
 nmap <silent> <leader>f z=1<CR><CR>
@@ -250,7 +250,6 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'ConradIrwin/vim-bracketed-paste'                  " auto set-paste plugin
 Plug 'SirVer/ultisnips'                                 " snippet embedding
 Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
 Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
