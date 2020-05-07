@@ -277,7 +277,7 @@ Plug 'cmhamill/vim-jrnl'                                " jrnl
 Plug 'dag/vim-fish'                                     " fish shell language
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
-Plug 'noqqe/vim-markdown', { 'for': 'markdown' }        " my own markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
 Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
 Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
@@ -370,6 +370,12 @@ let g:move_key_modifier = 'C'
 let g:terraform_align=1
 let g:terraform_fold_sections=0
 let g:terraform_fmt_on_save=1
+
+
+let g:vim_markdown_folding_disabled = 1
+let g:vim_markdown_conceal = 0
+let g:vim_markdown_conceal_code_blocks = 0
+let g:vim_markdown_frontmatter = 1
 
 " --------------------------------------------------------------------------
 " ctrlp
