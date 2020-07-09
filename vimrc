@@ -266,7 +266,9 @@ Plug 'vim-syntastic/syntastic'                          " Syntax checking for fi
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
-Plug 'ctrlpvim/ctrlp.vim'
+Plug 'ctrlpvim/ctrlp.vim'                               " ctrl-p another try
+Plug 'soywod/iris.vim'                                  " mail?
+Plug 'vimlab/split-term.vim'                            " terminal
 
 
 " Syntax Highlighting Plugins
@@ -274,9 +276,9 @@ Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlight
 Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
 Plug 'cmhamill/vim-jrnl'                                " jrnl
-Plug 'dag/vim-fish'                                     " fish shell language
+Plug 'dag/vim-fish', { 'for': 'fish' }                  " fish shell language
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
-Plug 'hashivim/vim-terraform'                           " terraform syntax highlightning
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
 Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
@@ -371,6 +373,9 @@ let g:terraform_align=1
 let g:terraform_fold_sections=0
 let g:terraform_fmt_on_save=1
 
+" --------------------------------------------------------------------------
+" markdown
+" --------------------------------------------------------------------------
 
 let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
