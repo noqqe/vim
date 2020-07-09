@@ -182,6 +182,10 @@ nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
 " fix underlying spell error automatically
 nmap <silent> <leader>f z=1<CR><CR>
 
+" :10Term
+nmap <silent> <leader>t :15Term<CR>
+
+
 " identify highlight used for word under cursor
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
 map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
@@ -392,6 +396,15 @@ let g:ctrlp_cmd = 'CtrlP'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
+
+" --------------------------------------------------------------------------
+" ctrlp
+" --------------------------------------------------------------------------
+
+let g:split_term_default_shell = "fish"
+
+set splitbelow
+set splitright
 
 " --------------------------------------------------------------------------
 " Dracula Theme Changes
