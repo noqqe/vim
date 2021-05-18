@@ -287,6 +287,7 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
 Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
 Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
 
 call plug#end()
 
