@@ -261,7 +261,6 @@ Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from
 Plug 'honza/vim-snippets'                               " snippets with tab completion
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'matze/vim-move'                                   " Move lines!
-Plug 'noqqe/n0q-vim'                                    " my very own color scheme
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'rking/ag.vim'                                     " grepping through repos
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
@@ -271,8 +270,8 @@ Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 Plug 'ctrlpvim/ctrlp.vim'                               " ctrl-p another try
-Plug 'soywod/iris.vim'                                  " mail?
 Plug 'vimlab/split-term.vim'                            " terminal
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 
 " Syntax Highlighting Plugins
@@ -285,7 +284,6 @@ Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'seanyeh/gopher.vim', { 'for': 'gopher' }          " gopher language
 Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
 
@@ -348,6 +346,22 @@ let g:UltiSnipsNoPythonWarning = 1
 
 " include my custom snippets dir for ultisnips
 set runtimepath+=~/.vim/snippets/
+
+
+" --------------------------------------------------------------------------
+" Treesitter Configuration
+" --------------------------------------------------------------------------
+
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
+  ignore_install = { "javascript" }, -- List of parsers to ignore installing
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = { "c", "rust" },  -- list of language that will be disabled
+  },
+}
+EOF
 
 " --------------------------------------------------------------------------
 " EditorConfig Configuration
