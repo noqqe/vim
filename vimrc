@@ -254,28 +254,21 @@ endif
 
 call plug#begin('~/.vim/plugged')
 
-Plug 'SirVer/ultisnips'                                 " snippet embedding
 Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
 Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
-Plug 'honza/vim-snippets'                               " snippets with tab completion
 Plug 'machakann/vim-sandwich'                           " surroundings for words
-Plug 'matze/vim-move'                                   " Move lines!
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'rking/ag.vim'                                     " grepping through repos
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
-Plug 'vim-syntastic/syntastic'                          " Syntax checking for files
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
-Plug 'ctrlpvim/ctrlp.vim'                               " ctrl-p another try
-Plug 'vimlab/split-term.vim'                            " terminal
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" New Neovim
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
-
 Plug 'hrsh7th/nvim-compe'
 
 " Syntax Highlighting Plugins
@@ -284,11 +277,11 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
 Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
 Plug 'cmhamill/vim-jrnl'                                " jrnl
 Plug 'dag/vim-fish', { 'for': 'fish' }                  " fish shell language
-Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
 Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
 
 call plug#end()
@@ -296,11 +289,6 @@ call plug#end()
 " ---------------------------------------------------------------------------
 " Colors / Theme
 " ---------------------------------------------------------------------------
-
-" if !empty(glob('~/.vim/plugged/n0q-vim/colors/n0q.vim'))
-"   colors n0q
-"   syntax on
-" endif
 
 " For now, try Dracula theme.
 if !empty(glob('~/.vim/plugged/dracula/colors/dracula.vim'))
@@ -315,7 +303,7 @@ function! StatusLine(current)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
         \ . ' %f%h%w%m%r '
         \ . '%#CrystallineReplace#' . (a:current ? ' %{FugitiveStatusline()}%  ' : '') . '%#Crystalline#'
-        \ . ' %#CrystallineTab#' . (a:current ? '%{SyntasticStatuslineFlag()}' : '')
+        "\ . ' %#CrystallineTab#' . (a:current ? '%{SyntasticStatuslineFlag()}' : '')
         \ . '%=' . (a:current ? '%#CrystallineReplace# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
         \ . ' %{&ft} [%{&enc}][%{&ffs}] %l/%L %c%V %P '
 endfunction
@@ -324,33 +312,6 @@ let g:crystalline_statusline_fn = 'StatusLine'
 let g:crystalline_theme = 'dracula'
 
 set laststatus=2
-
-" --------------------------------------------------------------------------
-" Syntastic Configuration
-" --------------------------------------------------------------------------
-
-let g:syntastic_always_populate_loc_list = 1 " populate, needed
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_check_on_w = 0
-let g:syntastic_enable_signs = 0 " dont show crazy signs at left border
-let g:syntastic_auto_loc_list = 2 " dont open list automatically
-let g:syntastic_loc_list_height = 5 "windows size
-let g:syntastic_aggregate_errors = 1
-
-" --------------------------------------------------------------------------
-" Ultisnips Configuration
-" --------------------------------------------------------------------------
-
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-let g:UltiSnipsNoPythonWarning = 1
-
-" include my custom snippets dir for ultisnips
-set runtimepath+=~/.vim/snippets/
-
 
 " --------------------------------------------------------------------------
 " Treesitter Configuration
@@ -547,15 +508,6 @@ let g:ctrlp_cmd = 'CtrlP'
 
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
-
-" --------------------------------------------------------------------------
-" ctrlp
-" --------------------------------------------------------------------------
-
-let g:split_term_default_shell = "fish"
-
-set splitbelow
-set splitright
 
 " --------------------------------------------------------------------------
 " Dracula Theme Changes
