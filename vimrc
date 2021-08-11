@@ -266,10 +266,10 @@ Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 
 " New Neovim
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
-Plug 'hrsh7th/nvim-compe'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
+Plug 'neovim/nvim-lspconfig'                                " language server stuff
+Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
+Plug 'hrsh7th/nvim-compe'                                   " autocomplete using a dropdown
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -399,6 +399,7 @@ EOF
 " Compe Configuration
 " --------------------------------------------------------------------------
 lua << EOF
+vim.o.completeopt = "menuone,noselect"
 -- Compe setup
 require'compe'.setup {
   enabled = true;
@@ -412,11 +413,25 @@ require'compe'.setup {
   max_abbr_width = 100;
   max_kind_width = 100;
   max_menu_width = 100;
-  documentation = true;
+
+  documentation = {
+    border = { '', '' ,'', ' ', '', '', '', ' ' }, -- the border option is the same as `|help nvim_open_win|`
+    winhighlight = "NormalFloat:CompeDocumentation,FloatBorder:CompeDocumentationBorder",
+    max_width = 120,
+    min_width = 60,
+    max_height = math.floor(vim.o.lines * 0.3),
+    min_height = 1,
+  };
 
   source = {
     path = true;
+    buffer = true;
+    calc = true;
     nvim_lsp = true;
+    nvim_lua = true;
+    vsnip = true;
+    ultisnips = true;
+    luasnip = true;
   };
 }
 
