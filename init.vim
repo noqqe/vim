@@ -70,13 +70,13 @@ au BufWritePre <buffer> StripWhitespace
 
 set backup                                                    " do not keep backups after close
 set writebackup                                               " do not keep a backup while working
-set backupdir=$HOME/.vim/backup                               " store backups under ~/.vim/backup
+set backupdir=$HOME/.config/nvim/backup                               " store backups under ~/.vim/backup
 set backupcopy=yes                                            " keep attributes of original file
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,/var/folders   " dont backup files in these dirs
 
 " Create backup and swap dir, if the do not exist
-if !isdirectory($HOME . "/.vim/backup")
-  call mkdir($HOME . "/.vim/backup", "p")
+if !isdirectory($HOME . "/.config/nvim/backup")
+  call mkdir($HOME . "/.config/nvim/backup", "p")
 endif
 
 " ----------------------------------------------------------------------------
@@ -84,18 +84,18 @@ endif
 " ----------------------------------------------------------------------------
 
 set swapfile                                    " don't keep swp files either
-set directory=~/.vim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+set directory=~/.config/nvim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
 
-if !isdirectory($HOME . "/.vim/swap")
-  call mkdir($HOME . "/.vim/swap", "p")
+if !isdirectory($HOME . "/.config/nvim/swap")
+  call mkdir($HOME . "/.config/nvim/swap", "p")
 endif
 
 " ----------------------------------------------------------------------------
 " Spell Checking
 " ----------------------------------------------------------------------------
 
-if !isdirectory($HOME . "/.vim/spell")
-  call mkdir($HOME . "/.vim/spell", "p")
+if !isdirectory($HOME . "/.config/nvim/spell")
+  call mkdir($HOME . "/.config/nvim/spell", "p")
 endif
 
 " ----------------------------------------------------------------------------
@@ -131,11 +131,11 @@ end
 
 " use persistent undo dir if available
 if has('persistent_undo')
-  if !isdirectory($HOME . "/.vim/undo")
-    call mkdir($HOME . "/.vim/undo", "p")
+  if !isdirectory($HOME . "/.config/nvim/undo")
+    call mkdir($HOME . "/.config/nvim/undo", "p")
   endif
   set undofile
-  set undodir=$HOME/.vim/undo
+  set undodir=$HOME/.config/nvim/undo
 endif
 
 " --------------------------------------------------------------------------
@@ -248,7 +248,7 @@ if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
 
-call plug#begin('~/.vim/plugged')
+call plug#begin('~/.config/nvim/plugged')
 
 Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
 Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
@@ -286,8 +286,7 @@ call plug#end()
 " Colors / Theme
 " ---------------------------------------------------------------------------
 
-" For now, try Dracula theme.
-if !empty(glob('~/.vim/plugged/dracula/colors/dracula.vim'))
+if !empty(glob('~/.config/nvim/plugged/dracula/colors/dracula.vim'))
   colors dracula
   syntax on
 endif
