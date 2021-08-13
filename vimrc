@@ -242,8 +242,8 @@ nnoremap Y y$
 " Plugins (with Plug)
 " --------------------------------------------------------------------------
 
-if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
   \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall | source $MYVIMRC
 endif
@@ -265,8 +265,7 @@ Plug 'rbong/vim-crystalline'                            " airline/powerline repl
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
 Plug 'neovim/nvim-lspconfig'                                " language server stuff
 Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
-Plug 'hrsh7th/nvim-compe'                                   " autocomplete using a dropdown
-
+Plug 'hrsh7th/nvim-compe'
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
