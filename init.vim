@@ -42,8 +42,6 @@ Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
-
-" New Neovim
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
 Plug 'neovim/nvim-lspconfig'                                " language server stuff
 Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
@@ -91,10 +89,7 @@ set number                              " enable line numbers by default
 set hlsearch                            " highlight searches
 set mouse=r                             " turn off mouse
 set clipboard+=unnamed                  " persistent cut buffer across files (dd + p works everywhere)
-
-if has('nvim')
-  set noincsearch                       " don't jump during searching for a string
-endif
+set noincsearch                       " don't jump during searching for a string
 
 " open file at last position
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
@@ -119,13 +114,32 @@ let g:is_bash = 1
 " automatically remove trail. whitespace at write
 au BufWritePre <buffer> StripWhitespace
 
+" Language Indent Settings
+" These are my own perferations, however needs to be set _before_ editorconfig
+" because I want to respect repo owner settings
+"
+" Shortcuts explained
+" tw = textwidth
+" wrap = when lines are longer then display, break lines visually
+"
+" ts = tabstop, should always be 8
+" sts = softtabstop, modify to your needs
+" sw = shiftwidth
+" et = expandtab, replace tab char with X spaces
+
+au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
+au Filetype gitcommit setl tw=50 spell spelllang=de,en
+au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
+au Filetype python setl wrap sw=4 ts=4 sts=4
+
+
 " ----------------------------------------------------------------------------
 " Backups
 " ----------------------------------------------------------------------------
 
 set backup                                                    " do not keep backups after close
 set writebackup                                               " do not keep a backup while working
-set backupdir=$HOME/.config/nvim/backup                               " store backups under ~/.vim/backup
+set backupdir=$HOME/.config/nvim/backup                       " store backups under ~/.vim/backup
 set backupcopy=yes                                            " keep attributes of original file
 set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,/var/folders   " dont backup files in these dirs
 
@@ -139,7 +153,7 @@ endif
 " ----------------------------------------------------------------------------
 
 set swapfile                                    " don't keep swp files either
-set directory=~/.config/nvim/swap,~/tmp,.               " keep swp files under ~/.vim/swap
+set directory=~/.config/nvim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
 
 if !isdirectory($HOME . "/.config/nvim/swap")
   call mkdir($HOME . "/.config/nvim/swap", "p")
@@ -152,26 +166,6 @@ endif
 if !isdirectory($HOME . "/.config/nvim/spell")
   call mkdir($HOME . "/.config/nvim/spell", "p")
 endif
-
-" ----------------------------------------------------------------------------
-" Language Indent Settings
-" These are my own perferations, however needs to be set _before_ editorconfig
-" because I want to respect repo owner settings
-"
-" Shortcuts explained
-" tw = textwidth
-" wrap = when lines are longer then display, break lines visually
-"
-" ts = tabstop, should always be 8
-" sts = softtabstop, modify to your needs
-" sw = shiftwidth
-" et = expandtab, replace tab char with X spaces
-" ----------------------------------------------------------------------------
-
-au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
-au Filetype gitcommit setl tw=50 spell spelllang=de,en
-au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
-au Filetype python setl wrap sw=4 ts=4 sts=4
 
 " ----------------------------------------------------------------------------
 " Compatibilities
@@ -319,12 +313,6 @@ augroup pencil
 augroup end
 
 " --------------------------------------------------------------------------
-" Move Configuration
-" --------------------------------------------------------------------------
-
-let g:move_key_modifier = 'C'
-
-" --------------------------------------------------------------------------
 " Terraform
 " --------------------------------------------------------------------------
 
@@ -340,17 +328,6 @@ let g:vim_markdown_folding_disabled = 1
 let g:vim_markdown_conceal = 0
 let g:vim_markdown_conceal_code_blocks = 0
 let g:vim_markdown_frontmatter = 1
-
-" --------------------------------------------------------------------------
-" ctrlp
-" --------------------------------------------------------------------------
-
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
-set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
-let g:ctrlp_custom_ignore = '\v[\/]\.(git|hg|svn)$'
 
 " --------------------------------------------------------------------------
 " Dracula Theme Changes
