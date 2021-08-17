@@ -1,4 +1,4 @@
-# vim
+# nvim
 
 Please do not use without reading and understanding the configuration.
 On github for automation reasons.
@@ -17,36 +17,15 @@ On github for automation reasons.
 
 ### Installation
 
-Make sure you save your old vimrc and its directory somewhere else before doing
-this.
+If you never used `neovim` before
 
-for `vim 8`
+    git clone https://github.com/noqqe/vim ~/.config/nvim
 
-``` bash
-git clone https://github.com/noqqe/vim ~/.vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-vim +PlugInstall
-```
-
-for `neovim`
+If yes, make sure you backup your old config and run
 
 ``` bash
-git clone https://github.com/noqqe/vim ~/.vim
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-ln -s ~/.vim/vimrc ~/.vimrc
-mkdir ~/.config
-ln -s ~/.vim ~/.config/nvim
-ln -s ~/.vimrc ~/.config/nvim/init.vim
-vim +PlugInstall
-```
-
-### Release.sh
-
-I order to fully automate my deployments for vim, I created a little script
-which is made for doing exactly this. It creates and releases a folder with
-all plugins with out the `.git` stuff.
-
-``` bash
-./release.sh
+test -d ~/.config || mkdir ~/.config
+test -d ~/.config/nvim && rm  ~/.config/nvim
+git clone https://github.com/noqqe/vim ~/.config/nvim
+nvim +PlugInstall
 ```

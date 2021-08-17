@@ -16,6 +16,61 @@ set autoread                            " reload files (no local changes only)
 set tabpagemax=50                       " open 50 tabs max
 set viminfo='1000,f1,:100,@100,/20
 filetype plugin indent on               " load filetype plugin
+set shortmess+=I                        " Startup message is irritating
+set visualbell t_vb=                    " Disable visual bell
+set noshowmode                          " Disable Showmode since its in airline
+
+" --------------------------------------------------------------------------
+" Plugins (with Plug)
+" --------------------------------------------------------------------------
+
+if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
+  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
+  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall | source $MYVIMRC
+endif
+
+call plug#begin('~/.config/nvim/plugged')
+
+Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
+Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
+Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
+Plug 'machakann/vim-sandwich'                           " surroundings for words
+Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
+Plug 'tpope/vim-fugitive'                               " Git Wrapper
+Plug 'unblevable/quick-scope'                           " scope for motion
+Plug 'xolox/vim-misc'                                   " dep for syntastic
+Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
+
+" New Neovim
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
+Plug 'neovim/nvim-lspconfig'                                " language server stuff
+Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
+Plug 'hrsh7th/nvim-compe'
+
+" Syntax Highlighting Plugins
+Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
+Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
+Plug 'cmhamill/vim-jrnl'                                " jrnl
+Plug 'dag/vim-fish', { 'for': 'fish' }                  " fish shell language
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
+Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
+Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
+Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
+
+call plug#end()
+
+" --------------------------------------------------------------------------
+" Load Lua Settings for Plugins
+" --------------------------------------------------------------------------
+
+lua require('settings.treesitter')
+lua require('settings.compe')
+lua require('settings.lsp')
 
 " ----------------------------------------------------------------------------
 " UI
@@ -114,9 +169,7 @@ endif
 " ----------------------------------------------------------------------------
 
 au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
-
 au Filetype gitcommit setl tw=50 spell spelllang=de,en
-
 au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
 au Filetype python setl wrap sw=4 ts=4 sts=4
 
@@ -171,7 +224,7 @@ nmap <silent> <leader>g :GitGutterToggle<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " update plugins
-nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:PlugUpdate<CR>
+nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:so $MYVIMRC<CR>:PlugUpdate<CR>
 
 " check for errors with syntastic
 nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
@@ -209,11 +262,6 @@ imap <down> <nop>
 imap <left> <nop>
 imap <right> <nop>
 
-" --------------------------------------------------------------------------
-" Vim Annoyances - Stolen from Blogarticle
-" https://sanctum.geek.nz/arabesque/vim-annoyances/
-" --------------------------------------------------------------------------
-
 " Cursor jumps around while joining lines
 nnoremap J mzJ`z
 
@@ -224,63 +272,9 @@ nnoremap } }zz
 " Dont start EX Mode
 nnoremap Q <nop>
 
-" Startup message is irritating
-set shortmess+=I
-
-" Disable visual bell..
-set visualbell t_vb=
-
-" Since there is airline which shows mode already
-" We dont need the normal mode anymore.
-set noshowmode
-
 " Yanking lines is inconsistent
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
-
-" --------------------------------------------------------------------------
-" Plugins (with Plug)
-" --------------------------------------------------------------------------
-
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
-Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
-Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
-Plug 'machakann/vim-sandwich'                           " surroundings for words
-Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
-Plug 'tpope/vim-fugitive'                               " Git Wrapper
-Plug 'unblevable/quick-scope'                           " scope for motion
-Plug 'xolox/vim-misc'                                   " dep for syntastic
-Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
-
-" New Neovim
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
-Plug 'neovim/nvim-lspconfig'                                " language server stuff
-Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
-Plug 'hrsh7th/nvim-compe'
-
-" Syntax Highlighting Plugins
-Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
-Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
-Plug 'cmhamill/vim-jrnl'                                " jrnl
-Plug 'dag/vim-fish', { 'for': 'fish' }                  " fish shell language
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
-Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
-Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
-
-call plug#end()
 
 " ---------------------------------------------------------------------------
 " Colors / Theme
@@ -294,6 +288,7 @@ endif
 " --------------------------------------------------------------------------
 " Crystalline
 " --------------------------------------------------------------------------
+
 function! StatusLine(current)
   return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
         \ . ' %f%h%w%m%r '
@@ -371,6 +366,3 @@ hi def link markdownJekyllLiquidBlockTag      DraculaGreen
 hi def link shStatement		  DraculaGreen
 hi def link shConditional		DraculaGreen
 
-lua require('settings.treesitter')
-lua require('settings.compe')
-lua require('settings.lsp')
