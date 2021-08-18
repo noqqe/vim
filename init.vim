@@ -40,12 +40,14 @@ Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
-Plug 'xolox/vim-misc'                                   " dep for syntastic
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
 Plug 'neovim/nvim-lspconfig'                                " language server stuff
 Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
 Plug 'hrsh7th/nvim-compe'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
 
 " Syntax Highlighting Plugins
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
@@ -219,9 +221,6 @@ nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " update plugins
 nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:so $MYVIMRC<CR>:PlugUpdate<CR>
-
-" check for errors with syntastic
-nmap <silent> <leader>e :SyntasticCheck<CR>:Errors<CR>
 
 " shortcut for jrnl date timestamps
 nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
