@@ -26,6 +26,6 @@ If yes, make sure you backup your old config and run
 ``` bash
 test -d ~/.config || mkdir ~/.config
 test -d ~/.config/nvim && rm  ~/.config/nvim
-git clone --single-branch --branch neovim https://github.com/noqqe/vim ~/.config/nvim
+git clone https://github.com/noqqe/vim ~/.config/nvim
 nvim +PlugInstall
 ```
