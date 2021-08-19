@@ -91,7 +91,8 @@ set number                              " enable line numbers by default
 set hlsearch                            " highlight searches
 set mouse=r                             " turn off mouse
 set clipboard+=unnamed                  " persistent cut buffer across files (dd + p works everywhere)
-set noincsearch                       " don't jump during searching for a string
+set noincsearch                         " don't jump during searching for a string
+set autochdir                           " automatically switch to dir of file editing
 
 " open file at last position
 au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
