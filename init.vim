@@ -59,7 +59,7 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highl
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'voxpupuli/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }        " puppet syntax
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
 
 call plug#end()
