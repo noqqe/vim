@@ -4,6 +4,7 @@
 " ---------------------------------------------------------------------------
 " General
 " ---------------------------------------------------------------------------
+" Maybe switch to lua: https://github.com/n3wborn/nvim/blob/main/init.lua
 
 set nocompatible                        " essential
 set history=1000                        " lots of command line history
