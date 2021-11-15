@@ -60,8 +60,9 @@ Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highl
 Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
 Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }        " puppet syntax
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }           " puppet syntax
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
+Plug 'chrisbra/Colorizer'                               " highlight colors hex codes
 
 call plug#end()
 
@@ -344,3 +345,8 @@ hi def link markdownJekyllLiquidBlockTag      DraculaGreen
 hi def link shStatement		  DraculaGreen
 hi def link shConditional		DraculaGreen
 
+
+" --------------------------------------------------------------------------
+" Colorizer
+" --------------------------------------------------------------------------
+let g:colorizer_auto_filetype='css,html'
