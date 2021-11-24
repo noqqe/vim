@@ -350,3 +350,9 @@ hi def link shConditional		DraculaGreen
 " Colorizer
 " --------------------------------------------------------------------------
 let g:colorizer_auto_filetype='css,html'
+
+
+" --------------------------------------------------------------------------
+" Custom Snippets
+" --------------------------------------------------------------------------
+let g:vsnip_snippet_dir='~/.config/nvim/snippets/'
