@@ -48,7 +48,7 @@
     "prefix": "var",
     "body": [
       "variable \"${1:variable_name}\" {",
-      "  type        = \"${3:type}\"",
+      "  type        = ${3:string}",
       "  description = \"${2:description}\"",
       "  default     = \"${3:default}\"",
       "}",
