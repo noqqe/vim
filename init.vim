@@ -44,7 +44,7 @@ Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
 Plug 'neovim/nvim-lspconfig'                                " language server stuff
-Plug 'kabouzeid/nvim-lspinstall'                            " helper to install language servers on host
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'hrsh7th/nvim-compe'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'hrsh7th/vim-vsnip-integ'
