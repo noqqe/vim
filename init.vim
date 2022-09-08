@@ -42,27 +42,38 @@ Plug 'tpope/vim-commentary'                             " auto commenting with k
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
-Plug 'neovim/nvim-lspconfig'                                " language server stuff
-Plug 'williamboman/nvim-lsp-installer'
-Plug 'hrsh7th/nvim-compe'
+
+
+" LSP + LSP Installers
+Plug 'neovim/nvim-lspconfig'                            " lsp nvim binding
+Plug 'williamboman/mason.nvim'                          " installs lsps locally
+Plug 'williamboman/mason-lspconfig.nvim'                " lsp bindings for nvim lspconfig
+
+" Snippets Universe
 Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'hrsh7th/cmp-nvim-lsp' "
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 
 " Syntax Highlighting Plugins
-Plug 'LnL7/vim-nix', { 'for': 'nix' }                   " nixos syntax highlighting
-Plug 'cespare/vim-toml', { 'for': 'toml' }              " toml language
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }             " csv highlighting
-Plug 'cmhamill/vim-jrnl'                                " jrnl
-Plug 'dag/vim-fish', { 'for': 'fish' }                  " fish shell language
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }   " terraform syntax highlightning
-Plug 'godlygeek/tabular', { 'for': 'puppet' }           " auto ident dep for vim-puppet
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }   " my own markdown
-Plug 'ntpeters/vim-better-whitespace'                   " highlighting for whitespace
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }           " puppet syntax
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }      " golang
-Plug 'chrisbra/Colorizer'                               " highlight colors hex codes
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
+Plug 'LnL7/vim-nix', { 'for': 'nix' }                       " nixos syntax highlighting
+Plug 'cespare/vim-toml', { 'for': 'toml' }                  " toml language
+Plug 'chrisbra/csv.vim',   { 'for': 'csv' }                 " csv highlighting
+Plug 'cmhamill/vim-jrnl'                                    " jrnl
+Plug 'dag/vim-fish', { 'for': 'fish' }                      " fish shell language
+Plug 'hashivim/vim-terraform', { 'for': 'terraform' }       " terraform syntax highlightning
+Plug 'godlygeek/tabular', { 'for': 'puppet' }               " auto ident dep for vim-puppet
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }       " my own markdown
+Plug 'ntpeters/vim-better-whitespace'                       " highlighting for whitespace
+Plug 'rodjek/vim-puppet', { 'for': 'puppet' }               " puppet syntax
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }          " golang
+Plug 'chrisbra/Colorizer'                                   " highlight colors hex codes
 
 call plug#end()
 
@@ -71,7 +82,7 @@ call plug#end()
 " --------------------------------------------------------------------------
 
 lua require('settings.treesitter')
-lua require('settings.compe')
+lua require('settings.cmp')
 lua require('settings.lsp')
 
 " ----------------------------------------------------------------------------
