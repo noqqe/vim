@@ -36,5 +36,21 @@ end
 -- Installer
 --
 require("mason").setup()
-require("mason-lspconfig").setup()
+require("mason-lspconfig").setup({
+  ensure_installed = {
+    "awk_ls",
+    "bashls",
+    "gopls",
+    "cssls",
+    "html",
+    "jsonls",
+    "marksman",
+    "puppet",
+    "pyright",
+    "sqlls",
+    "vimls",
+    "yamlls",
+    "dockerls",
+  }
+})
 
