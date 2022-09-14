@@ -43,11 +43,11 @@ Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 
-
 " LSP + LSP Installers
 Plug 'neovim/nvim-lspconfig'                            " lsp nvim binding
 Plug 'williamboman/mason.nvim'                          " installs lsps locally
 Plug 'williamboman/mason-lspconfig.nvim'                " lsp bindings for nvim lspconfig
+Plug 'folke/trouble.nvim'
 
 " Snippets Universe
 Plug 'hrsh7th/vim-vsnip'
@@ -84,6 +84,7 @@ call plug#end()
 lua require('settings.treesitter')
 lua require('settings.cmp')
 lua require('settings.lsp')
+lua require('settings.trouble')
 
 " ----------------------------------------------------------------------------
 " UI
@@ -139,18 +140,7 @@ au BufWritePre <buffer> StripWhitespace
 " wrap = when lines are longer then display, break lines visually
 "
 " ts = tabstop, should always be 8
-" sts = softtabstop, modify to your needs
-" sw = shiftwidth
-" et = expandtab, replace tab char with X spaces
-
-au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
-au Filetype gitcommit setl tw=50 spell spelllang=de,en
-au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
-au Filetype python setl wrap sw=4 ts=4 sts=4
-
-
-" ----------------------------------------------------------------------------
-" Backups
+" sts = softtabstop, modify to your needs sw = shiftwidth et = expandtab, replace tab char with X spaces au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2 au Filetype gitcommit setl tw=50 spell spelllang=de,en au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2 au Filetype python setl wrap sw=4 ts=4 sts=4 --------------------------------------------------------------------------- Backups
 " ----------------------------------------------------------------------------
 
 set backup                                                    " do not keep backups after close
