@@ -43,6 +43,10 @@ Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
 Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
 
+" Fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+
 " LSP + LSP Installers
 Plug 'neovim/nvim-lspconfig'                            " lsp nvim binding
 Plug 'williamboman/mason.nvim'                          " installs lsps locally
@@ -85,6 +89,7 @@ lua require('settings.treesitter')
 lua require('settings.cmp')
 lua require('settings.lsp')
 lua require('settings.trouble')
+
 
 " ----------------------------------------------------------------------------
 " UI
@@ -241,6 +246,20 @@ nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
 
 " fix underlying spell error automatically
 nmap <silent> <leader>f z=1<CR><CR>
+
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+
+" Trouble
+nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
+nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
+nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
+nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
+nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
 " identify highlight used for word under cursor
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
