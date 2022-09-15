@@ -33,7 +33,7 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'airblade/vim-gitgutter'                           " git diff line next to line numbers
+Plug 'lewis6991/gitsigns.nvim'                          " git diff line next to line numbers
 Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
@@ -89,6 +89,7 @@ lua require('settings.treesitter')
 lua require('settings.cmp')
 lua require('settings.lsp')
 lua require('settings.trouble')
+lua require('settings.gitsigns')
 
 
 " ----------------------------------------------------------------------------
@@ -231,9 +232,6 @@ nmap <silent> <leader>s :set spell!<CR>
 
 " strip all trail. whitespace with -w
 nmap <silent> <leader>w :StripWhitespace<CR>
-
-" Git Gutter toggle
-nmap <silent> <leader>g :GitGutterToggle<CR>
 
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>
