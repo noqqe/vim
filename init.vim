@@ -43,9 +43,8 @@ Plug 'romainl/vim-cool'                                 " Disables HL after sear
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
-Plug 'nvim-lualine/lualine.nvim'
-Plug 'kyazdani42/nvim-web-devicons' " yeah im really doing this... it even though it sucsk.
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'nvim-lualine/lualine.nvim'                        " statusline in native lua that replaces crystalline
+Plug 'kyazdani42/nvim-web-devicons'                     " yeah im really doing this... it even though it sucsk.
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
@@ -89,12 +88,13 @@ call plug#end()
 " Load Lua Settings for Plugins
 " --------------------------------------------------------------------------
 
+" Replace with https://github.com/rayfaddis/dotfiles/blob/main/config/nvim/init.lua#L16
 lua require('settings.treesitter')
 lua require('settings.lsp')
 lua require('settings.trouble')
+lua require('settings.cmp')
 lua require('settings.gitsigns')
 lua require('settings.lualine')
-lua require('settings.nvim-tree')
 
 
 " ----------------------------------------------------------------------------
