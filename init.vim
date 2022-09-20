@@ -39,6 +39,7 @@ Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
 Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
 Plug 'machakann/vim-sandwich'                           " surroundings for words
 Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
+Plug 'romainl/vim-cool'                                 " Disables HL after search automatically
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
