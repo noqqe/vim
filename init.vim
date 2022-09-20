@@ -20,6 +20,7 @@ filetype plugin indent on               " load filetype plugin
 set shortmess+=I                        " Startup message is irritating
 set visualbell t_vb=                    " Disable visual bell
 set noshowmode                          " Disable Showmode since its in airline
+set laststatus=2                        " Set statusline height to 2 for lualine
 
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
@@ -41,7 +42,9 @@ Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
 Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
 Plug 'tpope/vim-fugitive'                               " Git Wrapper
 Plug 'unblevable/quick-scope'                           " scope for motion
-Plug 'rbong/vim-crystalline'                            " airline/powerline replacement
+Plug 'nvim-lualine/lualine.nvim'
+Plug 'kyazdani42/nvim-web-devicons' " yeah im really doing this... it even though it sucsk.
+Plug 'kyazdani42/nvim-tree.lua'
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
@@ -86,10 +89,11 @@ call plug#end()
 " --------------------------------------------------------------------------
 
 lua require('settings.treesitter')
-lua require('settings.cmp')
 lua require('settings.lsp')
 lua require('settings.trouble')
 lua require('settings.gitsigns')
+lua require('settings.lualine')
+lua require('settings.nvim-tree')
 
 
 " ----------------------------------------------------------------------------
@@ -306,23 +310,6 @@ if !empty(glob('~/.config/nvim/plugged/dracula/colors/dracula.vim'))
   syntax on
 endif
 
-" --------------------------------------------------------------------------
-" Crystalline
-" --------------------------------------------------------------------------
-
-function! StatusLine(current)
-  return (a:current ? crystalline#mode() . '%#Crystalline#' : '%#CrystallineInactive#')
-        \ . ' %f%h%w%m%r '
-        \ . '%#CrystallineReplace#' . (a:current ? ' %{FugitiveStatusline()}%  ' : '') . '%#Crystalline#'
-        "\ . ' %#CrystallineTab#' . (a:current ? '%{SyntasticStatuslineFlag()}' : '')
-        \ . '%=' . (a:current ? '%#CrystallineReplace# %{&paste?"PASTE ":""}%{&spell?"SPELL ":""}' . crystalline#mode_color() : '')
-        \ . ' %{&ft} [%{&enc}][%{&ffs}] %l/%L %c%V %P '
-endfunction
-
-let g:crystalline_statusline_fn = 'StatusLine'
-let g:crystalline_theme = 'dracula'
-
-set laststatus=2
 
 " --------------------------------------------------------------------------
 " EditorConfig Configuration
