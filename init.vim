@@ -131,9 +131,6 @@ set formatoptions+=n                    " support for numbered/bullet lists
 set virtualedit=block                   " allow virtual edit in visual block ..
 set scrolloff=4                         " scroll down and let 4 lines be at the end
 
-" convince shell syntax highlight to use bash, not ksh or sh
-let g:is_bash = 1
-
 " automatically remove trail. whitespace at write
 au BufWritePre <buffer> StripWhitespace
 
