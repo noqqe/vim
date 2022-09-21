@@ -5,22 +5,34 @@
 " General
 " ---------------------------------------------------------------------------
 " Maybe switch to lua: https://github.com/n3wborn/nvim/blob/main/init.lua
+lua << EOF
 
-set nocompatible                        " essential
-set history=1000                        " lots of command line history
-set encoding=utf8                       " be nice, by default
-set cf                                  " error files / jumping
-set ffs=unix,dos,mac                    " support these files
-set isk+=_,$,@,%,#,-                    " none word dividers
-set modeline                            " make sure modeline support is enabled
-set autoread                            " reload files (no local changes only)
-set tabpagemax=50                       " open 50 tabs max
-set viminfo='1000,f1,:100,@100,/20
-filetype plugin indent on               " load filetype plugin
-set shortmess+=I                        " Startup message is irritating
-set visualbell t_vb=                    " Disable visual bell
-set noshowmode                          " Disable Showmode since its in airline
-set laststatus=2                        " Set statusline height to 2 for lualine
+local o = vim.opt
+local fn = vim.fn
+
+o.history = 1000                        -- lots of command line history
+o.encoding = "utf8"                     -- be nice, by default
+o.cf = true                             -- error files / jumping
+o.ffs = "unix,dos,mac"                  -- support these files
+o.modeline = true                       -- make sure modeline support is enabled
+o.autoread = true                       -- reload files (no local changes only)
+o.tabpagemax = 50                       -- open 50 tabs max
+o.shortmess:append('I')                        -- Startup message is irritating
+o.visualbell = false                    -- Disable visual bell
+o.showmode = false                      -- Disable Showmode since its in airline
+o.laststatus = 2                        -- Set statusline height to 2 for lualine
+
+-- word splitter chars
+o.isk:append("_")
+o.isk:append("$")
+o.isk:append("@")
+o.isk:append("%")
+o.isk:append("#")
+o.isk:append("0")
+
+vim.cmd("filetype plugin indent on")    -- load filetype plugin
+
+EOF
 
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
@@ -88,13 +100,23 @@ call plug#end()
 " Load Lua Settings for Plugins
 " --------------------------------------------------------------------------
 
-" Replace with https://github.com/rayfaddis/dotfiles/blob/main/config/nvim/init.lua#L16
-lua require('settings.treesitter')
-lua require('settings.lsp')
-lua require('settings.trouble')
-lua require('settings.cmp')
-lua require('settings.gitsigns')
-lua require('settings.lualine')
+lua << EOF
+local function source_files_from_dir(directory)
+  for _, file in pairs(vim.fn.readdir(directory)) do
+    local file = directory .. '/' .. file
+    if vim.fn.filereadable(file) then
+      vim.fn.execute('source ' .. file)
+    end
+  end
+end
+
+-- load all additional configs
+local lua_config_dir = vim.fn.stdpath('config') .. '/lua'
+local config_dirs = { 'settings' }
+for _, dir in pairs(config_dirs) do
+  source_files_from_dir(lua_config_dir .. '/' .. dir)
+end
+EOF
 
 
 " ----------------------------------------------------------------------------
@@ -232,9 +254,6 @@ nmap <silent> <leader>p :set paste!<CR>
 " toggle spellchecking with -s
 nmap <silent> <leader>s :set spell!<CR>
 
-" strip all trail. whitespace with -w
-nmap <silent> <leader>w :StripWhitespace<CR>
-
 " reload vimrc with -r
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
@@ -248,18 +267,14 @@ nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
 nmap <silent> <leader>f z=1<CR><CR>
 
 " Find files using Telescope command-line sugar.
-nnoremap <leader>ff <cmd>Telescope git_files<cr>
+nnoremap <leader>f <cmd>Telescope git_files<cr>
 nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fb <cmd>Telescope buffers<cr>
 nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
 " Trouble
-nnoremap <leader>xx <cmd>TroubleToggle<cr>
+nnoremap <leader>x <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-nnoremap <leader>xq <cmd>TroubleToggle quickfix<cr>
-nnoremap <leader>xl <cmd>TroubleToggle loclist<cr>
-nnoremap gR <cmd>TroubleToggle lsp_references<cr>
 
 " identify highlight used for word under cursor
 " http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor

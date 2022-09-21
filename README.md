@@ -24,7 +24,9 @@ when needed
 * `-s` - Toggle spell checking
 * `-w` - Strip trailing whitespace
 * `-g` - Toggle git gutter line markers
-* `-e` - Check for syntaxerrors with syntastic
+* `-x` - Check for syntaxerrors with Trouble
+* `-f` - search files
+* `-fg` - live grep 
 * `-d` - past current date as like 2017-08-29 15:27
 
 ### Installation
