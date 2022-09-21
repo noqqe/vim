@@ -10,6 +10,7 @@ lua << EOF
 local o = vim.opt
 local fn = vim.fn
 
+-- General
 o.history = 1000                        -- lots of command line history
 o.encoding = "utf8"                     -- be nice, by default
 o.cf = true                             -- error files / jumping
@@ -17,21 +18,56 @@ o.ffs = "unix,dos,mac"                  -- support these files
 o.modeline = true                       -- make sure modeline support is enabled
 o.autoread = true                       -- reload files (no local changes only)
 o.tabpagemax = 50                       -- open 50 tabs max
-o.shortmess:append('I')                        -- Startup message is irritating
+o.shortmess:append('I')                 -- Startup message is irritating
+-- o.shortmess = filtIoOA                  " shorten messages
 o.visualbell = false                    -- Disable visual bell
 o.showmode = false                      -- Disable Showmode since its in airline
-o.laststatus = 2                        -- Set statusline height to 2 for lualine
 
--- word splitter chars
-o.isk:append("_")
-o.isk:append("$")
-o.isk:append("@")
-o.isk:append("%")
-o.isk:append("#")
-o.isk:append("0")
+-- UI Changes
+o.ruler = true                   -- show the cursor position all the time
+o.showcmd = false                -- don't display incomplete commands
+o.lazyredraw = false             -- turn off lazy redraw
+o.wildmenu = true                -- turn on wild menu
+o.ch = 1                         -- command line height
+o.report = 0                     -- tell us about changes
+o.startofline = false            -- don't jump to the start of line when scrolling
+o.wildmode = "list:longest,full" -- nice completion for wildcards
+o.number = true                  -- enable line numbers by default
+o.hlsearch = true                -- highlight searches
+o.mouse = r                      -- turn off mouse
+o.clipboard:append("unnamed")    -- persistent cut buffer across files (dd + p works everywhere)
+o.incsearch = false              -- don't jump during searching for a string
+o.autochdir = true               -- automatically switch to dir of file editing
 
+-- Text Formatting
+o.autoindent = true         -- automatic indent new lines
+o.smartindent = true        -- be smart about it
+o.wrap = false              -- do not wrap lines
+o.expandtab = true          -- expand tabs to spaces
+o.smarttab = false          -- fuck tabs
+o.formatoptions:append("n") -- support for numbered/bullet lists
+o.virtualedit = "block"     -- allow virtual edit in visual block ..
+o.scrolloff = 4             -- scroll down and let 4 lines be at the end
 vim.cmd("filetype plugin indent on")    -- load filetype plugin
+o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
 
+
+-- Load non-init configuration files
+local function source_files_from_dir(directory)
+  for _, file in pairs(vim.fn.readdir(directory)) do
+    local file = directory .. '/' .. file
+    if vim.fn.filereadable(file) then
+      vim.fn.execute('source ' .. file)
+    end
+  end
+end
+
+-- load all additional configs
+local lua_config_dir = vim.fn.stdpath('config') .. '/lua'
+local config_dirs = { 'settings' }
+for _, dir in pairs(config_dirs) do
+  source_files_from_dir(lua_config_dir .. '/' .. dir)
+end
 EOF
 
 " --------------------------------------------------------------------------
@@ -46,17 +82,18 @@ endif
 
 call plug#begin('~/.config/nvim/plugged')
 
-Plug 'lewis6991/gitsigns.nvim'                          " git diff line next to line numbers
-Plug 'dracula/vim', { 'as': 'dracula' }                 " Dracula Theme
-Plug 'editorconfig/editorconfig-vim'                    " fetch codingstyle from repos
-Plug 'machakann/vim-sandwich'                           " surroundings for words
-Plug 'reedes/vim-pencil'                                " Soft-, Hard-Wrapping
-Plug 'romainl/vim-cool'                                 " Disables HL after search automatically
-Plug 'tpope/vim-commentary'                             " auto commenting with keybinding gc
-Plug 'tpope/vim-fugitive'                               " Git Wrapper
-Plug 'unblevable/quick-scope'                           " scope for motion
-Plug 'nvim-lualine/lualine.nvim'                        " statusline in native lua that replaces crystalline
-Plug 'kyazdani42/nvim-web-devicons'                     " yeah im really doing this... it even though it sucsk.
+Plug 'lewis6991/gitsigns.nvim'          " git diff line next to line numbers
+Plug 'dracula/vim', { 'as': 'dracula' } " Dracula Theme
+Plug 'editorconfig/editorconfig-vim'    " fetch codingstyle from repos
+Plug 'machakann/vim-sandwich'           " surroundings for words
+Plug 'reedes/vim-pencil'                " Soft-, Hard-Wrapping
+Plug 'romainl/vim-cool'                 " Disables HL after search automatically
+Plug 'tpope/vim-commentary'             " auto commenting with keybinding gc
+Plug 'tpope/vim-fugitive'               " Git Wrapper
+Plug 'unblevable/quick-scope'           " scope for motion
+Plug 'nvim-lualine/lualine.nvim'        " statusline in native lua that replaces crystalline
+Plug 'kyazdani42/nvim-web-devicons'     " yeah im really doing this... it even though it sucsk.
+Plug 'farmergreg/vim-lastplace'         " load vim file at last cursor position opened
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
@@ -79,6 +116,7 @@ Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
 Plug 'rafamadriz/friendly-snippets'
 
+
 " Syntax Highlighting Plugins
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
 Plug 'LnL7/vim-nix', { 'for': 'nix' }                       " nixos syntax highlighting
@@ -96,67 +134,6 @@ Plug 'chrisbra/Colorizer'                                   " highlight colors h
 
 call plug#end()
 
-" --------------------------------------------------------------------------
-" Load Lua Settings for Plugins
-" --------------------------------------------------------------------------
-
-lua << EOF
-local function source_files_from_dir(directory)
-  for _, file in pairs(vim.fn.readdir(directory)) do
-    local file = directory .. '/' .. file
-    if vim.fn.filereadable(file) then
-      vim.fn.execute('source ' .. file)
-    end
-  end
-end
-
--- load all additional configs
-local lua_config_dir = vim.fn.stdpath('config') .. '/lua'
-local config_dirs = { 'settings' }
-for _, dir in pairs(config_dirs) do
-  source_files_from_dir(lua_config_dir .. '/' .. dir)
-end
-EOF
-
-
-" ----------------------------------------------------------------------------
-" UI
-" ----------------------------------------------------------------------------
-
-set ruler                               " show the cursor position all the time
-set noshowcmd                           " don't display incomplete commands
-set nolazyredraw                        " turn off lazy redraw
-set wildmenu                            " turn on wild menu
-set ch=1                                " command line height
-set backspace=2                         " allow backspacing over everything in insert mode
-set whichwrap+=<,>,h,l,[,]              " backspace and cursor keys wrap to
-set shortmess=filtIoOA                  " shorten messages
-set report=0                            " tell us about changes
-set nostartofline                       " don't jump to the start of line when scrolling
-set wildmode=list:longest,full          " nice completion for wildcards
-set number                              " enable line numbers by default
-set hlsearch                            " highlight searches
-set mouse=r                             " turn off mouse
-set clipboard+=unnamed                  " persistent cut buffer across files (dd + p works everywhere)
-set noincsearch                         " don't jump during searching for a string
-set autochdir                           " automatically switch to dir of file editing
-
-" open file at last position
-au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$")
-\| exe "normal! g'\"" | endif
-
-" ----------------------------------------------------------------------------
-" Text Formatting
-" ----------------------------------------------------------------------------
-
-set autoindent                          " automatic indent new lines
-set smartindent                         " be smart about it
-set nowrap                              " do not wrap lines
-set expandtab                           " expand tabs to spaces
-set nosmarttab                          " fuck tabs
-set formatoptions+=n                    " support for numbered/bullet lists
-set virtualedit=block                   " allow virtual edit in visual block ..
-set scrolloff=4                         " scroll down and let 4 lines be at the end
 
 " automatically remove trail. whitespace at write
 au BufWritePre <buffer> StripWhitespace
