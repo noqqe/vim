@@ -4,7 +4,6 @@
 " ---------------------------------------------------------------------------
 " General
 " ---------------------------------------------------------------------------
-" Maybe switch to lua: https://github.com/n3wborn/nvim/blob/main/init.lua
 lua << EOF
 
 local o = vim.opt
@@ -73,12 +72,6 @@ EOF
 " --------------------------------------------------------------------------
 " Plugins (with Plug)
 " --------------------------------------------------------------------------
-
-if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
-  silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-  \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall | source $MYVIMRC
-endif
 
 call plug#begin('~/.config/nvim/plugged')
 
@@ -349,7 +342,6 @@ hi def link markdownJekyllLiquidBlockTag      DraculaGreen
 " Shell is a bit too pinky for me...
 hi def link shStatement		  DraculaGreen
 hi def link shConditional		DraculaGreen
-
 
 " --------------------------------------------------------------------------
 " Colorizer
