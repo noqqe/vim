@@ -1,5 +1,6 @@
 vim.cmd [[packadd packer.nvim]]
 
+-- Packer Bootstrapping Function
 local ensure_packer = function()
   local fn = vim.fn
   local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
@@ -23,8 +24,6 @@ vim.cmd([[
 
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- Plugin manager itself
-
-
 
   -- git diff line next to line numbers
   use { 'lewis6991/gitsigns.nvim',
