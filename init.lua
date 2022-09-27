@@ -2,6 +2,7 @@
 
 local o = vim.opt
 local fn = vim.fn
+local cmd = vim.cmd
 
 -- General
 o.history = 1000                        -- lots of command line history
@@ -14,6 +15,7 @@ o.tabpagemax = 50                       -- open 50 tabs max
 o.shortmess = "filtIoOA"                 -- shorten messages
 o.visualbell = false                    -- Disable visual bell
 o.showmode = false                      -- Disable Showmode since its in airline
+o.cryptmethod = "blowfish"              -- Enable good crypto
 
 -- UI Changes
 o.ruler = true                   -- show the cursor position all the time
@@ -40,7 +42,7 @@ o.smarttab = false          -- fuck tabs
 o.formatoptions:append("n") -- support for numbered/bullet lists
 o.virtualedit = "block"     -- allow virtual edit in visual block ..
 o.scrolloff = 4             -- scroll down and let 4 lines be at the end
-vim.cmd("filetype plugin indent on")    -- load filetype plugin
+cmd("filetype plugin indent on")    -- load filetype plugin
 o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
 
 
@@ -63,80 +65,33 @@ for _, dir in pairs(config_dirs) do
   source_files_from_dir(lua_config_dir .. '/' .. dir)
 end
 
+-- Language Indent Settings
+-- Shortcuts explained
+-- tw = textwidth
+-- wrap = when lines are longer then display, break lines visually
+-- ts = tabstop, should always be 8
+-- sts = softtabstop, modify to your needs
+-- sw = shiftwidth
+-- et = expandtab, replace tab char with X spaces
+
+vim.cmd[[au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2]]
+
+-- Backups
+o.backup = true                                  -- store backups
+o.writebackup = true                             -- keep backup
+o.backupdir = "$HOME/.local/share/nvim/backup"   -- configure location
+o.backupcopy = "yes"                        -- keep attributes of original file
+o.backupskip = { "/tmp/*", "$TMPDIR/*", "$TMP/*", "$TEMP/*", "/var/folders" }
+
+-- Swap
+o.swapfile = true
+o.directory = "$HOME/.local/share/nvim/swap"
+
+-- Undo
+o.undofile = true
+o.undodir = "$HOME/.local/share/nvim/undo"
+
 vim.cmd([[
-
-" automatically remove trail. whitespace at write
-au BufWritePre <buffer> StripWhitespace
-
-" Language Indent Settings
-" These are my own perferations, however needs to be set _before_ editorconfig
-" because I want to respect repo owner settings
-"
-" Shortcuts explained
-" tw = textwidth
-" wrap = when lines are longer then display, break lines visually
-"
-" ts = tabstop, should always be 8
-" sts = softtabstop, modify to your needs
-" sw = shiftwidth
-" et = expandtab, replace tab char with X spaces
-
-au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2
-au Filetype gitcommit setl tw=50 spell spelllang=de,en
-au Filetype vim setl wrap tw=80 sw=2 ts=2 sts=2
-au Filetype python setl wrap sw=4 ts=4 sts=4
-
-" ----------------------------------------------------------------------------
-" Backups
-" ----------------------------------------------------------------------------
-
-set backup                                                    " do not keep backups after close
-set writebackup                                               " do not keep a backup while working
-set backupdir=$HOME/.config/nvim/backup                       " store backups under ~/.vim/backup
-set backupcopy=yes                                            " keep attributes of original file
-set backupskip=/tmp/*,$TMPDIR/*,$TMP/*,$TEMP/*,/var/folders   " dont backup files in these dirs
-
-" Create backup and swap dir, if the do not exist
-if !isdirectory($HOME . "/.config/nvim/backup")
-  call mkdir($HOME . "/.config/nvim/backup", "p")
-endif
-
-" ----------------------------------------------------------------------------
-" Swap
-" ----------------------------------------------------------------------------
-
-set swapfile                                    " don't keep swp files either
-set directory=~/.config/nvim/swap,~/tmp,.       " keep swp files under ~/.vim/swap
-
-if !isdirectory($HOME . "/.config/nvim/swap")
-  call mkdir($HOME . "/.config/nvim/swap", "p")
-endif
-
-" ----------------------------------------------------------------------------
-" Spell Checking
-" ----------------------------------------------------------------------------
-
-if !isdirectory($HOME . "/.config/nvim/spell")
-  call mkdir($HOME . "/.config/nvim/spell", "p")
-endif
-
-" ----------------------------------------------------------------------------
-" Compatibilities
-" ----------------------------------------------------------------------------
-
-" use crypto better filecrypto if available
-if has('cryptv')
-  set cryptmethod=blowfish
-end
-
-" use persistent undo dir if available
-if has('persistent_undo')
-  if !isdirectory($HOME . "/.config/nvim/undo")
-    call mkdir($HOME . "/.config/nvim/undo", "p")
-  endif
-  set undofile
-  set undodir=$HOME/.config/nvim/undo
-endif
 
 " --------------------------------------------------------------------------
 " Custom Keyboard Shortcuts
@@ -182,12 +137,6 @@ nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 nnoremap <leader>x <cmd>TroubleToggle<cr>
 nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
 nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-
-" identify highlight used for word under cursor
-" http://vim.wikia.com/wiki/Identify_the_syntax_highlighting_group_used_at_the_cursor
-map <F10> :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<'
-\ . synIDattr(synID(line("."),col("."),0),"name") . "> lo<"
-\ . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
 
 " correct end and home keys
 map  <esc>OH <home>

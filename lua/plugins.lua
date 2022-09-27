@@ -36,7 +36,7 @@ return require('packer').startup(function(use)
   use 'kyazdani42/nvim-web-devicons'     -- yeah im really doing this... it even though it sucsk.
   use 'farmergreg/vim-lastplace'         -- load vim file at last cursor position opened
   use 'nvim-lualine/lualine.nvim'        -- statusline in native lua that replaces crystalline
-  use 'ntpeters/vim-better-whitespace'   -- highlighting for whitespace
+  use 'thirtythreeforty/lessspace.vim'   -- highlighting for whitespace
 
   -- Dracula Theme
   use {
