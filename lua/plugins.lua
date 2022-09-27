@@ -22,6 +22,7 @@ vim.cmd([[
   augroup end
 ]])
 
+-- Define Plugins
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- Plugin manager itself
 
@@ -100,10 +101,10 @@ return require('packer').startup(function(use)
   }
 
   -- Better syntax highlightning
-  use { 'LnL7/vim-nix', ft = 'nix' }                       -- nixos syntax highlighting
-  use { 'cespare/vim-toml', ft =  'toml' }                  -- toml language
-  use { 'chrisbra/csv.vim', ft = 'csv' }                 -- csv highlighting
-  use { 'dag/vim-fish', ft = 'fish' }                      -- fish shell language
+  use { 'LnL7/vim-nix', ft = 'nix' }              -- nixos syntax highlighting
+  use { 'cespare/vim-toml', ft =  'toml' }        -- toml language
+  use { 'chrisbra/csv.vim', ft = 'csv' }          -- csv highlighting
+  use { 'dag/vim-fish', ft = 'fish' }             -- fish shell language
 
   -- terraform
   use { 'hashivim/vim-terraform',
@@ -116,6 +117,12 @@ return require('packer').startup(function(use)
   }
 
   use { 'godlygeek/tabular', ft = 'puppet' }               -- auto ident dep for vim-puppet
+  use { 'rodjek/vim-puppet', ft = 'puppet' }               -- puppet syntax
+
+  -- golang
+  use { 'fatih/vim-go', ft = 'go',
+    run = ':GoUpdateBinaries'
+  }
 
   -- markdown
   use {'plasticboy/vim-markdown',
@@ -127,9 +134,6 @@ return require('packer').startup(function(use)
       vim.g.vim_markdown_frontmatter = 1
     end
   }
-
-  use { 'rodjek/vim-puppet', ft = 'puppet' }               -- puppet syntax
-  use { 'fatih/vim-go', ft = 'go',  run = ':GoUpdateBinaries' }          -- golang
 
   use { 'chrisbra/Colorizer',
     run = ':ColorHighlight',
