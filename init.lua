@@ -30,7 +30,7 @@ o.mouse = "r"                       -- turn off mouse
 o.clipboard:append("unnamed")       -- persistent cut buffer across files (dd + p works everywhere)
 o.incsearch = false                 -- don't jump during searching for a string
 o.autochdir = true                  -- automatically switch to dir of file editing
-o.whichwrap = o.whichwrap .. "<,>"  -- Wrap movement between lines in edit mode with arrows
+o.whichwrap = "<,>,h,l,[,]"  	      -- Wrap movement between lines in edit mode with arrows
 
 -- Text Formatting
 o.autoindent = true                 -- automatic indent new lines
