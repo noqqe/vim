@@ -90,44 +90,4 @@ cmp.setup.cmdline(':', {
   })
 })
 
--- Set up lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-require('lspconfig')['awk_ls'].setup { capabilities = capabilities }
-require('lspconfig')['bashls'].setup { capabilities = capabilities }
-require('lspconfig')['cssls'].setup { capabilities = capabilities }
-require('lspconfig')['dockerls'].setup { capabilities = capabilities }
-require('lspconfig')['gopls'].setup { capabilities = capabilities }
-require('lspconfig')['html'].setup { capabilities = capabilities }
-require('lspconfig')['jsonls'].setup { capabilities = capabilities }
-require('lspconfig')['marksman'].setup { capabilities = capabilities }
-require('lspconfig')['puppet'].setup { capabilities = capabilities }
-require('lspconfig')['pyright'].setup { capabilities = capabilities }
-require('lspconfig')['sqlls'].setup { capabilities = capabilities }
-require('lspconfig')['vimls'].setup { capabilities = capabilities }
-require('lspconfig')['yamlls'].setup { capabilities = capabilities }
-require('lspconfig')['terraformls'].setup { capabilities = capabilities }
-require('lspconfig')['sumneko_lua'].setup { capabilities = capabilities }
-
--- Installer
-require("mason").setup()
-require("mason-lspconfig").setup({
-  ensure_installed = {
-    "awk_ls",
-    "bashls",
-    "cssls",
-    "dockerls",
-    "gopls",
-    "html",
-    "jsonls",
-    "marksman",
-    "puppet",
-    "pyright",
-    "sqlls",
-    "vimls",
-    "yamlls",
-    "terraformls",
-    "sumneko_lua",
-  }
-})
 

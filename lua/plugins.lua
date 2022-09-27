@@ -24,8 +24,15 @@ vim.cmd([[
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- Plugin manager itself
 
+
+
+  -- git diff line next to line numbers
+  use { 'lewis6991/gitsigns.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+    config = function () require('gitsigns').setup() end
+  }
+
   -- Look and feel
-  use 'lewis6991/gitsigns.nvim'          -- git diff line next to line numbers
   use 'machakann/vim-sandwich'           -- surroundings for words
   use 'romainl/vim-cool'                 -- Disables HL after search automatically
   use 'tpope/vim-commentary'             -- auto commenting with keybinding gc
@@ -61,18 +68,39 @@ return require('packer').startup(function(use)
     run = vim.cmd[[colorscheme dracula]]
   }
 
-  -- " LSP + LSP Installers
+  -- LSP + LSP Installers
   use 'neovim/nvim-lspconfig'               -- lsp nvim binding
   use 'williamboman/mason.nvim'             -- installs lsps locally
   use 'williamboman/mason-lspconfig.nvim'   -- lsp bindings for nvim lspconfig
-  use 'folke/trouble.nvim'                  -- nice Interface looking at lsp errors
+
+  -- Nice Interface looking at lsp errors
+  use { 'folke/trouble.nvim',
+    config = function ()
+    require("trouble").setup {
+      icons = true,
+    }
+    end
+  }
 
   -- Fuzzy Finder
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
 
   -- Syntax Highlighting Plugins
-  use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'} -- Better syntax highlightning
+  use { 'nvim-treesitter/nvim-treesitter',
+  run = ':TSUpdate',
+  config = function ()
+      require'nvim-treesitter.configs'.setup {
+        ensure_installed = "all",
+        ignore_install = { "javascript" }, -- List of parsers to ignore installing
+        highlight = {
+          enable = true,
+        },
+      }
+    end
+  }
+
+  -- Better syntax highlightning
   use { 'LnL7/vim-nix', ft = 'nix' }                       -- nixos syntax highlighting
   use { 'cespare/vim-toml', ft =  'toml' }                  -- toml language
   use { 'chrisbra/csv.vim', ft = 'csv' }                 -- csv highlighting

@@ -33,3 +33,21 @@ local on_attach = function(client, bufnr)
 
 end
 
+-- Set up lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
+
+nvim_lsp['awk_ls'].setup { capabilities = capabilities }
+nvim_lsp['bashls'].setup { capabilities = capabilities }
+nvim_lsp['cssls'].setup { capabilities = capabilities }
+nvim_lsp['dockerls'].setup { capabilities = capabilities }
+nvim_lsp['gopls'].setup { capabilities = capabilities }
+nvim_lsp['html'].setup { capabilities = capabilities }
+nvim_lsp['jsonls'].setup { capabilities = capabilities }
+nvim_lsp['marksman'].setup { capabilities = capabilities }
+nvim_lsp['puppet'].setup { capabilities = capabilities }
+nvim_lsp['pyright'].setup { capabilities = capabilities }
+nvim_lsp['sqlls'].setup { capabilities = capabilities }
+nvim_lsp['vimls'].setup { capabilities = capabilities }
+nvim_lsp['yamlls'].setup { capabilities = capabilities }
+nvim_lsp['terraformls'].setup { capabilities = capabilities }
+nvim_lsp['sumneko_lua'].setup { capabilities = capabilities }
