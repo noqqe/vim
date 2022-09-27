@@ -76,19 +76,19 @@ end
 vim.cmd[[au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2]]
 
 -- Backups
-o.backup = true                                  -- store backups
-o.writebackup = true                             -- keep backup
-o.backupdir = "$HOME/.local/share/nvim/backup"   -- configure location
-o.backupcopy = "yes"                        -- keep attributes of original file
+o.backup = true       -- store backups
+o.writebackup = true  -- keep backup
+o.backupcopy = "yes"  -- keep attributes of original file
+o.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup"   -- configure location
 o.backupskip = { "/tmp/*", "$TMPDIR/*", "$TMP/*", "$TEMP/*", "/var/folders" }
 
 -- Swap
 o.swapfile = true
-o.directory = "$HOME/.local/share/nvim/swap"
+o.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
 
 -- Undo
 o.undofile = true
-o.undodir = "$HOME/.local/share/nvim/undo"
+o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
 vim.cmd([[
 
@@ -171,53 +171,6 @@ nnoremap Q <nop>
 " Yanking lines is inconsistent
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
-
-" --------------------------------------------------------------------------
-" EditorConfig Configuration
-" --------------------------------------------------------------------------
-
-let g:EditorConfig_max_line_indicator = "none"
-
-" --------------------------------------------------------------------------
-" Pencil Configuration
-" --------------------------------------------------------------------------
-
-augroup pencil
-  autocmd!
-  au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=77 wrap
-augroup end
-
-" --------------------------------------------------------------------------
-" Terraform
-" --------------------------------------------------------------------------
-
-let g:terraform_align=1
-let g:terraform_fold_sections=0
-let g:terraform_fmt_on_save=1
-
-" --------------------------------------------------------------------------
-" markdown
-" --------------------------------------------------------------------------
-
-let g:vim_markdown_folding_disabled = 1
-let g:vim_markdown_conceal = 0
-let g:vim_markdown_conceal_code_blocks = 0
-let g:vim_markdown_frontmatter = 1
-
-" --------------------------------------------------------------------------
-" Dracula Theme Changes
-" --------------------------------------------------------------------------
-
-" Jekyll Headers are not readable with the dark gray
-hi def link markdownJekyllFrontMatter         DraculaGreen
-hi def link markdownJekyllLiquidTag           DraculaGreen
-hi def link markdownJekyllLiquidOutputTag     DraculaGreen
-hi def link markdownJekyllLiquidBlockTag      DraculaGreen
-
-" Shell is a bit too pinky for me...
-hi def link shStatement		  DraculaGreen
-hi def link shConditional		DraculaGreen
-
 
 " --------------------------------------------------------------------------
 " Custom Snippets

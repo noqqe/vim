@@ -26,9 +26,7 @@ return require('packer').startup(function(use)
 
   -- Look and feel
   use 'lewis6991/gitsigns.nvim'          -- git diff line next to line numbers
-  use 'editorconfig/editorconfig-vim'    -- fetch codingstyle from repos
   use 'machakann/vim-sandwich'           -- surroundings for words
-  use 'reedes/vim-pencil'                -- Soft-, Hard-Wrapping
   use 'romainl/vim-cool'                 -- Disables HL after search automatically
   use 'tpope/vim-commentary'             -- auto commenting with keybinding gc
   use 'tpope/vim-fugitive'               -- Git Wrapper
@@ -37,6 +35,25 @@ return require('packer').startup(function(use)
   use 'farmergreg/vim-lastplace'         -- load vim file at last cursor position opened
   use 'nvim-lualine/lualine.nvim'        -- statusline in native lua that replaces crystalline
   use 'thirtythreeforty/lessspace.vim'   -- highlighting for whitespace
+
+  -- fetch codingstyle from repos
+  use { 'editorconfig/editorconfig-vim',
+    config = function ()
+      vim.g.EditorConfig_max_line_indicator = "none"
+    end
+  }
+
+  -- Soft-, Hard-Wrapping
+  use { 'reedes/vim-pencil',
+    config = function ()
+      vim.cmd[[
+        augroup pencil
+          autocmd!
+          au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=77 wrap
+        augroup end
+      ]]
+    end
+  }
 
   -- Dracula Theme
   use {
@@ -60,9 +77,30 @@ return require('packer').startup(function(use)
   use { 'cespare/vim-toml', ft =  'toml' }                  -- toml language
   use { 'chrisbra/csv.vim', ft = 'csv' }                 -- csv highlighting
   use { 'dag/vim-fish', ft = 'fish' }                      -- fish shell language
-  use { 'hashivim/vim-terraform', ft = 'terraform' }       -- terraform syntax highlightning
+
+  -- terraform
+  use { 'hashivim/vim-terraform',
+    ft = 'terraform',
+    config = function ()
+      vim.g.terraform_align=1
+      vim.g.terraform_fold_sections=0
+      vim.g.terraform_fmt_on_save=1
+    end
+  }
+
   use { 'godlygeek/tabular', ft = 'puppet' }               -- auto ident dep for vim-puppet
-  use {'plasticboy/vim-markdown', ft = 'markdown' }       -- my own markdown
+
+  -- markdown
+  use {'plasticboy/vim-markdown',
+    ft = 'markdown',
+    config = function ()
+      vim.g.vim_markdown_folding_disabled = 1
+      vim.g.vim_markdown_conceal = 0
+      vim.g.vim_markdown_conceal_code_blocks = 0
+      vim.g.vim_markdown_frontmatter = 1
+    end
+  }
+
   use { 'rodjek/vim-puppet', ft = 'puppet' }               -- puppet syntax
   use { 'fatih/vim-go', ft = 'go',  run = ':GoUpdateBinaries' }          -- golang
 
