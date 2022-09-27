@@ -1,7 +1,8 @@
 -- Lua Configuration
 
 local o = vim.opt
-local fn = vim.fn
+local a = vim.api
+local g = vim.g
 
 -- General
 o.history = 1000                    -- lots of command line history
@@ -42,9 +43,9 @@ o.formatoptions:append("n")         -- support for numbered/bullet lists
 o.virtualedit = "block"             -- allow virtual edit in visual block ..
 o.scrolloff = 4                     -- scroll down and let 4 lines be at the end
 
-o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
-vim.cmd("filetype plugin indent on")    -- load filetype plugin
-vim.cmd[[au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2]]
+o.isk:append({"_", "$", "@", "%", "#", "-"})    -- word splitter chars
+vim.cmd("filetype plugin indent on")            -- load filetype plugin
+vim.cmd("au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2")
 
 -- Backups
 o.backup = true       -- store backups
@@ -63,7 +64,6 @@ o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
 
 -- Plugins
-
 require("plugins")
 
 -- Load configuration files
@@ -83,86 +83,60 @@ for _, dir in pairs(config_dirs) do
   source_files_from_dir(lua_config_dir .. '/' .. dir)
 end
 
-vim.cmd([[
+-- Key mappings
+local M = {}
+function M.map(mode, lhs, rhs, opts)
+    local options = { noremap = true }
+    if opts then
+        options = vim.tbl_extend("force", options, opts)
+    end
+    vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+local map = M.map
 
-" --------------------------------------------------------------------------
-" Custom Keyboard Shortcuts
-" --------------------------------------------------------------------------
+g.mapleader = "-"
 
-" define leader key
-let mapleader = "-"
+-- User Commands to correct my mistypings
+a.nvim_create_user_command('W', 'w', {})
+a.nvim_create_user_command('Wq', 'wq', {})
+a.nvim_create_user_command('Q', 'q', {})
+a.nvim_create_user_command('X', 'x', {})
 
-" correct my common mistypings
-command! W w
-command! Wq wq
-command! Wqa wqa
-command! Qa qa
-command! Q q
+-- Leader Key Mappings
+map("n", "<leader>n", ":set number!<CR>")               -- toggle line numbers with -n
+map("n", "<leader>p", ":set paste!<CR>")                -- toggle paste mode with -p
+map("n", "<leader>r", ":so $MYVIMRC<CR>")               -- reload nvim with -r
+map("n", "<leader>P", ":PackerSync<CR>")                -- update plugins
+map("n", "<leader>f", "z=1<CR><CR>")                    -- fix underlying spell error automatically
+map("n", "<leader>f", "<cmd>Telescope git_files<cr>")   -- Find files using Telescope command-line sugar.
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
+map("n", "<leader>d", ':luado os.time(os.date("!*t"))<CR>') -- shortcut for jrnl date timestamps
+map("n", "<leader>x", "<cmd>TroubleToggle<cr>") -- Trouble
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
 
-" toggle line numbers with -n
-nmap <silent> <leader>n :set number!<CR>
+-- Disable Arrow keys
+map("n", "<up>", "<nop>")
+map("n", "<down>", "<nop>")
+map("n", "<left>", "<nop>")
+map("n", "<right>", "<nop>")
+map("i", "<up>", "<nop>")
+map("i", "<down>", "<nop>")
+map("i", "<left>", "<nop>")
+map("i", "<right>", "<nop>")
 
-" toggle paste mode with -p
-nmap <silent> <leader>p :set paste!<CR>
+-- Correct end and home keys
+map("n", "<esc>OH", "<home>")
+map("i", "<esc>OH", "<home>")
+map("c", "<esc>OH", "<home>")
+map("n", "<esc>OF", "<end>")
+map("i", "<esc>OF", "<end>")
+map("c", "<esc>OF", "<end>")
 
-" toggle spellchecking with -s
-nmap <silent> <leader>s :set spell!<CR>
-
-" reload vimrc with -r
-nmap <silent> <leader>r :so $MYVIMRC<CR>
-
-" update plugins
-nmap <silent> <leader>P :PackerSync<CR>
-
-" shortcut for jrnl date timestamps
-nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
-
-" fix underlying spell error automatically
-nmap <silent> <leader>f z=1<CR><CR>
-
-" Find files using Telescope command-line sugar.
-nnoremap <leader>f <cmd>Telescope git_files<cr>
-nnoremap <leader>fg <cmd>Telescope live_grep<cr>
-nnoremap <leader>fh <cmd>Telescope help_tags<cr>
-
-" Trouble
-nnoremap <leader>x <cmd>TroubleToggle<cr>
-nnoremap <leader>xw <cmd>TroubleToggle workspace_diagnostics<cr>
-nnoremap <leader>xd <cmd>TroubleToggle document_diagnostics<cr>
-
-" correct end and home keys
-map  <esc>OH <home>
-cmap <esc>OH <home>
-imap <esc>OH <home>
-map  <esc>OF <end>
-cmap <esc>OF <end>
-imap <esc>OF <end>
-
-" Brave me, disabling arrow keys
-" Disable Arrow keys in Escape mode
-map <up> <nop>
-map <down> <nop>
-map <left> <nop>
-map <right> <nop>
-
-" Disable Arrow keys in Insert mode
-imap <up> <nop>
-imap <down> <nop>
-imap <left> <nop>
-imap <right> <nop>
-
-" Cursor jumps around while joining lines
-nnoremap J mzJ`z
-
-" Jumping lands on top or bottom of screen
-nnoremap n nzz
-nnoremap } }zz
-
-" Dont start EX Mode
-nnoremap Q <nop>
-
-" Yanking lines is inconsistent
-" yanking a single line to the end with Y. Acts like D
-nnoremap Y y$
-
-]])
+-- Convienience key behaviour
+map("n", "J", "mzJ`z")    -- Cursor jumps around while joining lines
+map("n", "n", "nzz")      -- Jumping lands on top or bottom of screen
+map("n", "}", "}zz")      -- Jumping lands on top or bottom of screen
+map("n", "Q", "<nop>")    -- Dont start EX Mode
+map("n", "Y", "y$")       -- Yanking a single line to the end with Y. Acts like D
