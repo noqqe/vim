@@ -2,7 +2,6 @@
 
 local o = vim.opt
 local fn = vim.fn
-local cmd = vim.cmd
 
 -- General
 o.history = 1000                        -- lots of command line history
@@ -27,7 +26,7 @@ o.startofline = false            -- don't jump to the start of line when scrolli
 o.wildmode = "list:longest,full" -- nice completion for wildcards
 o.number = true                  -- enable line numbers by default
 o.hlsearch = true                -- highlight searches
-o.mouse = "r"                      -- turn off mouse
+o.mouse = "r"                    -- turn off mouse
 o.clipboard:append("unnamed")    -- persistent cut buffer across files (dd + p works everywhere)
 o.incsearch = false              -- don't jump during searching for a string
 o.autochdir = true               -- automatically switch to dir of file editing
@@ -41,9 +40,28 @@ o.smarttab = false          -- fuck tabs
 o.formatoptions:append("n") -- support for numbered/bullet lists
 o.virtualedit = "block"     -- allow virtual edit in visual block ..
 o.scrolloff = 4             -- scroll down and let 4 lines be at the end
-cmd("filetype plugin indent on")    -- load filetype plugin
-o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
 
+o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
+vim.cmd("filetype plugin indent on")    -- load filetype plugin
+vim.cmd[[au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2]]
+
+-- Backups
+o.backup = true       -- store backups
+o.writebackup = true  -- keep backup
+o.backupcopy = "yes"  -- keep attributes of original file
+o.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup"   -- configure location
+o.backupskip = { "/tmp/*", "$TMPDIR/*", "$TMP/*", "$TEMP/*", "/var/folders" }
+
+-- Swap
+o.swapfile = true
+o.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
+
+-- Undo
+o.undofile = true
+o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
+
+
+-- Plugins
 
 require("plugins")
 
@@ -63,32 +81,6 @@ local config_dirs = { 'settings' }
 for _, dir in pairs(config_dirs) do
   source_files_from_dir(lua_config_dir .. '/' .. dir)
 end
-
--- Language Indent Settings
--- Shortcuts explained
--- tw = textwidth
--- wrap = when lines are longer then display, break lines visually
--- ts = tabstop, should always be 8
--- sts = softtabstop, modify to your needs
--- sw = shiftwidth
--- et = expandtab, replace tab char with X spaces
-
-vim.cmd[[au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2]]
-
--- Backups
-o.backup = true       -- store backups
-o.writebackup = true  -- keep backup
-o.backupcopy = "yes"  -- keep attributes of original file
-o.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup"   -- configure location
-o.backupskip = { "/tmp/*", "$TMPDIR/*", "$TMP/*", "$TEMP/*", "/var/folders" }
-
--- Swap
-o.swapfile = true
-o.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
-
--- Undo
-o.undofile = true
-o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
 vim.cmd([[
 
@@ -172,8 +164,4 @@ nnoremap Q <nop>
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
 
-" --------------------------------------------------------------------------
-" Custom Snippets
-" --------------------------------------------------------------------------
-let g:vsnip_snippet_dir='~/.config/nvim/snippets/'
 ]])
