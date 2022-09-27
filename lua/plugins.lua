@@ -111,10 +111,18 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- " Snippets Universe
+  -- Snippets Universe
   use { 'hrsh7th/vim-vsnip',
     config = function ()
       vim.g.vsnip_snippet_dir= os.getenv("HOME") .. '/.config/nvim/snippets/'
+    end
+  }
+
+  -- Show Keymappings
+  use {
+    "folke/which-key.nvim",
+    config = function()
+      require("which-key").setup()
     end
   }
 
