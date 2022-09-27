@@ -15,7 +15,6 @@ o.tabpagemax = 50                       -- open 50 tabs max
 o.shortmess = "filtIoOA"                 -- shorten messages
 o.visualbell = false                    -- Disable visual bell
 o.showmode = false                      -- Disable Showmode since its in airline
-o.cryptmethod = "blowfish"              -- Enable good crypto
 
 -- UI Changes
 o.ruler = true                   -- show the cursor position all the time
