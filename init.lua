@@ -1,10 +1,4 @@
-" Set nice formatting for this file
-" vim ft=vim ts=2
-
-" ---------------------------------------------------------------------------
-" General
-" ---------------------------------------------------------------------------
-lua << EOF
+-- Lua Configuration
 
 local o = vim.opt
 local fn = vim.fn
@@ -17,8 +11,7 @@ o.ffs = "unix,dos,mac"                  -- support these files
 o.modeline = true                       -- make sure modeline support is enabled
 o.autoread = true                       -- reload files (no local changes only)
 o.tabpagemax = 50                       -- open 50 tabs max
-o.shortmess:append('I')                 -- Startup message is irritating
--- o.shortmess = filtIoOA                  " shorten messages
+o.shortmess = "filtIoOA"                 -- shorten messages
 o.visualbell = false                    -- Disable visual bell
 o.showmode = false                      -- Disable Showmode since its in airline
 
@@ -33,7 +26,7 @@ o.startofline = false            -- don't jump to the start of line when scrolli
 o.wildmode = "list:longest,full" -- nice completion for wildcards
 o.number = true                  -- enable line numbers by default
 o.hlsearch = true                -- highlight searches
-o.mouse = r                      -- turn off mouse
+o.mouse = "r"                      -- turn off mouse
 o.clipboard:append("unnamed")    -- persistent cut buffer across files (dd + p works everywhere)
 o.incsearch = false              -- don't jump during searching for a string
 o.autochdir = true               -- automatically switch to dir of file editing
@@ -51,7 +44,9 @@ vim.cmd("filetype plugin indent on")    -- load filetype plugin
 o.isk:append({"_", "$", "@", "%", "#", "-"}) -- word splitter chars
 
 
--- Load non-init configuration files
+require("plugins")
+
+-- Load configuration files
 local function source_files_from_dir(directory)
   for _, file in pairs(vim.fn.readdir(directory)) do
     local file = directory .. '/' .. file
@@ -67,66 +62,8 @@ local config_dirs = { 'settings' }
 for _, dir in pairs(config_dirs) do
   source_files_from_dir(lua_config_dir .. '/' .. dir)
 end
-EOF
 
-" --------------------------------------------------------------------------
-" Plugins (with Plug)
-" --------------------------------------------------------------------------
-
-call plug#begin('~/.config/nvim/plugged')
-
-Plug 'lewis6991/gitsigns.nvim'          " git diff line next to line numbers
-Plug 'dracula/vim', { 'as': 'dracula' } " Dracula Theme
-Plug 'editorconfig/editorconfig-vim'    " fetch codingstyle from repos
-Plug 'machakann/vim-sandwich'           " surroundings for words
-Plug 'reedes/vim-pencil'                " Soft-, Hard-Wrapping
-Plug 'romainl/vim-cool'                 " Disables HL after search automatically
-Plug 'tpope/vim-commentary'             " auto commenting with keybinding gc
-Plug 'tpope/vim-fugitive'               " Git Wrapper
-Plug 'unblevable/quick-scope'           " scope for motion
-Plug 'nvim-lualine/lualine.nvim'        " statusline in native lua that replaces crystalline
-Plug 'kyazdani42/nvim-web-devicons'     " yeah im really doing this... it even though it sucsk.
-Plug 'farmergreg/vim-lastplace'         " load vim file at last cursor position opened
-
-" Fuzzy finder
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
-
-" LSP + LSP Installers
-Plug 'neovim/nvim-lspconfig'                            " lsp nvim binding
-Plug 'williamboman/mason.nvim'                          " installs lsps locally
-Plug 'williamboman/mason-lspconfig.nvim'                " lsp bindings for nvim lspconfig
-Plug 'folke/trouble.nvim'
-
-" Snippets Universe
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-nvim-lsp' "
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/cmp-path'
-Plug 'hrsh7th/cmp-cmdline'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/cmp-vsnip'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'rafamadriz/friendly-snippets'
-
-
-" Syntax Highlighting Plugins
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'} " Better syntax highlightning
-Plug 'LnL7/vim-nix', { 'for': 'nix' }                       " nixos syntax highlighting
-Plug 'cespare/vim-toml', { 'for': 'toml' }                  " toml language
-Plug 'chrisbra/csv.vim',   { 'for': 'csv' }                 " csv highlighting
-Plug 'cmhamill/vim-jrnl'                                    " jrnl
-Plug 'dag/vim-fish', { 'for': 'fish' }                      " fish shell language
-Plug 'hashivim/vim-terraform', { 'for': 'terraform' }       " terraform syntax highlightning
-Plug 'godlygeek/tabular', { 'for': 'puppet' }               " auto ident dep for vim-puppet
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }       " my own markdown
-Plug 'ntpeters/vim-better-whitespace'                       " highlighting for whitespace
-Plug 'rodjek/vim-puppet', { 'for': 'puppet' }               " puppet syntax
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }          " golang
-Plug 'chrisbra/Colorizer'                                   " highlight colors hex codes
-
-call plug#end()
-
+vim.cmd([[
 
 " automatically remove trail. whitespace at write
 au BufWritePre <buffer> StripWhitespace
@@ -228,7 +165,7 @@ nmap <silent> <leader>s :set spell!<CR>
 nmap <silent> <leader>r :so $MYVIMRC<CR>
 
 " update plugins
-nmap <silent> <leader>P :PlugClean<CR>:PlugInstall<CR>:so $MYVIMRC<CR>:PlugUpdate<CR>
+nmap <silent> <leader>P :PackerSync<CR>
 
 " shortcut for jrnl date timestamps
 nmap <silent> <leader>d i<C-R>=strftime("%Y-%m-%dT%H:%M:%S")<CR><Esc>
@@ -287,16 +224,6 @@ nnoremap Q <nop>
 " yanking a single line to the end with Y. Acts like D
 nnoremap Y y$
 
-" ---------------------------------------------------------------------------
-" Colors / Theme
-" ---------------------------------------------------------------------------
-
-if !empty(glob('~/.config/nvim/plugged/dracula/colors/dracula.vim'))
-  colors dracula
-  syntax on
-endif
-
-
 " --------------------------------------------------------------------------
 " EditorConfig Configuration
 " --------------------------------------------------------------------------
@@ -343,12 +270,9 @@ hi def link markdownJekyllLiquidBlockTag      DraculaGreen
 hi def link shStatement		  DraculaGreen
 hi def link shConditional		DraculaGreen
 
-" --------------------------------------------------------------------------
-" Colorizer
-" --------------------------------------------------------------------------
-let g:colorizer_auto_filetype='css,html'
 
 " --------------------------------------------------------------------------
 " Custom Snippets
 " --------------------------------------------------------------------------
 let g:vsnip_snippet_dir='~/.config/nvim/snippets/'
+]])

@@ -3,6 +3,7 @@ backup/*
 swap/*
 spell/*
 undo/*
+plugin/*
 
 # files being created by vim
 tags
@@ -10,8 +11,4 @@ tags
 tags
 
 # do not manage pluginmanager
-plugged/*
 autoload/*
-
-# symlink from neovim
-init.vim
