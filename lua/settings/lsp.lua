@@ -50,4 +50,13 @@ nvim_lsp['sqlls'].setup { capabilities = capabilities }
 nvim_lsp['vimls'].setup { capabilities = capabilities }
 nvim_lsp['yamlls'].setup { capabilities = capabilities }
 nvim_lsp['terraformls'].setup { capabilities = capabilities }
-nvim_lsp['sumneko_lua'].setup { capabilities = capabilities }
+nvim_lsp['sumneko_lua'].setup {
+  capabilities = capabilities,
+  settings = {
+    Lua = {
+      diagnostics = {
+        globals = { 'vim' }
+      }
+    }
+  }
+}
