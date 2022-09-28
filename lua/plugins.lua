@@ -14,14 +14,6 @@ end
 
 local packer_bootstrap = ensure_packer()
 
--- Automatically Update Packer if plugins.lua was changes
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
-]])
-
 -- Define Plugins
 return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'  -- Plugin manager itself
@@ -33,6 +25,7 @@ return require('packer').startup(function(use)
   }
 
   -- Look and feel
+  use 'nvim-lualine/lualine.nvim'        -- statusline in native lua that replaces crystalline
   use 'machakann/vim-sandwich'           -- surroundings for words
   use 'romainl/vim-cool'                 -- Disables HL after search automatically
   use 'tpope/vim-commentary'             -- auto commenting with keybinding gc
@@ -40,7 +33,6 @@ return require('packer').startup(function(use)
   use 'unblevable/quick-scope'           -- scope for motion
   use 'kyazdani42/nvim-web-devicons'     -- yeah im really doing this... it even though it sucsk.
   use 'farmergreg/vim-lastplace'         -- load vim file at last cursor position opened
-  use 'nvim-lualine/lualine.nvim'        -- statusline in native lua that replaces crystalline
   use 'thirtythreeforty/lessspace.vim'   -- highlighting for whitespace
 
   -- fetch codingstyle from repos
@@ -83,8 +75,9 @@ return require('packer').startup(function(use)
   }
 
   -- Fuzzy Finder
-  use 'nvim-lua/plenary.nvim'
-  use 'nvim-telescope/telescope.nvim'
+  use { 'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' }
+  }
 
   -- Syntax Highlighting Plugins
   use { 'nvim-treesitter/nvim-treesitter',
@@ -116,8 +109,11 @@ return require('packer').startup(function(use)
     end
   }
 
-  use { 'godlygeek/tabular', ft = 'puppet' }               -- auto ident dep for vim-puppet
-  use { 'rodjek/vim-puppet', ft = 'puppet' }               -- puppet syntax
+  -- puppet syntax
+  use { 'rodjek/vim-puppet',
+    ft = 'puppet',
+    requires = { 'godlygeek/tabular' }
+  }
 
   -- golang
   use { 'fatih/vim-go', ft = 'go',
@@ -125,18 +121,18 @@ return require('packer').startup(function(use)
   }
 
   -- markdown
-  use {'plasticboy/vim-markdown',
+  use {'preservim/vim-markdown',
     ft = 'markdown',
     config = function ()
       vim.g.vim_markdown_folding_disabled = 1
-      vim.g.vim_markdown_conceal = 1
-      vim.g.vim_markdown_conceal_code_blocks = 1
+      vim.g.vim_markdown_conceal = 0
       vim.g.vim_markdown_frontmatter = 1
+      vim.g.vim_markdown_frontmatter_toml = 1
     end
   }
 
   use { 'chrisbra/Colorizer',
-    run = ':ColorHighlight',
+    start = ':ColorHighlight',
     config = function ()
       vim.g.colorizer_auto_filetype = 'css,html'
     end
@@ -146,7 +142,17 @@ return require('packer').startup(function(use)
   use { 'hrsh7th/vim-vsnip',
     config = function ()
       vim.g.vsnip_snippet_dir= os.getenv("HOME") .. '/.config/nvim/snippets/'
-    end
+    end,
+    requires = {
+      'hrsh7th/cmp-vsnip',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-path',
+      'hrsh7th/cmp-cmdline',
+      'hrsh7th/nvim-cmp',
+      'rafamadriz/friendly-snippets'
+    }
+
   }
 
   -- Show Keymappings
@@ -157,13 +163,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  use 'hrsh7th/cmp-vsnip'
-  use 'hrsh7th/cmp-nvim-lsp'
-  use 'hrsh7th/cmp-buffer'
-  use 'hrsh7th/cmp-path'
-  use 'hrsh7th/cmp-cmdline'
-  use 'hrsh7th/nvim-cmp'
-  use 'rafamadriz/friendly-snippets'
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
