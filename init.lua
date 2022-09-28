@@ -107,8 +107,9 @@ map("n", "<leader>n", ":set number!<CR>")               -- toggle line numbers w
 map("n", "<leader>p", ":set paste!<CR>")                -- toggle paste mode with -p
 map("n", "<leader>r", ":so $MYVIMRC<CR>")               -- reload nvim with -r
 map("n", "<leader>P", ":PackerSync<CR>")                -- update plugins
-map("n", "<leader>f", "z=1<CR><CR>")                    -- fix underlying spell error automatically
-map("n", "<leader>f", "<cmd>Telescope git_files<cr>")   -- Find files using Telescope command-line sugar.
+map("n", "<leader>t", ":terminal fish<CR>")             -- start terminal with fish shell
+map("n", "<leader>f", "<cmd>Telescope git_files<cr>")   -- Find git files using Telescope command-line sugar.
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- Find files using Telescope command-line sugar.
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 map("n", "<leader>d", ':luado os.time(os.date("!*t"))<CR>') -- shortcut for jrnl date timestamps
