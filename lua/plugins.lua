@@ -57,7 +57,9 @@ return require('packer').startup(function(use)
   -- Dracula Theme
   use {
     'Mofiqul/dracula.nvim',
-    run = vim.cmd[[colorscheme dracula]]
+    config = function ()
+      vim.cmd[[colorscheme dracula]]
+    end
   }
 
   -- LSP + LSP Installers
