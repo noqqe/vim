@@ -3,12 +3,10 @@ backup/*
 swap/*
 spell/*
 undo/*
-plugin/*
+plugin/
 
 # files being created by vim
-tags
 .netrwhist
-tags
 
 # do not manage pluginmanager
 autoload/*

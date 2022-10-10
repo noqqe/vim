@@ -1,5 +1,3 @@
-vim.cmd [[packadd packer.nvim]]
-
 -- Packer Bootstrapping Function
 local ensure_packer = function()
   local fn = vim.fn
@@ -13,6 +11,9 @@ local ensure_packer = function()
 end
 
 local packer_bootstrap = ensure_packer()
+
+-- Execution of Packer with packages defined below
+vim.cmd [[packadd packer.nvim]]
 
 -- Define Plugins
 return require('packer').startup(function(use)
