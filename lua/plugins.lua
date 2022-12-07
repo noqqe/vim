@@ -55,6 +55,17 @@ return require('packer').startup(function(use)
     end
   }
 
+
+  -- Terminal Popup
+  use {
+    'numToStr/FTerm.nvim',
+    config = function ()
+      require("FTerm").setup {
+        cmd = "fish",
+      }
+    end
+ }
+
   -- Dracula Theme
   use {
     'Mofiqul/dracula.nvim',

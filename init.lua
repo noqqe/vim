@@ -107,7 +107,7 @@ map("n", "<leader>n", ":set number!<CR>")               -- toggle line numbers w
 map("n", "<leader>p", ":set paste!<CR>")                -- toggle paste mode with -p
 map("n", "<leader>r", ":so $MYVIMRC<CR>")               -- reload nvim with -r
 map("n", "<leader>P", ":PackerSync<CR>")                -- update plugins
-map("n", "<leader>t", ":terminal fish<CR>")             -- start terminal with fish shell
+map("n", "<leader>t", '<CMD>lua require("FTerm").toggle()<CR>')
 map("n", "<leader>f", "<cmd>Telescope git_files<cr>")   -- Find git files using Telescope command-line sugar.
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- Find files using Telescope command-line sugar.
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
