@@ -1,9 +1,9 @@
 -- Packer Bootstrapping Function
 local ensure_packer = function()
   local fn = vim.fn
-  local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
   if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
     vim.cmd [[packadd packer.nvim]]
     return true
   end
@@ -17,36 +17,36 @@ vim.cmd [[packadd packer.nvim]]
 
 -- Define Plugins
 return require('packer').startup(function(use)
-  use 'wbthomason/packer.nvim'  -- Plugin manager itself
+  use 'wbthomason/packer.nvim' -- Plugin manager itself
 
   -- git diff line next to line numbers
   use { 'lewis6991/gitsigns.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
-    config = function () require('gitsigns').setup() end
+    config = function() require('gitsigns').setup() end
   }
 
   -- Look and feel
-  use 'nvim-lualine/lualine.nvim'        -- statusline in native lua that replaces crystalline
-  use 'machakann/vim-sandwich'           -- surroundings for words
-  use 'romainl/vim-cool'                 -- Disables HL after search automatically
-  use 'tpope/vim-commentary'             -- auto commenting with keybinding gc
-  use 'tpope/vim-fugitive'               -- Git Wrapper
-  use 'unblevable/quick-scope'           -- scope for motion
-  use 'kyazdani42/nvim-web-devicons'     -- yeah im really doing this... it even though it sucsk.
-  use 'farmergreg/vim-lastplace'         -- load vim file at last cursor position opened
-  use 'thirtythreeforty/lessspace.vim'   -- highlighting for whitespace
+  use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
+  use 'machakann/vim-sandwich'         -- surroundings for words
+  use 'romainl/vim-cool'               -- Disables HL after search automatically
+  use 'tpope/vim-commentary'           -- auto commenting with keybinding gc
+  use 'tpope/vim-fugitive'             -- Git Wrapper
+  use 'unblevable/quick-scope'         -- scope for motion
+  use 'kyazdani42/nvim-web-devicons'   -- yeah im really doing this... it even though it sucsk.
+  use 'farmergreg/vim-lastplace'       -- load vim file at last cursor position opened
+  use 'thirtythreeforty/lessspace.vim' -- highlighting for whitespace
 
   -- fetch codingstyle from repos
   use { 'editorconfig/editorconfig-vim',
-    config = function ()
+    config = function()
       vim.g.EditorConfig_max_line_indicator = "none"
     end
   }
 
   -- Soft-, Hard-Wrapping
   use { 'reedes/vim-pencil',
-    config = function ()
-      vim.cmd[[
+    config = function()
+      vim.cmd [[
         augroup pencil
           autocmd!
           au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=77 wrap
@@ -59,32 +59,32 @@ return require('packer').startup(function(use)
   -- Terminal Popup
   use {
     'numToStr/FTerm.nvim',
-    config = function ()
+    config = function()
       require("FTerm").setup {
         cmd = "fish",
       }
     end
- }
+  }
 
   -- Dracula Theme
   use {
     'Mofiqul/dracula.nvim',
-    config = function ()
-      vim.cmd[[colorscheme dracula]]
+    config = function()
+      vim.cmd [[colorscheme dracula]]
     end
   }
 
   -- LSP + LSP Installers
-  use 'neovim/nvim-lspconfig'               -- lsp nvim binding
-  use 'williamboman/mason.nvim'             -- installs lsps locally
-  use 'williamboman/mason-lspconfig.nvim'   -- lsp bindings for nvim lspconfig
+  use 'neovim/nvim-lspconfig'             -- lsp nvim binding
+  use 'williamboman/mason.nvim'           -- installs lsps locally
+  use 'williamboman/mason-lspconfig.nvim' -- lsp bindings for nvim lspconfig
 
   -- Nice Interface looking at lsp errors
   use { 'folke/trouble.nvim',
-    config = function ()
-    require("trouble").setup {
-      icons = true,
-    }
+    config = function()
+      require("trouble").setup {
+        icons = true,
+      }
     end
   }
 
@@ -95,9 +95,9 @@ return require('packer').startup(function(use)
 
   -- Syntax Highlighting Plugins
   use { 'nvim-treesitter/nvim-treesitter',
-  run = ':TSUpdate',
-  config = function ()
-      require'nvim-treesitter.configs'.setup {
+    run = ':TSUpdate',
+    config = function()
+      require 'nvim-treesitter.configs'.setup {
         ensure_installed = "all",
         ignore_install = { "javascript" }, -- List of parsers to ignore installing
         highlight = {
@@ -108,18 +108,18 @@ return require('packer').startup(function(use)
   }
 
   -- Better syntax highlightning
-  use { 'LnL7/vim-nix', ft = 'nix' }              -- nixos syntax highlighting
-  use { 'cespare/vim-toml', ft =  'toml' }        -- toml language
-  use { 'chrisbra/csv.vim', ft = 'csv' }          -- csv highlighting
-  use { 'dag/vim-fish', ft = 'fish' }             -- fish shell language
+  use { 'LnL7/vim-nix', ft = 'nix' }       -- nixos syntax highlighting
+  use { 'cespare/vim-toml', ft = 'toml' }  -- toml language
+  use { 'chrisbra/csv.vim', ft = 'csv' }   -- csv highlighting
+  use { 'dag/vim-fish', ft = 'fish' }      -- fish shell language
 
   -- terraform
   use { 'hashivim/vim-terraform',
     ft = 'terraform',
-    config = function ()
-      vim.g.terraform_align=1
-      vim.g.terraform_fold_sections=0
-      vim.g.terraform_fmt_on_save=1
+    config = function()
+      vim.g.terraform_align = 1
+      vim.g.terraform_fold_sections = 0
+      vim.g.terraform_fmt_on_save = 1
     end
   }
 
@@ -135,9 +135,9 @@ return require('packer').startup(function(use)
   }
 
   -- markdown
-  use {'preservim/vim-markdown',
+  use { 'preservim/vim-markdown',
     ft = 'markdown',
-    config = function ()
+    config = function()
       vim.g.vim_markdown_folding_disabled = 1
       vim.g.vim_markdown_conceal = 0
       vim.g.vim_markdown_frontmatter = 1
@@ -147,15 +147,15 @@ return require('packer').startup(function(use)
 
   use { 'chrisbra/Colorizer',
     start = ':ColorHighlight',
-    config = function ()
+    config = function()
       vim.g.colorizer_auto_filetype = 'css,html'
     end
   }
 
   -- Snippets Universe
   use { 'hrsh7th/vim-vsnip',
-    config = function ()
-      vim.g.vsnip_snippet_dir= os.getenv("HOME") .. '/.config/nvim/snippets/'
+    config = function()
+      vim.g.vsnip_snippet_dir = os.getenv("HOME") .. '/.config/nvim/snippets/'
     end,
     requires = {
       'hrsh7th/cmp-vsnip',
