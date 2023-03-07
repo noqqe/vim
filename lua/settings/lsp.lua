@@ -1,7 +1,7 @@
 local nvim_lsp = require('lspconfig')
 
 -- Save on logs
-vim.lsp.set_log_level("error")
+vim.lsp.set_log_level("off")
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer

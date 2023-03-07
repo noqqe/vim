@@ -98,8 +98,29 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
     config = function()
       require 'nvim-treesitter.configs'.setup {
-        ensure_installed = "all",
-        ignore_install = { "javascript" }, -- List of parsers to ignore installing
+        ensure_installed = {
+          "python", "bash",
+          "diff", "help",
+          "dot", "fish",
+          "git_rebase", "gitattributes",
+          "gitcommit", "gitignore",
+          "go", "gomod",
+          "gosum", "html",
+          "http", "ini",
+          "java", "javascript",
+          "jq", "json",
+          "json5", "lua",
+          "make", "markdown",
+          "nix", "perl",
+          "php", "r",
+          "regex", "rst",
+          "ruby", "rust",
+          "scss", "sql",
+          "regex", "rst",
+          "terraform", "toml",
+          "vim", "yaml",
+          "dockerfile"
+        },
         highlight = {
           enable = true,
         },
@@ -108,20 +129,20 @@ return require('packer').startup(function(use)
   }
 
   -- Better syntax highlightning
-  use { 'LnL7/vim-nix', ft = 'nix' }       -- nixos syntax highlighting
-  use { 'cespare/vim-toml', ft = 'toml' }  -- toml language
-  use { 'chrisbra/csv.vim', ft = 'csv' }   -- csv highlighting
-  use { 'dag/vim-fish', ft = 'fish' }      -- fish shell language
+  use { 'LnL7/vim-nix', ft = 'nix' }      -- nixos syntax highlighting
+  use { 'cespare/vim-toml', ft = 'toml' } -- toml language
+  use { 'chrisbra/csv.vim', ft = 'csv' }  -- csv highlighting
+  use { 'dag/vim-fish', ft = 'fish' }     -- fish shell language
 
   -- terraform
-  use { 'hashivim/vim-terraform',
-    ft = 'terraform',
-    config = function()
-      vim.g.terraform_align = 1
-      vim.g.terraform_fold_sections = 0
-      vim.g.terraform_fmt_on_save = 1
-    end
-  }
+  -- use { 'hashivim/vim-terraform',
+  --   ft = 'terraform',
+  --   config = function()
+  --     vim.g.terraform_align = 1
+  --     vim.g.terraform_fold_sections = 0
+  --     vim.g.terraform_fmt_on_save = 1
+  --   end
+  -- }
 
   -- puppet syntax
   use { 'rodjek/vim-puppet',
@@ -130,9 +151,9 @@ return require('packer').startup(function(use)
   }
 
   -- golang
-  use { 'fatih/vim-go', ft = 'go',
-    run = ':GoUpdateBinaries'
-  }
+  -- use { 'fatih/vim-go', ft = 'go',
+  --   run = ':GoUpdateBinaries'
+  -- }
 
   -- markdown
   use { 'preservim/vim-markdown',
