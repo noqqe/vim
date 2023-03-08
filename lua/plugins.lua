@@ -28,13 +28,32 @@ return require('packer').startup(function(use)
   -- Look and feel
   use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
   use 'machakann/vim-sandwich'         -- surroundings for words
-  use 'romainl/vim-cool'               -- Disables HL after search automatically
-  use 'tpope/vim-commentary'           -- auto commenting with keybinding gc
   use 'tpope/vim-fugitive'             -- Git Wrapper
   use 'unblevable/quick-scope'         -- scope for motion
   use 'kyazdani42/nvim-web-devicons'   -- yeah im really doing this... it even though it sucsk.
   use 'farmergreg/vim-lastplace'       -- load vim file at last cursor position opened
   use 'thirtythreeforty/lessspace.vim' -- highlighting for whitespace
+
+  -- Auto comment function
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+      require('Comment').setup()
+    end
+  }
+
+  -- Lua
+  use {
+    "folke/todo-comments.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("todo-comments").setup {
+        -- your configuration comes here
+        -- or leave it empty to use the default settings
+        -- refer to the configuration section below
+      }
+    end
+  }
 
   -- fetch codingstyle from repos
   use { 'editorconfig/editorconfig-vim',
@@ -128,42 +147,9 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Better syntax highlightning
-  use { 'LnL7/vim-nix', ft = 'nix' }      -- nixos syntax highlighting
-  use { 'cespare/vim-toml', ft = 'toml' } -- toml language
-  use { 'chrisbra/csv.vim', ft = 'csv' }  -- csv highlighting
-  use { 'dag/vim-fish', ft = 'fish' }     -- fish shell language
-
-  -- terraform
-  -- use { 'hashivim/vim-terraform',
-  --   ft = 'terraform',
-  --   config = function()
-  --     vim.g.terraform_align = 1
-  --     vim.g.terraform_fold_sections = 0
-  --     vim.g.terraform_fmt_on_save = 1
-  --   end
-  -- }
-
-  -- puppet syntax
-  use { 'rodjek/vim-puppet',
-    ft = 'puppet',
-    requires = { 'godlygeek/tabular' }
-  }
-
-  -- golang
-  -- use { 'fatih/vim-go', ft = 'go',
-  --   run = ':GoUpdateBinaries'
-  -- }
-
-  -- markdown
-  use { 'preservim/vim-markdown',
-    ft = 'markdown',
-    config = function()
-      vim.g.vim_markdown_folding_disabled = 1
-      vim.g.vim_markdown_conceal = 0
-      vim.g.vim_markdown_frontmatter = 1
-      vim.g.vim_markdown_frontmatter_toml = 1
-    end
+  -- golang instead of lsp+treesitter
+  use { 'fatih/vim-go', ft = 'go',
+    run = ':GoUpdateBinaries'
   }
 
   use { 'chrisbra/Colorizer',
@@ -196,6 +182,31 @@ return require('packer').startup(function(use)
     config = function()
       require("which-key").setup()
     end
+  }
+
+  use {
+    'gelguy/wilder.nvim',
+    config = function()
+      local wilder = require('wilder')
+      wilder.setup({ modes = { ':', '/', '?' } })
+      wilder.set_option('pipeline', {
+        wilder.branch(
+          wilder.cmdline_pipeline(),
+          wilder.search_pipeline()
+        ),
+      })
+      wilder.set_option('renderer', wilder.popupmenu_renderer(
+        wilder.popupmenu_border_theme({
+          highlighter = wilder.basic_highlighter(),
+          left = { ' ', wilder.popupmenu_devicons() },
+          right = { ' ', wilder.popupmenu_scrollbar() },
+          highlights = {
+            border = 'Normal', -- highlight to use for the border
+          },
+          border = 'rounded',
+        })
+      ))
+    end,
   }
 
 

@@ -14,7 +14,7 @@ local on_attach = function(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = { noremap = true, silent = true }
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
@@ -34,23 +34,15 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
-
 end
 
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 nvim_lsp['awk_ls'].setup { capabilities = capabilities }
-nvim_lsp['ansiblels'].setup {
-  capabilities = capabilities,
-  settings = {
-    single_file_detection = true
-  }
-}
 nvim_lsp['bashls'].setup { capabilities = capabilities }
 nvim_lsp['cssls'].setup { capabilities = capabilities }
 nvim_lsp['dockerls'].setup { capabilities = capabilities }
-nvim_lsp['gopls'].setup { capabilities = capabilities }
 nvim_lsp['html'].setup { capabilities = capabilities }
 nvim_lsp['jsonls'].setup { capabilities = capabilities }
 nvim_lsp['marksman'].setup { capabilities = capabilities }
@@ -60,6 +52,28 @@ nvim_lsp['sqlls'].setup { capabilities = capabilities }
 nvim_lsp['vimls'].setup { capabilities = capabilities }
 nvim_lsp['yamlls'].setup { capabilities = capabilities }
 nvim_lsp['terraformls'].setup { capabilities = capabilities }
+
+nvim_lsp['ansiblels'].setup {
+  capabilities = capabilities,
+  settings = {
+    single_file_detection = true
+  }
+}
+
+-- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
+nvim_lsp['gopls'].setup {
+  capabilities = capabilities,
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        composites = false,
+      },
+      staticcheck = true,
+    },
+  },
+}
+
 nvim_lsp['sumneko_lua'].setup {
   capabilities = capabilities,
   settings = {
