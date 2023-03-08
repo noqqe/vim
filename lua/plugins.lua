@@ -27,7 +27,6 @@ return require('packer').startup(function(use)
 
   -- Look and feel
   use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
-  use 'machakann/vim-sandwich'         -- surroundings for words
   use 'tpope/vim-fugitive'             -- Git Wrapper
   use 'unblevable/quick-scope'         -- scope for motion
   use 'kyazdani42/nvim-web-devicons'   -- yeah im really doing this... it even though it sucsk.
@@ -74,7 +73,6 @@ return require('packer').startup(function(use)
     end
   }
 
-
   -- Terminal Popup
   use {
     'numToStr/FTerm.nvim',
@@ -105,6 +103,23 @@ return require('packer').startup(function(use)
         icons = true,
       }
     end
+  }
+
+  -- Visualize scope of idents with |
+  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-identscope.md
+  use { 'echasnovski/mini.indentscope',
+    branch = 'stable',
+    config = function()
+      require('mini.indentscope').setup()
+    end,
+  }
+
+  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
+  use { 'echasnovski/mini.surround',
+    branch = 'stable',
+    config = function()
+      require('mini.surround').setup()
+    end,
   }
 
   -- Fuzzy Finder
