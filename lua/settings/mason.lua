@@ -17,7 +17,6 @@ require("mason-lspconfig").setup({
     "vimls",
     "yamlls",
     "terraformls",
-    "sumneko_lua",
+    "lua_ls",
   }
 })
-

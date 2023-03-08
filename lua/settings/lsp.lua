@@ -39,19 +39,44 @@ end
 -- Set up lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
+-- Configure Languages
+
 nvim_lsp['awk_ls'].setup { capabilities = capabilities }
-nvim_lsp['bashls'].setup { capabilities = capabilities }
-nvim_lsp['cssls'].setup { capabilities = capabilities }
+
+nvim_lsp['bashls'].setup {
+  capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach
+}
+
+nvim_lsp['cssls'].setup {
+  capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach,
+}
+
 nvim_lsp['dockerls'].setup { capabilities = capabilities }
-nvim_lsp['html'].setup { capabilities = capabilities }
+
+nvim_lsp['html'].setup {
+  capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach
+}
+
 nvim_lsp['jsonls'].setup { capabilities = capabilities }
 nvim_lsp['marksman'].setup { capabilities = capabilities }
 nvim_lsp['puppet'].setup { capabilities = capabilities }
-nvim_lsp['pyright'].setup { capabilities = capabilities }
+
+nvim_lsp['pyright'].setup {
+  capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach
+}
+
 nvim_lsp['sqlls'].setup { capabilities = capabilities }
 nvim_lsp['vimls'].setup { capabilities = capabilities }
 nvim_lsp['yamlls'].setup { capabilities = capabilities }
-nvim_lsp['terraformls'].setup { capabilities = capabilities }
+
+nvim_lsp['terraformls'].setup {
+  capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach,
+}
 
 nvim_lsp['ansiblels'].setup {
   capabilities = capabilities,
@@ -62,6 +87,7 @@ nvim_lsp['ansiblels'].setup {
 
 -- https://github.com/golang/tools/blob/master/gopls/doc/analyzers.md
 nvim_lsp['gopls'].setup {
+  on_attach = require("lsp-format").on_attach,
   capabilities = capabilities,
   settings = {
     gopls = {
@@ -76,6 +102,7 @@ nvim_lsp['gopls'].setup {
 
 nvim_lsp['sumneko_lua'].setup {
   capabilities = capabilities,
+  on_attach = require("lsp-format").on_attach,
   settings = {
     Lua = {
       diagnostics = {

@@ -96,6 +96,14 @@ return require('packer').startup(function(use)
   use 'williamboman/mason.nvim'           -- installs lsps locally
   use 'williamboman/mason-lspconfig.nvim' -- lsp bindings for nvim lspconfig
 
+  -- LSP Formatter to automatically format files on save
+  use {
+    'lukas-reineke/lsp-format.nvim',
+    config = function()
+      require("lsp-format").setup {}
+    end
+  }
+
   -- Nice Interface looking at lsp errors
   use { 'folke/trouble.nvim',
     config = function()
