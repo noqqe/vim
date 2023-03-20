@@ -28,12 +28,16 @@ return require('packer').startup(function(use)
   }
 
   -- Look and feel
-  use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
-  use 'tpope/vim-fugitive'             -- Git Wrapper
-  use 'unblevable/quick-scope'         -- scope for motion
-  use 'kyazdani42/nvim-web-devicons'   -- yeah im really doing this... it even though it sucsk.
-  use 'farmergreg/vim-lastplace'       -- load vim file at last cursor position opened
+  use 'nvim-lualine/lualine.nvim' -- statusline in native lua that replaces crystalline
+  use 'tpope/vim-fugitive' -- Git Wrapper
+  use 'unblevable/quick-scope' -- scope for motion
+  use 'farmergreg/vim-lastplace' -- load vim file at last cursor position opened
   use 'thirtythreeforty/lessspace.vim' -- highlighting for whitespace
+
+
+  -- Custom font:
+  -- brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
+  use 'nvim-tree/nvim-web-devicons' -- yeah im really doing this... it even though it sucsk.
 
   -- Auto comment function
   use {
@@ -94,8 +98,8 @@ return require('packer').startup(function(use)
   }
 
   -- LSP + LSP Installers
-  use 'neovim/nvim-lspconfig'             -- lsp nvim binding
-  use 'williamboman/mason.nvim'           -- installs lsps locally
+  use 'neovim/nvim-lspconfig' -- lsp nvim binding
+  use 'williamboman/mason.nvim' -- installs lsps locally
   use 'williamboman/mason-lspconfig.nvim' -- lsp bindings for nvim lspconfig
 
   -- LSP Formatter to automatically format files on save
@@ -196,6 +200,7 @@ return require('packer').startup(function(use)
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/nvim-cmp',
+      'onsails/lspkind.nvim',
       'rafamadriz/friendly-snippets'
     }
 
