@@ -28,10 +28,10 @@ return require('packer').startup(function(use)
   }
 
   -- Look and feel
-  use 'nvim-lualine/lualine.nvim' -- statusline in native lua that replaces crystalline
-  use 'tpope/vim-fugitive' -- Git Wrapper
-  use 'unblevable/quick-scope' -- scope for motion
-  use 'farmergreg/vim-lastplace' -- load vim file at last cursor position opened
+  use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
+  use 'tpope/vim-fugitive'             -- Git Wrapper
+  use 'unblevable/quick-scope'         -- scope for motion
+  use 'farmergreg/vim-lastplace'       -- load vim file at last cursor position opened
   use 'thirtythreeforty/lessspace.vim' -- highlighting for whitespace
 
 
@@ -98,8 +98,8 @@ return require('packer').startup(function(use)
   }
 
   -- LSP + LSP Installers
-  use 'neovim/nvim-lspconfig' -- lsp nvim binding
-  use 'williamboman/mason.nvim' -- installs lsps locally
+  use 'neovim/nvim-lspconfig'             -- lsp nvim binding
+  use 'williamboman/mason.nvim'           -- installs lsps locally
   use 'williamboman/mason-lspconfig.nvim' -- lsp bindings for nvim lspconfig
 
   -- LSP Formatter to automatically format files on save
@@ -204,6 +204,29 @@ return require('packer').startup(function(use)
       'rafamadriz/friendly-snippets'
     }
 
+  }
+
+  -- nvim tree
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+    config = function()
+      require("nvim-tree").setup({
+        sort_by = "case_sensitive",
+        renderer = {
+          group_empty = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
+      })
+
+      local function open_nvim_tree()
+        require("nvim-tree.api").tree.open()
+      end
+    end,
   }
 
   -- Show Keymappings
