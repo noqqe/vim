@@ -120,7 +120,7 @@ return require('packer').startup(function(use)
   }
 
   -- Visualize scope of idents with |
-  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-identscope.md
+  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-indentscope.md
   use { 'echasnovski/mini.indentscope',
     branch = 'stable',
     config = function()
@@ -222,10 +222,6 @@ return require('packer').startup(function(use)
           dotfiles = true,
         },
       })
-
-      local function open_nvim_tree()
-        require("nvim-tree.api").tree.open()
-      end
     end,
   }
 
