@@ -34,17 +34,17 @@ o.autochdir = true               -- automatically switch to dir of file editing
 o.whichwrap = "<,>,h,l,[,]"      -- Wrap movement between lines in edit mode with arrows
 
 -- Text Formatting
-o.autoindent = true                          -- automatic indent new lines
-o.smartindent = true                         -- be smart about it
-o.wrap = false                               -- do not wrap lines
-o.expandtab = true                           -- expand tabs to spaces
-o.smarttab = false                           -- fuck tabs
-o.formatoptions:append("n")                  -- support for numbered/bullet lists
-o.virtualedit = "block"                      -- allow virtual edit in visual block ..
-o.scrolloff = 4                              -- scroll down and let 4 lines be at the end
+o.autoindent = true                            -- automatic indent new lines
+o.smartindent = true                           -- be smart about it
+o.wrap = false                                 -- do not wrap lines
+o.expandtab = true                             -- expand tabs to spaces
+o.smarttab = false                             -- fuck tabs
+o.formatoptions:append("n")                    -- support for numbered/bullet lists
+o.virtualedit = "block"                        -- allow virtual edit in visual block ..
+o.scrolloff = 4                                -- scroll down and let 4 lines be at the end
 
 o.isk:append({ "_", "$", "@", "%", "#", "-" }) -- word splitter chars
-vim.cmd("filetype plugin indent on")         -- load filetype plugin
+vim.cmd("filetype plugin indent on")           -- load filetype plugin
 vim.cmd("au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2")
 
 -- Backups
@@ -118,6 +118,7 @@ map("n", "<leader>d", ':luado os.time(os.date("!*t"))<CR>') -- shortcut for jrnl
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>")             -- Trouble
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")
 
 -- Disable Arrow keys
 map("n", "<up>", "<nop>")
