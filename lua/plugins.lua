@@ -37,7 +37,8 @@ return require('packer').startup(function(use)
 
   -- Custom font:
   -- brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
-  use 'nvim-tree/nvim-web-devicons' -- yeah im really doing this... it even though it sucsk.
+  -- yeah im really doing this... it even though it sucsk.
+  use 'nvim-tree/nvim-web-devicons'
 
   -- Auto comment function
   use {
@@ -47,7 +48,7 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Lua
+  -- Lua version of todo highlighting
   use {
     "folke/todo-comments.nvim",
     requires = "nvim-lua/plenary.nvim",
