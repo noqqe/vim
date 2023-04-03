@@ -28,25 +28,16 @@ return require('packer').startup(function(use)
   }
 
   -- Look and feel
-  use 'nvim-lualine/lualine.nvim'      -- statusline in native lua that replaces crystalline
-  use 'tpope/vim-fugitive'             -- Git Wrapper
-  use 'unblevable/quick-scope'         -- scope for motion
-  use 'farmergreg/vim-lastplace'       -- load vim file at last cursor position opened
-  use 'thirtythreeforty/lessspace.vim' -- highlighting for whitespace
+  use 'nvim-lualine/lualine.nvim' -- statusline in native lua that replaces crystalline
+  use 'tpope/vim-fugitive'        -- Git Wrapper
+  use 'unblevable/quick-scope'    -- scope for motion
+  use 'farmergreg/vim-lastplace'  -- load vim file at last cursor position opened
 
 
   -- Custom font:
   -- brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
   -- yeah im really doing this... it even though it sucsk.
   use 'nvim-tree/nvim-web-devicons'
-
-  -- Auto comment function
-  use {
-    'numToStr/Comment.nvim',
-    config = function()
-      require('Comment').setup()
-    end
-  }
 
   -- Lua version of todo highlighting
   use {
@@ -125,15 +116,52 @@ return require('packer').startup(function(use)
   use { 'echasnovski/mini.indentscope',
     branch = 'stable',
     config = function()
-      require('mini.indentscope').setup()
+      require('mini.indentscope').setup({
+        draw = {
+          -- Delay (in ms) between event and start of drawing scope indicator
+          delay = 50,
+        }
+      })
     end,
   }
 
+  -- Auto comment function
+  use { 'echasnovski/mini.comment',
+    branch = 'stable',
+    config = function()
+      require('mini.comment').setup({
+        options = {
+          -- Whether to ignore blank lines
+          ignore_blank_line = true,
+          -- Whether to recognize as comment only lines without indent
+          start_of_line = false,
+          -- Whether to ensure single space pad for comment parts
+          pad_comment_parts = true,
+        },
+      })
+    end
+  }
+
+  -- Surroundings with sr
   -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
   use { 'echasnovski/mini.surround',
     branch = 'stable',
     config = function()
       require('mini.surround').setup()
+    end,
+  }
+
+  -- Highlight and remove trailing space
+  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-trailspace.md
+  use { 'echasnovski/mini.trailspace',
+    branch = 'stable'
+  }
+
+  -- Autoformat arrays with gS
+  use { 'echasnovski/mini.splitjoin',
+    branch = 'stable',
+    config = function()
+      require('mini.splitjoin').setup()
     end,
   }
 
@@ -148,27 +176,47 @@ return require('packer').startup(function(use)
     config = function()
       require 'nvim-treesitter.configs'.setup {
         ensure_installed = {
-          "python", "bash",
-          "diff", "help",
-          "dot", "fish",
-          "git_rebase", "gitattributes",
-          "gitcommit", "gitignore",
-          "go", "gomod",
-          "gosum", "html",
-          "http", "ini",
-          "java", "javascript",
-          "jq", "json",
-          "json5", "lua",
-          "make", "markdown",
-          "nix", "perl",
-          "php", "r",
-          "regex", "rst",
-          "ruby", "rust",
-          "scss", "sql",
-          "regex", "rst",
-          "terraform", "toml",
-          "vim", "yaml",
-          "dockerfile"
+          "bash",
+          "diff",
+          "dockerfile",
+          "dot",
+          "fish",
+          "git_rebase",
+          "gitattributes",
+          "gitcommit",
+          "gitignore",
+          "go",
+          "gomod",
+          "gosum",
+          "help",
+          "html",
+          "http",
+          "ini",
+          "java",
+          "javascript",
+          "jq",
+          "json",
+          "json5",
+          "lua",
+          "make",
+          "markdown",
+          "nix",
+          "perl",
+          "php",
+          "python",
+          "r",
+          "regex",
+          "regex",
+          "rst",
+          "rst",
+          "ruby",
+          "rust",
+          "scss",
+          "sql",
+          "terraform",
+          "toml",
+          "vim",
+          "yaml",
         },
         highlight = {
           enable = true,
