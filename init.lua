@@ -114,8 +114,7 @@ map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")          -- Find git file
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")         -- Find files using Telescope command-line sugar.
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
-map("n", "<leader>d", ':luado os.time(os.date("!*t"))<CR>') -- shortcut for jrnl date timestamps
-map("n", "<leader>x", "<cmd>TroubleToggle<cr>")             -- Trouble
+map("n", "<leader>x", "<cmd>TroubleToggle<cr>") -- Trouble
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")
