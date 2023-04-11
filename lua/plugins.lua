@@ -27,12 +27,37 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Look and feel
-  use 'nvim-lualine/lualine.nvim' -- statusline in native lua that replaces crystalline
-  use 'tpope/vim-fugitive'        -- Git Wrapper
-  use 'unblevable/quick-scope'    -- scope for motion
-  use 'farmergreg/vim-lastplace'  -- load vim file at last cursor position opened
+  -- Statusline
+  use { 'nvim-lualine/lualine.nvim'
+    config = function()
+      require('lualine').setup({
+        options = {
+          theme = 'auto',
+          component_separators = { left = '', right = '' },
+          section_separators = { left = '', right = '' },
+          disabled_filetypes = {
+            statusline = {},
+            winbar = {},
+            NvimTree = {},
+          },
+          ignore_focus = {},
+          always_divide_middle = true,
+          globalstatus = true,
+          refresh = {
+            statusline = 1000,
+            tabline = 1000,
+            winbar = 1000,
+          }
+        }
+      })
+    end
+  }
 
+  -- quickly move in same lines with highlighted chars
+  use 'unblevable/quick-scope'
+
+  -- load vim file at last cursor position opened
+  use 'farmergreg/vim-lastplace'
 
   -- Custom font:
   -- brew tap homebrew/cask-fonts && brew install --cask font-hack-nerd-font
@@ -282,6 +307,7 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- Better Popup menues with devicons
   use {
     'gelguy/wilder.nvim',
     config = function()
