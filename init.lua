@@ -103,15 +103,18 @@ a.nvim_create_user_command('Wq', 'wq', {})
 a.nvim_create_user_command('Q', 'q', {})
 a.nvim_create_user_command('X', 'x', {})
 
+
+
 -- Leader Key Mappings
-map("n", "<leader>n", ":set number!<CR>")                       -- toggle line numbers with -n
-map("n", "<leader>p", ":set paste!<CR>")                        -- toggle paste mode with -p
-map("n", "<leader>r", ":so $MYVIMRC<CR>")                       -- reload nvim with -r
-map("n", "<leader>P", ":PackerSync<CR>")                        -- update plugins
-map("n", "<leader>t", '<CMD>lua require("FTerm").toggle()<CR>') -- startup terminal
-map("n", "<leader>g", '<CMD>lua vim.lsp.buf.format()<CR>')      -- apply lsp formatting to current file
-map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")          -- Find git files using Telescope command-line sugar.
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")         -- Find files using Telescope command-line sugar.
+map("n", "<leader>n", ":set number!<CR>")                               -- toggle line numbers with -n
+map("n", "<leader>p", ":set paste!<CR>")                                -- toggle paste mode with -p
+map("n", "<leader>r", ":so $MYVIMRC<CR>")                               -- reload nvim with -r
+map("n", "<leader>P", ":PackerSync<CR>")                                -- update plugins
+map("n", "<leader>t", '<CMD>lua require("FTerm").toggle()<CR>')         -- startup terminal
+map("n", "<leader>g", '<CMD>lua require("FTerm").run({"lazygit"})<CR>') -- Git console
+map("n", "<leader>s", '<CMD>lua vim.lsp.buf.format()<CR>')              -- apply lsp formatting to current file
+map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")                  -- Find git files using Telescope command-line sugar.
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")                 -- Find files using Telescope command-line sugar.
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>") -- Trouble
