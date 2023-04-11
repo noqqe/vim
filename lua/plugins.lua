@@ -102,6 +102,7 @@ return require('packer').startup(function(use)
     config = function()
       require("FTerm").setup {
         cmd = "fish",
+        auto_close = true,
       }
     end
   }
