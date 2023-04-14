@@ -290,12 +290,23 @@ return require('packer').startup(function(use)
     config = function()
       require("nvim-tree").setup({
         sort_by = "case_sensitive",
-        renderer = {
-          group_empty = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
+        view = {
+          side = "left",
+          mappings = {
+            list = {
+              -- remove a default mapping for "move up", which is my leader
+              -- and destorys the view
+              { key = "-", action = "" },
+            },
+          },
+          renderer = {
+            group_empty = true,
+            highlight_git = true,
+          },
+          filters = {
+            dotfiles = true,
+          },
+        }
       })
     end,
   }
