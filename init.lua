@@ -30,7 +30,7 @@ o.hlsearch = true                -- highlight searches
 o.mouse = "r"                    -- turn off mouse
 o.clipboard:append("unnamed")    -- persistent cut buffer across files (dd + p works everywhere)
 o.incsearch = false              -- don't jump during searching for a string
-o.autochdir = true               -- automatically switch to dir of file editing
+o.autochdir = false              -- dont't automatically switch to dir of file editing
 o.whichwrap = "<,>,h,l,[,]"      -- Wrap movement between lines in edit mode with arrows
 
 -- Text Formatting
