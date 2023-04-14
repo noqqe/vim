@@ -56,6 +56,9 @@ return require('packer').startup(function(use)
   -- quickly move in same lines with highlighted chars
   use 'unblevable/quick-scope'
 
+  -- terraform
+  use 'hashivim/vim-terraform'
+
   -- load vim file at last cursor position opened
   use 'farmergreg/vim-lastplace'
 
