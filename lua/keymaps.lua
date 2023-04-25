@@ -24,21 +24,35 @@ a.nvim_create_user_command('Q', 'q', {})
 a.nvim_create_user_command('X', 'x', {})
 
 -- Leader Key Mappings
-map("n", "<leader>n", ":set number!<CR>")                                                               -- toggle line numbers with -n
-map("n", "<leader>p", ":set paste!<CR>")                                                                -- toggle paste mode with -p
-map("n", "<leader>r", ":so $MYVIMRC<CR>")                                                               -- reload nvim with -r
-map("n", "<leader>P", ":PackerSync<CR>")                                                                -- update plugins
-map("n", "<leader>t", '<CMD>lua require("FTerm").toggle()<CR>')                                         -- startup terminal
-map("n", "<leader>g", '<CMD>lua require("FTerm").scratch({ cmd = {"lazygit"}, auto_close = true})<CR>') -- git from nvim
-map("n", "<leader>s", '<CMD>lua vim.lsp.buf.format()<CR>')                                              -- apply lsp formatting to current file
-map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")                                                  -- Find git files using Telescope command-line sugar.
-map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")                                                 -- Find files using Telescope command-line sugar.
-map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")                                                  -- Grep through repo
-map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")                                                  -- Find HELP, finally :')
-map("n", "<leader>x", "<cmd>TroubleToggle<cr>")                                                         -- Trouble
-map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")                                  -- Diagnose workspace
-map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")                                   -- Diagnose single file
-map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")                                                     -- show what shortcuts are defined
+map("n", "<leader>n", "<cmd>set number!<CR>")                          -- toggle line numbers with -n
+map("n", "<leader>p", "<cmd>set paste!<CR>")                           -- toggle paste mode with -p
+map("n", "<leader>r", "<cmd>so $MYVIMRC<CR>")                          -- reload nvim with -r
+map("n", "<leader>P", "<cmd>PackerSync<CR>")                           -- update plugins
+map("n", "<leader>s", '<cmd>lua vim.lsp.buf.format()<CR>')             -- apply lsp formatting to current file
+map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")                 -- Find git files using Telescope command-line sugar.
+map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")                -- Find files using Telescope command-line sugar.
+map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")                 -- Grep through repo
+map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")                 -- Find HELP, finally :')
+map("n", "<leader>x", "<cmd>TroubleToggle<cr>")                        -- Trouble
+map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>") -- Diagnose workspace
+map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")  -- Diagnose single file
+map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")                    -- show what shortcuts are defined
+
+-- Terminal integration using toggleterm
+local Terminal = require('toggleterm.terminal').Terminal
+local lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
+local fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true })
+
+function _lazygit_toggle()
+  lazygit:toggle()
+end
+
+function _fish_toggle()
+  fish:toggle()
+end
+
+map("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>") -- open git
+map("n", "<leader>t", "<cmd>lua _fish_toggle()<CR>")    -- open a terminal
 
 -- Disable Arrow keys
 map("n", "<up>", "<nop>")

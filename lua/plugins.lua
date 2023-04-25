@@ -101,12 +101,9 @@ return require('packer').startup(function(use)
 
   -- Terminal Popup
   use {
-    'numToStr/FTerm.nvim',
+    'akinsho/toggleterm.nvim',
     config = function()
-      require("FTerm").setup {
-        cmd = "fish",
-        auto_close = true,
-      }
+      require("toggleterm").setup {}
     end
   }
 
@@ -302,14 +299,14 @@ return require('packer').startup(function(use)
               { key = "-", action = "" },
             },
           },
-          renderer = {
-            group_empty = true,
-            highlight_git = true,
-          },
-          filters = {
-            dotfiles = true,
-          },
-        }
+        },
+        renderer = {
+          group_empty = true,
+          highlight_git = true,
+        },
+        filters = {
+          dotfiles = true,
+        },
       })
     end,
   }
