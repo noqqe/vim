@@ -71,7 +71,16 @@ nvim_lsp['pyright'].setup {
 
 nvim_lsp['sqlls'].setup { capabilities = capabilities }
 nvim_lsp['vimls'].setup { capabilities = capabilities }
-nvim_lsp['yamlls'].setup { capabilities = capabilities }
+
+-- https://github.com/redhat-developer/yaml-language-server
+nvim_lsp['yamlls'].setup {
+  capabilities = capabilities,
+  settings = {
+    yaml = {
+      keyOrdering = false,
+    }
+  }
+}
 
 -- https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md
 nvim_lsp['terraformls'].setup {
