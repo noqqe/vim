@@ -290,15 +290,9 @@ return require('packer').startup(function(use)
     config = function()
       require("nvim-tree").setup({
         sort_by = "case_sensitive",
+        on_attach = on_attach,
         view = {
           side = "left",
-          mappings = {
-            list = {
-              -- remove a default mapping for "move up", which is my leader
-              -- and destorys the view
-              { key = "-", action = "" },
-            },
-          },
         },
         renderer = {
           group_empty = true,
