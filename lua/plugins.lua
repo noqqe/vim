@@ -281,6 +281,18 @@ return require('packer').startup(function(use)
 
   }
 
+  use { 'romgrk/barbar.nvim',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+      'lewis6991/gitsigns.nvim',
+    },
+    config = function()
+      require("nvim-tree").setup({
+        auto_hide = true,
+      })
+    end,
+  }
+
   -- nvim tree
   use {
     'nvim-tree/nvim-tree.lua',

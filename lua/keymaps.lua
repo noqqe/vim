@@ -28,7 +28,6 @@ map("n", "<leader>n", "<cmd>set number!<CR>")                          -- toggle
 map("n", "<leader>p", "<cmd>set paste!<CR>")                           -- toggle paste mode with -p
 map("n", "<leader>r", "<cmd>so $MYVIMRC<CR>")                          -- reload nvim with -r
 map("n", "<leader>P", "<cmd>PackerSync<CR>")                           -- update plugins
-map("n", "<leader>b", "<c-^><cr>")                                     -- switch back to former file
 map("n", "<leader>s", '<cmd>lua vim.lsp.buf.format()<CR>')             -- apply lsp formatting to current file
 map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")                 -- Find git files using Telescope command-line sugar.
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")                -- Find files using Telescope command-line sugar.
@@ -38,6 +37,11 @@ map("n", "<leader>x", "<cmd>TroubleToggle<cr>")                        -- Troubl
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>") -- Diagnose workspace
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")  -- Diagnose single file
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")                    -- show what shortcuts are defined
+map("n", "<leader>b", "<c-^><cr>")                                     -- switch back to former file
+map("n", "<leader>,", "<Cmd>BufferPrevious<CR>")                       -- Buffer move to previous/next
+map("n", "<leader>.", "<Cmd>BufferNext<CR>")                           -- Buffer move to previous/next
+map("n", "<leader><", "<Cmd>BufferMovePrevious<CR>")                   -- Buffer move prev
+map("n", "<leader>>", "<Cmd>BufferMoveNext<CR>")                       -- buffer move prev
 
 -- Terminal integration using toggleterm
 local Terminal = require('toggleterm.terminal').Terminal
