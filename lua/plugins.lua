@@ -287,7 +287,7 @@ return require('packer').startup(function(use)
       'lewis6991/gitsigns.nvim',
     },
     config = function()
-      require("nvim-tree").setup({
+      require("barbar").setup({
         auto_hide = true,
       })
     end,
@@ -298,23 +298,7 @@ return require('packer').startup(function(use)
     'nvim-tree/nvim-tree.lua',
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional
-    },
-    config = function()
-      require("nvim-tree").setup({
-        sort_by = "case_sensitive",
-        on_attach = on_attach,
-        view = {
-          side = "left",
-        },
-        renderer = {
-          group_empty = true,
-          highlight_git = true,
-        },
-        filters = {
-          dotfiles = true,
-        },
-      })
-    end,
+    }
   }
 
   -- Show Keymappings
