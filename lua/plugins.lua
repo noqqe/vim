@@ -196,11 +196,23 @@ return require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
+  -- color variables consistently
+  use 'David-Kunz/markid'
+
   -- Syntax Highlighting Plugins
   use { 'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
+    requires = { 'David-Kunz/markid' },
     config = function()
       require 'nvim-treesitter.configs'.setup {
+        markid = {
+          enable = true
+        },
+        sync_install = false,
+        auto_install = true,
+        highlight = {
+          enable = true
+        },
         ensure_installed = {
           "bash",
           "diff",
@@ -243,9 +255,6 @@ return require('packer').startup(function(use)
           "toml",
           "vim",
           "yaml",
-        },
-        highlight = {
-          enable = true,
         },
       }
     end
@@ -300,6 +309,7 @@ return require('packer').startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional
     }
   }
+
 
   -- Show Keymappings
   use {
