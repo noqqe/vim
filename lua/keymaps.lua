@@ -58,6 +58,7 @@ end
 
 map("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>") -- open git
 map("n", "<leader>t", "<cmd>lua _fish_toggle()<CR>")    -- open a terminal
+map("t", "<Esc>", "<C-\\><C-N>")                        -- Make escape work in terminal to switch between insert (i) and normal (n) to scroll up
 
 -- Disable Arrow keys
 map("n", "<up>", "<nop>")
