@@ -305,6 +305,17 @@ return require('packer').startup(function(use)
     config = function()
       require("barbar").setup({
         auto_hide = true,
+        icons = {
+          modified = { button = '●' },
+          enabled = true,
+          buffer_index = true,
+          buffer_number = false,
+          gitsigns = {
+            added = { enabled = true, icon = '+' },
+            changed = { enabled = true, icon = '~' },
+            deleted = { enabled = true, icon = '-' },
+          },
+        },
       })
     end,
   }

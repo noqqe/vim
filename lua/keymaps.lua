@@ -38,10 +38,23 @@ map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>") -- Diagno
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")  -- Diagnose single file
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")                    -- show what shortcuts are defined
 map("n", "<leader>b", "<c-^><cr>")                                     -- switch back to former file
-map("n", "<leader>,", "<Cmd>BufferPrevious<CR>")                       -- Buffer move to previous/next
-map("n", "<leader>.", "<Cmd>BufferNext<CR>")                           -- Buffer move to previous/next
-map("n", "<leader><", "<Cmd>BufferMovePrevious<CR>")                   -- Buffer move prev
-map("n", "<leader>>", "<Cmd>BufferMoveNext<CR>")                       -- buffer move prev
+
+
+-- Buffers (with barbar)
+map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
+map("n", "<leader>2", "<Cmd>BufferGoto 2<CR>")
+map("n", "<leader>3", "<Cmd>BufferGoto 3<CR>")
+map("n", "<leader>4", "<Cmd>BufferGoto 4<CR>")
+map("n", "<leader>5", "<Cmd>BufferGoto 5<CR>")
+map("n", "<leader>6", "<Cmd>BufferGoto 6<CR>")
+map("n", "<leader>7", "<Cmd>BufferGoto 7<CR>")
+map("n", "<leader>8", "<Cmd>BufferGoto 8<CR>")
+map("n", "<leader>9", "<Cmd>BufferGoto 9<CR>")
+map("n", "<leader>0", "<Cmd>BufferLast<CR>")
+map("n", "<leader>,", "<Cmd>BufferPrevious<CR>")     -- Buffer move to previous/next
+map("n", "<leader>.", "<Cmd>BufferNext<CR>")         -- Buffer move to previous/next
+map("n", "<leader><", "<Cmd>BufferMovePrevious<CR>") -- Buffer move prev
+map("n", "<leader>>", "<Cmd>BufferMoveNext<CR>")     -- buffer move prev
 
 -- Terminal integration using toggleterm
 local Terminal = require('toggleterm.terminal').Terminal
