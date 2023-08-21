@@ -111,7 +111,7 @@ return require('packer').startup(function(use)
     'akinsho/toggleterm.nvim',
     config = function()
       require("toggleterm").setup {
-        auto_scroll = true
+        auto_scroll = false
       }
     end
   }

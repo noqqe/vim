@@ -58,8 +58,8 @@ map("n", "<leader>>", "<Cmd>BufferMoveNext<CR>")     -- buffer move prev
 
 -- Terminal integration using toggleterm
 local Terminal = require('toggleterm.terminal').Terminal
-local lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true })
-local fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true })
+local lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true, auto_scroll = false })
+local fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true, auto_scroll = false })
 
 function _lazygit_toggle()
   lazygit:toggle()
@@ -69,9 +69,10 @@ function _fish_toggle()
   fish:toggle()
 end
 
-map("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>") -- open git
-map("n", "<leader>t", "<cmd>lua _fish_toggle()<CR>")    -- open a terminal
-map("t", "<leader><Esc>", "<C-\\><C-N>")                -- Make escape work in terminal to switch between insert (i) and normal (n) to scroll up
+map("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>")             -- open git
+map("n", "<leader>t", "<cmd>lua _fish_toggle()<CR>")                -- open a terminal
+map("t", "<leader><Esc>", "<C-\\><C-N>")                            -- Make escape work in terminal to switch between insert (i) and normal (n) to scroll up
+map("t", "<leader>t", "<C-\\><C-N><CR><cmd>lua _fish_toggle()<CR>") -- quick way to close the terminal
 
 -- Disable Arrow keys
 map("n", "<up>", "<nop>")
