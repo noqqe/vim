@@ -47,6 +47,10 @@ o.isk:append({ "_", "$", "@", "%", "#", "-" }) -- word splitter chars
 vim.cmd("filetype plugin indent on")           -- load filetype plugin
 vim.cmd("au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2")
 
+-- Spelling
+vim.opt.spelllang = 'en_us,de_de'
+vim.opt.spell = true
+
 -- Backups
 o.backup = true                                                -- store backups
 o.writebackup = true                                           -- keep backup

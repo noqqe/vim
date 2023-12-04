@@ -13,19 +13,19 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- https://github.com/nvim-tree/nvim-tree.lua/wiki/Open-At-Startup#opening-nvim-tree-at-neovim-startup
 -- this automatically starts it
 local function open_nvim_tree(data)
-  -- buffer is a real file on the disk
-  local real_file = vim.fn.filereadable(data.file) == 1
-
-  -- buffer is a [No Name]
-  local no_name = data.file == "" and vim.bo[data.buf].buftype == ""
-  local git = vim.bo[data.buf].ft == "gitcommit"
-
-  -- only files please
-  if not real_file and not no_name and not git then
+  -- do not open when not git repo
+  local gitrepocmd = io.popen("git rev-parse --is-inside-work-tree 2>/dev/null")
+  local gitrepo = gitrepocmd:read("*a")
+  if not gitrepo == "true" then
     return
   end
 
-  -- open the tree but don't focus it
+  -- not open when filetype is a gitcommit
+  local gitcommit = vim.bo[data.buf].ft == "gitcommit"
+  if gitcommit then
+    return
+  end
+
   require("nvim-tree.api").tree.toggle({ focus = false })
 end
 
