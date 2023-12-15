@@ -365,6 +365,11 @@ return require('packer').startup(function(use)
     end,
   }
 
+  --- Enable copilot 
+  use { 'github/copilot.vim',
+    branch = 'release',
+  }
+
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins
