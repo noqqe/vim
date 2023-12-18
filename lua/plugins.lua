@@ -215,13 +215,14 @@ return require('packer').startup(function(use)
     config = function()
       require 'nvim-treesitter.configs'.setup {
         markid = {
-          enable = true
+          enable = false
         },
         sync_install = false,
         auto_install = true,
         highlight = {
           enable = true
         },
+        ignore_install = { "all" },
         ensure_installed = {
           "bash",
           "diff",
@@ -365,7 +366,7 @@ return require('packer').startup(function(use)
     end,
   }
 
-  --- Enable copilot 
+  --- Enable copilot
   use { 'github/copilot.vim',
     branch = 'release',
   }
