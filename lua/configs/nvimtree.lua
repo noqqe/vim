@@ -16,9 +16,10 @@ local function open_nvim_tree(data)
   -- do not open when not git repo
   local gitrepocmd = io.popen("git rev-parse --is-inside-work-tree 2>/dev/null")
   local gitrepo = gitrepocmd:read("*a")
-  if not gitrepo == "true" then
+  if not string.match(gitrepo, "true") then
     return
   end
+  gitrepocmd:close()
 
   -- not open when filetype is a gitcommit
   local gitcommit = vim.bo[data.buf].ft == "gitcommit"
