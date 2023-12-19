@@ -55,6 +55,7 @@ map("n", "<leader>,", "<Cmd>BufferPrevious<CR>")     -- Buffer move to previous/
 map("n", "<leader>.", "<Cmd>BufferNext<CR>")         -- Buffer move to previous/next
 map("n", "<leader><", "<Cmd>BufferMovePrevious<CR>") -- Buffer move prev
 map("n", "<leader>>", "<Cmd>BufferMoveNext<CR>")     -- buffer move prev
+map("n", "<leader>q", "<cmd>BufferClose<cr>")        -- close current buffer
 
 -- Terminal integration using toggleterm
 local Terminal = require('toggleterm.terminal').Terminal
