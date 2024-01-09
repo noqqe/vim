@@ -28,7 +28,11 @@ cmp.setup({
     documentation = cmp.config.window.bordered(),
   },
   formatting = {
-    format = lspkind.cmp_format(), require
+    format = lspkind.cmp_format({
+      mode = "symbol",
+      max_width = 50,
+      symbol_map = { Copilot = "" }
+    }),
   },
   mapping = cmp.mapping.preset.insert({
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
