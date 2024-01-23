@@ -189,7 +189,10 @@ return require('packer').startup(function(use)
   -- Highlight and remove trailing space
   -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-trailspace.md
   use { 'echasnovski/mini.trailspace',
-    branch = 'stable'
+    branch = 'stable',
+    config = function()
+      require('mini.trailspace').setup()
+    end,
   }
 
   -- Autoformat arrays with gS
