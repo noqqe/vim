@@ -94,18 +94,6 @@ return require('packer').startup(function(use)
     end
   }
 
-  -- Soft-, Hard-Wrapping
-  use { 'reedes/vim-pencil',
-    config = function()
-      vim.cmd [[
-        augroup pencil
-          autocmd!
-          au FileType jrnl,text,mail,markdown call pencil#init({'wrap': 'soft', 'textwidth': 78}) | setl spell spelllang=de,en sw=2 ts=2 sts=2 tw=77 wrap
-        augroup end
-      ]]
-    end
-  }
-
   -- Terminal Popup
   use {
     'akinsho/toggleterm.nvim',

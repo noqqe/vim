@@ -32,6 +32,7 @@ o.clipboard:append("unnamed")    -- persistent cut buffer across files (dd + p w
 o.incsearch = false              -- don't jump during searching for a string
 o.autochdir = false              -- dont't automatically switch to dir of file editing
 o.whichwrap = "<,>,h,l,[,]"      -- Wrap movement between lines in edit mode with arrows
+o.conceallevel = 0               -- Don't conceal anything (for markdown, 0-4 possible)
 
 -- Text Formatting
 o.autoindent = true                            -- automatic indent new lines
