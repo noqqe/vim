@@ -94,6 +94,10 @@ return require('packer').startup(function(use)
     end
   }
 
+
+  use { 'towolf/vim-helm' }
+
+
   -- Terminal Popup
   use {
     'akinsho/toggleterm.nvim',

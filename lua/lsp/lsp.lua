@@ -56,6 +56,8 @@ nvim_lsp['cssls'].setup {
 
 nvim_lsp['dockerls'].setup { capabilities = capabilities }
 
+nvim_lsp['helm_ls'].setup { capabilities = capabilities }
+
 nvim_lsp['html'].setup {
   capabilities = capabilities,
   on_attach = require("lsp-format").on_attach

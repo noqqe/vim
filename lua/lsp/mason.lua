@@ -7,6 +7,7 @@ require("mason-lspconfig").setup({
     "bashls",
     "cssls",
     "dockerls",
+    "helm_ls",
     "html",
     "jsonls",
     "gopls",
