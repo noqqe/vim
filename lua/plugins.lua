@@ -270,6 +270,8 @@ return require('packer').startup(function(use)
     run = ':GoUpdateBinaries'
   }
 
+  use { 'pedrohdz/vim-yaml-folds' }
+
   use { 'chrisbra/Colorizer',
     start = ':ColorHighlight',
     config = function()
