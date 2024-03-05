@@ -95,8 +95,11 @@ return require('packer').startup(function(use)
   }
 
 
+  -- helm charts syntax highlighting
   use { 'towolf/vim-helm' }
 
+  -- direnv / envrc
+  use { 'direnv/direnv.vim' }
 
   -- Terminal Popup
   use {

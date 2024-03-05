@@ -23,7 +23,7 @@ nvim
 This repo used to be my `vim` configuration, but I switched to `neovim`, which
 supports `lua` configuration and vimscript configuration as well.
 
-Since 0.5.0 version of neovim is out I no longer take care of compatiblitiy
+Since 0.5.0 version of neovim is out I no longer take care of compatibility
 to `vim` 8.0.
 
 However, my vim config is needed from time to time. If you're interested in
