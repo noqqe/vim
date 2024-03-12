@@ -26,6 +26,7 @@ a.nvim_create_user_command('X', 'x', {})
 -- Leader Key Mappings
 map("n", "<leader>n", "<cmd>NvimTreeToggle<CR>")                       -- toggle line numbers with -n
 map("n", "<leader>p", "<cmd>set paste!<CR>")                           -- toggle paste mode with -p
+map("n", "<leader>t", "<cmd>TSUpdateSync<CR>")                         -- toggle paste mode with -p
 map("n", "<leader>r", "<cmd>so $MYVIMRC<CR>")                          -- reload nvim with -r
 map("n", "<leader>P", "<cmd>PackerSync<CR>")                           -- update plugins
 map("n", "<leader>s", '<cmd>lua vim.lsp.buf.format()<CR>')             -- apply lsp formatting to current file

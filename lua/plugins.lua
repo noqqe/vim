@@ -208,7 +208,6 @@ return require('packer').startup(function(use)
 
   -- Syntax Highlighting Plugins
   use { 'nvim-treesitter/nvim-treesitter',
-    run = ':TSUpdate',
     requires = { 'David-Kunz/markid' },
     config = function()
       require 'nvim-treesitter.configs'.setup {
@@ -216,7 +215,7 @@ return require('packer').startup(function(use)
           enable = false
         },
         sync_install = false,
-        auto_install = true,
+        auto_install = false,
         highlight = {
           enable = true
         },
