@@ -27,6 +27,16 @@ return require('packer').startup(function(use)
     end
   }
 
+  -- git blame inline
+  use { 'f-person/git-blame.nvim',
+    config = function()
+      require('gitblame').setup {
+        enabled = false,
+        date_format = '%r',
+      }
+    end
+  }
+
   -- Statusline
   use { 'nvim-lualine/lualine.nvim',
     config = function()

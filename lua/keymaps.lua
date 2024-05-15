@@ -29,17 +29,17 @@ map("n", "<leader>p", "<cmd>set paste!<CR>")                           -- toggle
 map("n", "<leader>t", "<cmd>TSUpdateSync<CR>")                         -- toggle paste mode with -p
 map("n", "<leader>r", "<cmd>so $MYVIMRC<CR>")                          -- reload nvim with -r
 map("n", "<leader>P", "<cmd>PackerSync<CR>")                           -- update plugins
+map("n", "<leader>b", "<cmd>GitBlameToggle<CR>")                       -- git blame toggle
 map("n", "<leader>s", '<cmd>lua vim.lsp.buf.format()<CR>')             -- apply lsp formatting to current file
 map("n", "<leader>fg", "<cmd>Telescope git_files<cr>")                 -- Find git files using Telescope command-line sugar.
 map("n", "<leader>ff", "<cmd>Telescope find_files<cr>")                -- Find files using Telescope command-line sugar.
 map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")                 -- Grep through repo
+map("n", "<leader>fb", "<cmd>Telescope buffers<cr>")                   -- go through buffers
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")                 -- Find HELP, finally :')
 map("n", "<leader>x", "<cmd>TroubleToggle<cr>")                        -- Trouble
 map("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>") -- Diagnose workspace
 map("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")  -- Diagnose single file
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")                    -- show what shortcuts are defined
-map("n", "<leader>b", "<c-^><cr>")                                     -- switch back to former file
-
 
 -- Buffers (with barbar)
 map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")
