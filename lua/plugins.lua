@@ -145,9 +145,7 @@ return require('packer').startup(function(use)
   -- Nice Interface looking at lsp errors
   use { 'folke/trouble.nvim',
     config = function()
-      require("trouble").setup {
-        icons = true,
-      }
+      require("trouble").setup {}
     end
   }
 
@@ -224,7 +222,7 @@ return require('packer').startup(function(use)
         markid = {
           enable = false
         },
-        sync_install = false,
+        sync_install = true,
         auto_install = false,
         highlight = {
           enable = true
@@ -243,7 +241,6 @@ return require('packer').startup(function(use)
           "go",
           "gomod",
           "gosum",
-          "help",
           "html",
           "http",
           "ini",
