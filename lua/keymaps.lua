@@ -39,6 +39,7 @@ map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")       -- Find HELP, final
 map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>") -- Trouble
 map("n", "<leader>xl", "<cmd>Trouble lsp toggle<cr>")        -- Trouble
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")          -- show what shortcuts are defined
+map("n", "<leader>w", "<cmd>v/\\S/,//-j<cr>/asdf<cr>")
 
 -- Buffers (with barbar)
 map("n", "<leader>1", "<Cmd>BufferGoto 1<CR>")

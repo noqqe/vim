@@ -68,7 +68,6 @@ o.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
 o.undofile = true
 o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
-
 -- Load Plugins
 require("plugins")
 
