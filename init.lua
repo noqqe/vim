@@ -34,6 +34,7 @@ o.autochdir = false              -- dont't automatically switch to dir of file e
 o.whichwrap = "<,>,h,l,[,]"      -- Wrap movement between lines in edit mode with arrows
 o.conceallevel = 0               -- Don't conceal anything (for markdown, 0-4 possible)
 o.foldlevel = 99                 -- don't fold by default
+o.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
 
 -- Text Formatting
 o.autoindent = true                            -- automatic indent new lines
