@@ -104,10 +104,6 @@ return require('packer').startup(function(use)
     end
   }
 
-
-  -- helm charts syntax highlighting
-  use { 'towolf/vim-helm' }
-
   -- direnv / envrc
   use { 'direnv/direnv.vim' }
 
@@ -211,17 +207,10 @@ return require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
 
-  -- color variables consistently
-  use 'David-Kunz/markid'
-
   -- Syntax Highlighting Plugins
   use { 'nvim-treesitter/nvim-treesitter',
-    requires = { 'David-Kunz/markid' },
     config = function()
       require 'nvim-treesitter.configs'.setup {
-        markid = {
-          enable = false
-        },
         sync_install = true,
         auto_install = false,
         highlight = {
