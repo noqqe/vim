@@ -94,6 +94,9 @@ map("n", "<esc>OF", "<end>")
 map("i", "<esc>OF", "<end>")
 map("c", "<esc>OF", "<end>")
 
+-- Disable recordings via q. I always mistype this
+map("n", "q", "<nop>")
+
 -- Convienience key behaviour
 map("n", "J", "mzJ`z") -- Cursor jumps around while joining lines
 map("n", "n", "nzz")   -- Jumping lands on top or bottom of screen
