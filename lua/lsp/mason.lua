@@ -1,23 +1,25 @@
 require("mason").setup()
 
 require("mason-lspconfig").setup({
+  automatic_enable = true,
   ensure_installed = {
-    "awk_ls",
     "ansiblels",
+    "awk_ls",
     "bashls",
     "cssls",
     "dockerls",
+    "gopls",
     "helm_ls",
     "html",
     "jsonls",
-    "gopls",
+    "lua_ls",
     "marksman",
     "puppet",
     "pyright",
     "sqlls",
+    "terraformls",
+    "tinymist",
     "vimls",
     "yamlls",
-    "terraformls",
-    "lua_ls",
   }
 })

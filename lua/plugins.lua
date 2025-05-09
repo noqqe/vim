@@ -128,7 +128,11 @@ return require('packer').startup(function(use)
   -- LSP + LSP Installers
   use 'neovim/nvim-lspconfig'             -- lsp nvim binding
   use 'williamboman/mason.nvim'           -- installs lsps locally
-  use 'williamboman/mason-lspconfig.nvim' -- lsp bindings for nvim lspconfig
+  use { 'williamboman/mason-lspconfig.nvim', -- lsp bindings for nvim lspconfig
+    requires = {
+      'neovim/nvim-lspconfig',
+    },
+  }
 
   -- LSP Formatter to automatically format files on save
   use {
@@ -326,6 +330,14 @@ return require('packer').startup(function(use)
     }
   }
 
+  -- Typst
+  use {
+    "kaarmu/typst.vim",
+    ft = { "typst" },
+    config = function()
+      require("typist").setup()
+    end
+  }
 
   -- Show Keymappings
   use {
