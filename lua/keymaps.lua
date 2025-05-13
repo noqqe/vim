@@ -37,7 +37,6 @@ map("n", "<leader>fg", "<cmd>Telescope live_grep<cr>")       -- Grep through rep
 map("n", "<leader>fb", "<cmd>Telescope buffers<cr>")         -- go through buffers
 map("n", "<leader>fh", "<cmd>Telescope help_tags<cr>")       -- Find HELP, finally :')
 map("n", "<leader>x", "<cmd>Trouble diagnostics toggle<cr>") -- Trouble
-map("n", "<leader>xl", "<cmd>Trouble lsp toggle<cr>")        -- Trouble
 map("n", "<leader>?", "<cmd>WhichKey <leader><cr>")          -- show what shortcuts are defined
 map("n", "<leader>w", "<cmd>v/\\S/,//-j<cr>/asdf<cr>")
 
