@@ -28,6 +28,23 @@ return {
   ---@module "neo-tree"
   ---@type neotree.Config?
   opts = {
-    -- fill any relevant options here
-  }
+    filesystem = {
+      window = {
+        mapping_options = {
+          noremap = true,
+          nowait = false,
+        },
+        mappings = {
+          ["o"] = {
+            command = "open",
+            nowait = true
+          }, -- fill any relevant options here
+          ["O"] = {
+            "open",
+            nowait = true
+          },
+        },
+      },
+    },
+  },
 }
