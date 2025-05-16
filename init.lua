@@ -37,6 +37,7 @@ o.foldlevel = 99                 -- don't fold by default
 o.titlestring = [[%f %h%m%r%w %{v:progname} (%{tabpagenr()} of %{tabpagenr('$')})]]
 
 -- Text Formatting
+g.editorconfig = true                          -- enable editorconfig
 o.autoindent = true                            -- automatic indent new lines
 o.smartindent = true                           -- be smart about it
 o.wrap = false                                 -- do not wrap lines
@@ -69,25 +70,6 @@ o.directory = os.getenv("HOME") .. "/.local/share/nvim/swap"
 o.undofile = true
 o.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo"
 
--- Load Plugins
-require("plugins")
-
--- Load configuration files dynamically
-local function source_files_from_dir(directory)
-  for _, file in pairs(vim.fn.readdir(directory)) do
-    local file = directory .. '/' .. file
-    if vim.fn.filereadable(file) then
-      vim.fn.execute('source ' .. file)
-    end
-  end
-end
-
--- load all additional configs
-local lua_config_dir = vim.fn.stdpath('config') .. '/lua'
-local config_dirs = { 'configs', 'lsp' }
-for _, dir in pairs(config_dirs) do
-  source_files_from_dir(lua_config_dir .. '/' .. dir)
-end
-
 -- Load Keymaps
-require("keymaps")
+require("config.keymaps")
+require("config.lazy")
