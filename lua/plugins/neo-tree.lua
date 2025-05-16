@@ -25,8 +25,6 @@ return {
   keys = {
     { mode = { "n" }, "<leader>n", "<cmd>Neotree<CR>", desc = "Open" },
   },
-  ---@module "neo-tree"
-  ---@type neotree.Config?
   opts = {
     filesystem = {
       window = {

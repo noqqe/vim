@@ -8,15 +8,15 @@ return {
     },
     config = function ()
       Terminal = require('toggleterm.terminal').Terminal
-      lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true, auto_scroll = false })
-      fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true, auto_scroll = false })
+      Lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true, auto_scroll = false })
+      Fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true, auto_scroll = false })
 
       function _lazygit_toggle()
-        lazygit:toggle()
+        Lazygit:toggle()
       end
 
       function _fish_toggle()
-        fish:toggle()
+        Fish:toggle()
       end
     end, 
     keys = {
