@@ -14,7 +14,7 @@ o.autoread = true        -- reload files (no local changes only)
 o.tabpagemax = 50        -- open 50 tabs max
 o.shortmess = "filtIoOA" -- shorten messages
 o.visualbell = false     -- Disable visual bell
-o.showmode = false       -- Disable Showmode since its in airline
+o.showmode = false       -- Disable Showmode since its in lualine
 
 -- UI Changes
 o.ruler = true                   -- show the cursor position all the time
