@@ -51,16 +51,19 @@ return {
   {
     'mason-org/mason.nvim',
     cmd = 'Mason',
+    config = function()
+      require('mason').setup()
+    end,
     keys = {
       "<leader>M", "<cmd>Mason<cr>", desc = "open mason"
     },
   },
-  { 
+  {
     'mason-org/mason-lspconfig.nvim',
     -- event = { "BufReadPre", "BufNewFile" },
-      dependencies = {
-        "neovim/nvim-lspconfig",
-      },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
     opts = {
       automatic_enable = true,
       ensure_installed = {

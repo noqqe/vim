@@ -6,11 +6,17 @@ return {
   {'onsails/lspkind.nvim'},
   {
     'hrsh7th/nvim-cmp',
+    event = "InsertEnter",
     config = function ()
-      has_words_before = function() local line, col = unpack(vim.api.nvim_win_get_cursor(0)) return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil end local feedkey = function(key, mode) vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true) end vim.o.completeopt = "menuone,noselect"
+      local has_words_before = function()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then return false end
+        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+        return col ~= 0 and vim.api.nvim_buf_get_text(0, line-1, 0, line-1, col, {})[1]:match("^%s*$") == nil
+      end
+
       -- Set up nvim-cmp.
       local cmp = require 'cmp'
-      lspkind = require 'lspkind'
+      local lspkind = require 'lspkind'
 
       cmp.setup({
         snippet = {
@@ -58,18 +64,6 @@ return {
           { name = 'nvim_lsp' },
           { name = 'copilot' },
           { name = 'vsnip' },
-          -- { name = 'luasnip' }, -- For luasnip users.
-          -- { name = 'ultisnips' }, -- For ultisnips users.
-          -- { name = 'snippy' }, -- For snippy users.
-        }, {
-          { name = 'buffer' },
-        })
-      })
-
-      -- Set configuration for specific filetype.
-      cmp.setup.filetype('gitcommit', {
-        sources = cmp.config.sources({
-          { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
         }, {
           { name = 'buffer' },
         })

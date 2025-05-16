@@ -13,9 +13,16 @@ return {
       },
     },
   },
-
   {
     "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua" },
-  },
+    dependencies = { "zbirenbaum/copilot.lua" },
+    event = { "InsertEnter", "LspAttach" },
+    fix_pairs = true,
+    config = function()
+      require("copilot_cmp").setup({
+        suggestion = { enabled = false },
+        panel = { enabled = false },
+      })
+    end,
+  }
 }
