@@ -12,19 +12,6 @@ vim.lsp.config('lua_ls', {
   },
 })
 
--- vim.lsp.config('awk_ls')
--- vim.lsp.config('bashls')
--- vim.lsp.config('cssls')
--- vim.lsp.config('dockerls')
--- vim.lsp.config('helm_ls')
--- vim.lsp.config('html')
--- vim.lsp.config('jsonls') 
--- vim.lsp.config('marksman') 
--- vim.lsp.config('puppet') 
--- vim.lsp.config('pyright')
--- vim.lsp.config('sqlls')
--- vim.lsp.config('vimls') 
-
 -- https://github.com/hashicorp/terraform-ls/blob/main/docs/USAGE.md
 vim.lsp.config('terraformls', {
   settings = {
@@ -51,6 +38,7 @@ vim.lsp.config('gopls', {
   },
 })
 
+-- typst lsp
 vim.lsp.config('tinymist', {
   settings = {
     formatterMode = "typstyle",
@@ -58,3 +46,46 @@ vim.lsp.config('tinymist', {
     semanticTokens = "disable"
   },
 })
+
+return {
+  {
+    'mason-org/mason.nvim',
+    cmd = 'Mason',
+    config = function()
+      require('mason').setup()
+    end,
+    keys = {
+      "<leader>M", "<cmd>Mason<cr>", desc = "open mason"
+    },
+  },
+  {
+    'mason-org/mason-lspconfig.nvim',
+    -- event = { "BufReadPre", "BufNewFile" },
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+    opts = {
+      automatic_enable = true,
+      ensure_installed = {
+        "ansiblels",
+        "awk_ls",
+        "bashls",
+        "cssls",
+        "dockerls",
+        "gopls",
+        "helm_ls",
+        "html",
+        "jsonls",
+        "lua_ls",
+        "marksman",
+        "puppet",
+        "pyright",
+        "sqlls",
+        "terraformls",
+        "tinymist",
+        "vimls",
+        "yamlls",
+      },
+    },
+  },
+}
