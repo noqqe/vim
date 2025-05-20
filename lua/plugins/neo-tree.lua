@@ -38,9 +38,16 @@ return {
             nowait = true
           }, -- fill any relevant options here
           ["O"] = {
-            "open",
+            command = "open",
             nowait = true
           },
+          ["oc"] = "noop",
+          ["od"] = "noop",
+          ["og"] = "noop",
+          ["om"] = "noop",
+          ["on"] = "noop",
+          ["os"] = "noop",
+          ["ot"] = "noop",
         },
       },
     },
