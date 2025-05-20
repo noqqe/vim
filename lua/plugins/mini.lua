@@ -60,6 +60,13 @@ return {
     end,
   },
 
+  -- Snippets
+  {
+    'echasnovski/mini.snippets',
+    config = function()
+      require('mini.snippets').setup()
+    end,
+  },
   -- Autoformat arrays with gS
   {
     'echasnovski/mini.splitjoin',
