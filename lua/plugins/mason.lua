@@ -60,7 +60,6 @@ return {
   },
   {
     'mason-org/mason-lspconfig.nvim',
-    -- event = { "BufReadPre", "BufNewFile" },
     dependencies = {
       "neovim/nvim-lspconfig",
     },
@@ -78,10 +77,11 @@ return {
         "jsonls",
         "lua_ls",
         "marksman",
-        "puppet",
         "pyright",
         "sqlls",
+        "dotenv-linter",
         "terraformls",
+        "terraform",
         "tinymist",
         "vimls",
       },

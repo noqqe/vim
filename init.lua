@@ -24,7 +24,7 @@ o.wildmenu = true                -- turn on wild menu
 o.ch = 1                         -- command line height
 o.report = 0                     -- tell us about changes
 o.startofline = false            -- don't jump to the start of line when scrolling
-      o.wildmode = "list:longest,full" -- nice completion for wildcards
+o.wildmode = "list:longest,full" -- nice completion for wildcards
 o.number = true                  -- enable line numbers by default
 o.hlsearch = true                -- highlight searches
 o.mouse = "r"                    -- turn off mouse
@@ -52,7 +52,7 @@ vim.cmd("filetype plugin indent on")           -- load filetype plugin
 vim.cmd("au Filetype * setl nospell tw=0 wm=0 wrap sw=2 ts=2 sts=2")
 
 -- Spelling
-vim.opt.spelllang = 'en_us,de_de'
+vim.opt.spelllang = "en_us,de_de"
 vim.opt.spell = true
 
 -- Backups
