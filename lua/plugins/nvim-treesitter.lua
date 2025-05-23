@@ -32,6 +32,7 @@ return {
           "go",
           "gomod",
           "gosum",
+          "helm",
           "html",
           "http",
           "ini",

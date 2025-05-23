@@ -84,7 +84,6 @@ return {
         "terraformls",
         "tinymist",
         "vimls",
-        "yamlls",
       },
     },
   },
