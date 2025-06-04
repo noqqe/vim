@@ -11,10 +11,6 @@ return {
     snippets = { preset = 'mini_snippets' },
     keymap = {
       preset = 'default',
-      ['k'] = { 'select_prev', 'fallback' },
-      ['j'] = { 'select_next', 'fallback' },
-      ['<Tab>'] = { 'show'},
-      ['<CR>'] = { 'accept', 'fallback' },
     },
     sources = {
       default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
@@ -33,10 +29,12 @@ return {
     cmdline = {
       keymap = {
         preset = 'cmdline',
-        ['<Tab>'] = { 'show', 'accept' },
-        ['<CR>'] = { 'accept_and_enter', 'fallback' },
       },
-      completion = { menu = { auto_show = true } },
-    },
-  },
+      completion = {
+        menu = {
+          auto_show = true
+        }
+      }
+    }
+  }
 }
