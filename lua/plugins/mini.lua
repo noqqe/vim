@@ -1,3 +1,5 @@
+local gen_loader = require('mini.snippets').gen_loader
+
 return {
   -- Visualize scope of idents with |
   -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-indentscope.md
@@ -64,7 +66,15 @@ return {
   {
     'echasnovski/mini.snippets',
     config = function()
-      require('mini.snippets').setup()
+      require('mini.snippets').setup({
+        snippets = {
+          -- Load custom file with global snippets first (adjust for Windows)
+          gen_loader.from_file('~/.config/nvim/snippets/global.json'),
+
+          -- Loader friendly snippets from runtime path
+          gen_loader.from_lang(),
+        },
+      })
     end,
   },
   -- Autoformat arrays with gS
