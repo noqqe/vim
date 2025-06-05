@@ -1,3 +1,4 @@
+-- automatically open neo-tree when opening nvim without arguments
 vim.api.nvim_create_augroup("neotree", {})
 vim.api.nvim_create_autocmd("UiEnter", {
   desc = "Open Neotree automatically",
@@ -12,6 +13,9 @@ vim.api.nvim_create_autocmd("UiEnter", {
 -- disable netrw at the very start of your init.lua
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+
+
+-- plugin definition
 return {
   "nvim-neo-tree/neo-tree.nvim",
   branch = "v3.x",
@@ -26,6 +30,7 @@ return {
     { mode = { "n" }, "<leader>n", "<cmd>Neotree<CR>", desc = "Open" },
   },
   opts = {
+    close_if_last_window = true,
     filesystem = {
       window = {
         mapping_options = {
