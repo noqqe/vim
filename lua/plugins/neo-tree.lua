@@ -32,6 +32,7 @@ return {
   opts = {
     close_if_last_window = true,
     filesystem = {
+      use_libuv_file_watcher = false, -- better fs watcher
       window = {
         mapping_options = {
           noremap = true,
