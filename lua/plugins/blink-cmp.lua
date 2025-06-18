@@ -11,6 +11,16 @@ return {
     snippets = { preset = 'mini_snippets' },
     keymap = {
       preset = 'default',
+      ["<CR>"] = {
+        action = function()
+          if require('blink.cmp').is_visible() then
+            return require('blink.cmp').confirm({ select = true })
+          else
+            return require('blink.cmp').close()
+          end
+        end,
+        description = "Confirm completion or close menu",
+      },
     },
     sources = {
       default = { 'copilot', 'lsp', 'path', 'snippets', 'buffer' },
