@@ -2,9 +2,9 @@ local gen_loader = require('mini.snippets').gen_loader
 
 return {
   -- Visualize scope of idents with |
-  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-indentscope.md
+  -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-indentscope.md
   {
-    'echasnovski/mini.indentscope',
+    'nvim-mini/mini.indentscope',
     config = function(_, opts)
       -- Disable default behavior
       opts.draw = { delay = 0 }
@@ -22,7 +22,7 @@ return {
 
   -- Auto comment function
   {
-    'echasnovski/mini.comment',
+    'nvim-mini/mini.comment',
     opts = {
       options = {
         -- Whether to ignore blank lines
@@ -36,9 +36,9 @@ return {
   },
 
   -- Surroundings with sr
-  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-surround.md
+  -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-surround.md
   {
-    'echasnovski/mini.surround',
+    'nvim-mini/mini.surround',
     config = function()
       require('mini.surround').setup({
         mappings = {
@@ -54,9 +54,9 @@ return {
   },
 
   -- Highlight and remove trailing space
-  -- https://github.com/echasnovski/mini.nvim/blob/main/readmes/mini-trailspace.md
+  -- https://github.com/nvim-mini/mini.nvim/blob/main/readmes/mini-trailspace.md
   {
-    'echasnovski/mini.trailspace',
+    'nvim-mini/mini.trailspace',
     config = function()
       require('mini.trailspace').setup()
     end,
@@ -64,7 +64,7 @@ return {
 
   -- Snippets
   {
-    'echasnovski/mini.snippets',
+    'nvim-mini/mini.snippets',
     config = function()
       require('mini.snippets').setup({
         snippets = {
@@ -79,7 +79,7 @@ return {
   },
   -- Autoformat arrays with gS
   {
-    'echasnovski/mini.splitjoin',
+    'nvim-mini/mini.splitjoin',
     config = function()
       require('mini.splitjoin').setup()
     end,
