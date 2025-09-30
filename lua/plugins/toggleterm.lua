@@ -17,7 +17,7 @@ return {
       end
 
       function _jjui_toggle()
-        Fish:toggle()
+        Jjui:toggle()
       end
 
       function _fish_toggle()
