@@ -8,13 +8,8 @@ return {
     },
     config = function()
       Terminal = require('toggleterm.terminal').Terminal
-      Lazygit  = Terminal:new({ cmd = "lazygit", direction = "float", hidden = true, auto_scroll = false })
       Jjui     = Terminal:new({ cmd = "jjui", direction = "float", hidden = true, auto_scroll = false })
       Fish     = Terminal:new({ cmd = "fish", direction = "float", hidden = true, auto_scroll = false })
-
-      function _lazygit_toggle()
-        Lazygit:toggle()
-      end
 
       function _jjui_toggle()
         Jjui:toggle()
@@ -25,7 +20,6 @@ return {
       end
     end,
     keys = {
-      { "<leader>g",     "<cmd>lua _lazygit_toggle()<CR>", mode = { "n" }, desc = "open lazygit" },
       { "<leader>j",     "<cmd>lua _jjui_toggle()<CR>",    mode = { "n" }, desc = "open jjui" },
       { "<leader>t",     "<cmd>lua _fish_toggle()<CR>",    mode = { "n" }, desc = "open a terminal" },
       { "<leader><Esc>", "<C-\\><C-N>",                    mode = { "t" }, desc = "Make escape work in terminal to switch between insert (i) and normal (n) to scroll up" },
