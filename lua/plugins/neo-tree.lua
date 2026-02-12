@@ -4,7 +4,7 @@ vim.api.nvim_create_autocmd("UiEnter", {
   desc = "Open Neotree automatically",
   group = "neotree",
   callback = function()
-    if vim.fn.argc() == 0 then
+    if vim.fn.argc() == 0 and vim.bo.filetype ~= "man" then
       vim.cmd "Neotree toggle"
     end
   end,
@@ -31,6 +31,7 @@ return {
   },
   opts = {
     close_if_last_window = true,
+    open_files_do_not_replace_types = { "terminal", "trouble", "qf", "man" }, -- when opening files, do not use windows containing these filetypes or buftypes
     filesystem = {
       use_libuv_file_watcher = false, -- better fs watcher
       window = {
