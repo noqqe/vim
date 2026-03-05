@@ -1,5 +1,4 @@
 -- Lua Configuration
-
 local o = vim.opt
 local a = vim.api
 local g = vim.g
