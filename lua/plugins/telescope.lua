@@ -10,5 +10,13 @@ return {
       { mode = { "n" }, "<leader>fb", "<cmd>Telescope buffers<cr>",   desc = "go through buffers" },
       { mode = { "n" }, "<leader>fh", "<cmd>Telescope help_tags<cr>", desc = "Find HELP, finally :')" },
     },
+    pickers = {
+      find_files = {
+        theme = "dropdown",
+      },
+      git_files = {
+        theme = "dropdown",
+      },
+    },
   }
 }
